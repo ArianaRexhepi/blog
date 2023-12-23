@@ -1,0 +1,17 @@
+.home-container {
+    display: flex;
+  }
+  
+  .left-section {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .right-section {
+    flex: 1;
+    padding: 20px;
+    background-color: black; /* Add your preferred background color */
+  }
+  
+  /* Add more styles as needed */
+  
