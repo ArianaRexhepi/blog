@@ -18,7 +18,7 @@ namespace Data
                 Email = "arianaarexhepi@gmail.com",
                 EmailConfirmed = true
             };
-            if (userManager.Users.All(u => u.Id != defaultUser.Id))
+            if (userManager.Users.All(u => u.Email != defaultUser.Email))
             {
                 var user = await userManager.FindByEmailAsync(defaultUser.Email);
                 if (user == null)

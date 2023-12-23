@@ -40,7 +40,7 @@ namespace back.Controllers
         [HttpPost]
         public async Task<IActionResult> PostAsync(Books book)
         {
-            await _context.Book.AddAsync(book);
+            _context.Book.Add(book);
             var result = await _context.SaveChangesAsync() > 0;
             if (!result) return BadRequest();
             return Ok();
