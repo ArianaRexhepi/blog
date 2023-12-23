@@ -21,14 +21,14 @@ namespace back.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAsync()
         {
-            var books = await _context.Books.ToListAsync();
+            var books = await _context.Book.ToListAsync();
             return Ok(books);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetBookAsync(int id)
         {
-            var existingBook = await _context.Books.FindAsync(id);
+            var existingBook = await _context.Book.FindAsync(id);
             if (existingBook == null)
             {
                 return NotFound();
@@ -40,7 +40,7 @@ namespace back.Controllers
         [HttpPost]
         public async Task<IActionResult> PostAsync(Books book)
         {
-            await _context.Books.AddAsync(book);
+            await _context.Book.AddAsync(book);
             var result = await _context.SaveChangesAsync() > 0;
             if (!result) return BadRequest();
             return Ok();
@@ -49,7 +49,7 @@ namespace back.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAsync(int id, Books book)
         {
-            var existingBook = await _context.Books.FindAsync(id);
+            var existingBook = await _context.Book.FindAsync(id);
             if (existingBook == null)
             {
                 return NotFound();
@@ -71,13 +71,13 @@ namespace back.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAsync(int id)
         {
-            var existingBook = await _context.Books.FindAsync(id);
+            var existingBook = await _context.Book.FindAsync(id);
             if (existingBook == null)
             {
                 return NotFound();
             }
 
-            _context.Books.Remove(existingBook);
+            _context.Book.Remove(existingBook);
             await _context.SaveChangesAsync();
 
             return Ok();

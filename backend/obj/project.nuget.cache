@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "fjeQzcwsNDk4L1TYLyK6SIJp8tCGgWhHhfDHc4gjoav/geIrUPqyzJyXHKI4NSNuD+8i9K+5A/SA5DLR8K7l3Q==",
-  "success": false,
+  "dgSpecHash": "uQ1hB7NQ6ySSJ7qR3VM9uF0NvMNdWdU/7QhFQkaq0zCRv1WW0pkSkrCa/nB/z5QJZLurxxFraW9lpfkAnoFQWQ==",
+  "success": true,
   "projectFilePath": "/Users/els/Desktop/work/ueb/ueb1/backend/backend.csproj",
   "expectedPackageFiles": [
     "/Users/els/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
@@ -24,9 +24,9 @@
     "/Users/els/.nuget/packages/microsoft.aspnetcore.identity/2.2.0/microsoft.aspnetcore.identity.2.2.0.nupkg.sha512",
     "/Users/els/.nuget/packages/microsoft.aspnetcore.identity.entityframeworkcore/7.0.0/microsoft.aspnetcore.identity.entityframeworkcore.7.0.0.nupkg.sha512",
     "/Users/els/.nuget/packages/microsoft.aspnetcore.webutilities/2.2.0/microsoft.aspnetcore.webutilities.2.2.0.nupkg.sha512",
-    "/Users/els/.nuget/packages/microsoft.entityframeworkcore/7.0.0/microsoft.entityframeworkcore.7.0.0.nupkg.sha512",
-    "/Users/els/.nuget/packages/microsoft.entityframeworkcore.abstractions/7.0.0/microsoft.entityframeworkcore.abstractions.7.0.0.nupkg.sha512",
-    "/Users/els/.nuget/packages/microsoft.entityframeworkcore.analyzers/7.0.0/microsoft.entityframeworkcore.analyzers.7.0.0.nupkg.sha512",
+    "/Users/els/.nuget/packages/microsoft.entityframeworkcore/7.0.2/microsoft.entityframeworkcore.7.0.2.nupkg.sha512",
+    "/Users/els/.nuget/packages/microsoft.entityframeworkcore.abstractions/7.0.2/microsoft.entityframeworkcore.abstractions.7.0.2.nupkg.sha512",
+    "/Users/els/.nuget/packages/microsoft.entityframeworkcore.analyzers/7.0.2/microsoft.entityframeworkcore.analyzers.7.0.2.nupkg.sha512",
     "/Users/els/.nuget/packages/microsoft.entityframeworkcore.design/7.0.0/microsoft.entityframeworkcore.design.7.0.0.nupkg.sha512",
     "/Users/els/.nuget/packages/microsoft.entityframeworkcore.relational/7.0.2/microsoft.entityframeworkcore.relational.7.0.2.nupkg.sha512",
     "/Users/els/.nuget/packages/microsoft.entityframeworkcore.tools/7.0.0/microsoft.entityframeworkcore.tools.7.0.0.nupkg.sha512",
@@ -84,15 +84,5 @@
     "/Users/els/.nuget/packages/system.text.json/7.0.0/system.text.json.7.0.0.nupkg.sha512",
     "/Users/els/.nuget/packages/system.threading.tasks/4.3.0/system.threading.tasks.4.3.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1605",
-      "level": "Error",
-      "message": "Warning As Error: Detected package downgrade: Microsoft.EntityFrameworkCore from 7.0.2 to 7.0.0. Reference the package directly from the project to select a different version. \n backend -> Pomelo.EntityFrameworkCore.MySql 7.0.0 -> Microsoft.EntityFrameworkCore.Relational 7.0.2 -> Microsoft.EntityFrameworkCore (>= 7.0.2) \n backend -> Microsoft.EntityFrameworkCore (>= 7.0.0)",
-      "libraryId": "Microsoft.EntityFrameworkCore",
-      "targetGraphs": [
-        "net7.0"
-      ]
-    }
-  ]
+  "logs": []
 }
