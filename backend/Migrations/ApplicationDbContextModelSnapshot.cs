@@ -242,8 +242,8 @@ namespace backend.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("Year")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("Year")
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 

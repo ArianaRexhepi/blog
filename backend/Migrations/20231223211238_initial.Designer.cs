@@ -11,7 +11,7 @@ using backend.Data;
 namespace backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231223191926_initial")]
+    [Migration("20231223211238_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -245,8 +245,8 @@ namespace backend.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("Year")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("Year")
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
