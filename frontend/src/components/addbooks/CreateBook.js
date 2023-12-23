@@ -5,12 +5,11 @@ import { Link, useNavigate } from "react-router-dom";
 function CreateBook() {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
+  const [genre, setGenre] = useState("");
+  const [content, setContent] = useState("");
   const [rating, setRating] = useState("");
   const [year, setYear] = useState(new Date());
   const [image, setImage] = useState("");
-  const [price, setPrice] = useState(0);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -21,19 +20,18 @@ function CreateBook() {
     const newBook = {
       title: title,
       author: author,
-      description: description,
-      category: category,
+      content: content,
+      genre: genre,
       rating: rating,
       year: year,
       image: image,
-      price: price,
     };
 
     try {
       console.log(newBook);
-      await axios.post("http://localhost:5267/api/book", newBook).then(() => {
+      await axios.post("http://localhost:5074/api/books", newBook).then(() => {
         setLoading(false);
-        navigate("/books");
+        navigate("/booklist");
       });
     } catch (error) {
       console.error(error);
@@ -46,7 +44,7 @@ function CreateBook() {
         <form className="form" onSubmit={handleSubmit}>
           <div className="modal-header">
             <h4 className="modal-title">Add Book</h4>
-            <Link to="/books">
+            <Link to="/booklist">
               <button
                 type="button"
                 className="btn-close"
@@ -74,20 +72,20 @@ function CreateBook() {
               />
             </div>
             <div className="form-group">
-              <label>Category:</label>
+              <label>Genre:</label>
               <input
                 type="text"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
+                value={genre}
+                onChange={(e) => setGenre(e.target.value)}
                 className="form-control"
               />
             </div>
             <div className="form-group">
-              <label>Description:</label>
+              <label>Content:</label>
               <input
                 type="text"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
                 className="form-control"
               />
             </div>
@@ -118,18 +116,9 @@ function CreateBook() {
                 className="form-control"
               />
             </div>
-            <div className="form-group">
-              <label>Price:</label>
-              <input
-                type="number"
-                value={price}
-                onChange={(e) => setPrice(parseInt(e.target.value))}
-                className="form-control"
-              />
-            </div>
           </div>
           <div className="modal-footer">
-            <Link to="/books">
+            <Link to="/booklist">
               <input type="button" className="btn btn-danger" value="Dismiss" />
             </Link>
             <input

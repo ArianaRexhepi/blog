@@ -47,6 +47,8 @@ const Navbar = () => {
         <a href="#">Travel</a>
         <a href="#">Relationships</a>
         <a href="#">Account</a>
+        <a href="booklist">booklist</a>
+        
       </div>
     </nav>
   );

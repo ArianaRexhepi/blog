@@ -7,7 +7,7 @@ function BookList() {
 
   useEffect(() => {
     const fetch = async () => {
-      const res = await axios.get('http://localhost:5267/api/design/books');
+      const res = await axios.get('http://localhost:5074/api/books');
       setBooks(res.data);
     };
     fetch();
@@ -16,7 +16,7 @@ function BookList() {
   const handleDelete = async (id) => {
     const confirmed = window.confirm('Are you sure you want to delete this book?');
     if (confirmed) {
-      await axios.delete(`http://localhost:5267/api/design/books/${id}`);
+      await axios.delete(`http://localhost:5074/api/books/${id}`);
       setBooks(books.filter(book => book.id !== id));
     }
   };
@@ -57,7 +57,7 @@ function BookList() {
                             <img src={book.image} alt='' style={{width:"200px", height:"250px", objectFit:"cover"}}/>
                           </td>
                           <td>
-                          <Link to={`/design/books/editbooks/${book.id}`}><button className='btn btn-primary'>Edit</button></Link>
+                          <Link to={`/editbooks/${book.id}`}><button className='btn btn-primary'>Edit</button></Link>
                               <button className='btn btn-danger' onClick={() => handleDelete(book.id)}>Delete</button>
                           </td>
                       </tr>
