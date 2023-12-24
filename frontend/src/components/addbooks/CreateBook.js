@@ -26,17 +26,14 @@ function CreateBook() {
     event.preventDefault();
     setLoading(true);
 
-    await axios
-      .post('/books', books)
-      .then(() => {
-        navigate("/booklist");
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
+    try {
+      await axios.post(`/books`, books).then(() => {
         setLoading(false);
+        navigate("/booklist");
       });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

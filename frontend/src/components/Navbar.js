@@ -8,6 +8,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-left">
+      <a href="/">Home</a>
         <div
           className="nav-link"
           onMouseEnter={() => setShowSublinks(true)}

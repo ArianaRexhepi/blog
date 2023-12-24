@@ -14,7 +14,7 @@ const Pages = () => {
       <Route path="/" element={<Home />} />
       <Route path="/booklist" element={<BookList />} />
       <Route path="/createbook" element={<CreateBook />} />
-      <Route path="/editbook/:id" element={<EditBook />} />
+      <Route path="/editbooks/:id" element={<EditBook />} />
     </Routes>
   </Router>
   </>
