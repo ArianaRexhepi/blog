@@ -11,33 +11,33 @@ function CreateBook() {
   const [year, setYear] = useState(new Date());
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
+  const books = {
+    title: title,
+    author: author,
+    content: content,
+    genre: genre,
+    rating: rating,
+    year: year,
+    image: image,
+  };
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
 
-    const newBook = {
-      title: title,
-      author: author,
-      content: content,
-      genre: genre,
-      rating: rating,
-      year: year,
-      image: image,
-    };
-
-    try {
-      console.log(newBook);
-      await axios.post("http://localhost:5074/api/books", newBook).then(() => {
-        setLoading(false);
+    await axios
+      .post('/books', books)
+      .then(() => {
         navigate("/booklist");
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
       });
-    } catch (error) {
-      console.error(error);
-    }
   };
-  //cilin e mir qe e pate bo per pun
 
   return (
     <div className="modal-dialog" style={{ width: 600 }}>

@@ -9,7 +9,7 @@ function EditBook() {
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:5267/api/book/${id}`).then((response) => {
+    axios.get(`books/${id}`).then((response) => {
       setBook(response.data);
       console.log(response.data);
     });
@@ -20,9 +20,9 @@ function EditBook() {
     setLoading(true);
 
     try {
-      await axios.put(`http://localhost:5267/api/book/${id}`, book).then(() => {
+      await axios.put(`books/${id}`, book).then(() => {
         setLoading(false);
-        navigate("/books");
+        navigate("/booklist");
       });
     } catch (error) {
       console.error(error);
@@ -37,7 +37,7 @@ function EditBook() {
           <form className="form">
             <div className="modal-header">
               <h4 className="modal-title">Edit Book</h4>
-              <Link to="/books">
+              <Link to="/booklist">
                 <button
                   type="button"
                   className="close"
@@ -72,24 +72,24 @@ function EditBook() {
                 />
               </div>
               <div className="form-group">
-                <label>Category:</label>
+                <label>Genre:</label>
                 <input
                   type="text"
                   className="form-control"
-                  value={book.category}
+                  value={book.genre}
                   onChange={(e) =>
-                    setBook({ ...book, category: e.target.value })
+                    setBook({ ...book, genre: e.target.value })
                   }
                 />
               </div>
               <div className="form-group">
-                <label>Description:</label>
+                <label>Content:</label>
                 <input
                   type="text"
                   className="form-control"
-                  value={book.description}
+                  value={book.content}
                   onChange={(e) =>
-                    setBook({ ...book, description: e.target.value })
+                    setBook({ ...book, content: e.target.value })
                   }
                 />
               </div>
@@ -126,21 +126,10 @@ function EditBook() {
                   }
                 />
               </div>
-              <div className="form-group">
-                <label>Price:</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={book.price}
-                  onChange={(e) =>
-                    setBook({ ...book, price: e.target.value })
-                  }
-                />
-              </div>
             </div>
   
             <div className="modal-footer">
-              <Link to="/books">
+              <Link to="/booklist">
                 <input type="button" className="btn btn-dark" value="Dismiss" />
               </Link>
               <input
