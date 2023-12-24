@@ -25,15 +25,18 @@ function CreateBook() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
-
-    try {
-      await axios.post(`/books`, books).then(() => {
-        setLoading(false);
+    
+    await axios
+      .post(`/books`, books)
+      .then(() => {
         navigate("/booklist");
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
       });
-    } catch (error) {
-      console.error(error);
-    }
   };
 
   return (
