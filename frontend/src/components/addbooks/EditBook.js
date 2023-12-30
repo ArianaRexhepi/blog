@@ -29,119 +29,105 @@ function EditBook() {
     }
   };
 
-  if(!book) return <div>Loading...</div>
+  if (!book) return <div>Loading...</div>;
 
   return (
     <div className="modal-dialog" style={{ width: 600, marginTop: "50px" }}>
       <div className="modal-content">
-          <form className="form">
-            <div className="modal-header">
-              <h4 className="modal-title">Edit Book</h4>
-              <Link to="/booklist">
-                <button
-                  type="button"
-                  className="close"
-                  data-dismiss="modal"
-                  aria-hidden="true"
-                >
-                  &times;
-                </button>
-              </Link>
-            </div>
-            <div className="modal-body">
-              <div className="form-group">
-                <label>Title:</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={book.title}
-                  onChange={(e) =>
-                    setBook({ ...book, title: e.target.value })
-                  }
-                />
-              </div>
-              <div className="form-group">
-                <label>Author:</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={book.author}
-                  onChange={(e) =>
-                    setBook({ ...book, author: e.target.value })
-                  }
-                />
-              </div>
-              <div className="form-group">
-                <label>Genre:</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={book.genre}
-                  onChange={(e) =>
-                    setBook({ ...book, genre: e.target.value })
-                  }
-                />
-              </div>
-              <div className="form-group">
-                <label>Content:</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={book.content}
-                  onChange={(e) =>
-                    setBook({ ...book, content: e.target.value })
-                  }
-                />
-              </div>
-              <div className="form-group">
-                <label>Rating:</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={book.rating}
-                  onChange={(e) =>
-                    setBook({...book, rating: e.target.value })
-                  }
-                />
-              </div>
-              <div className="form-group">
-                <label>Year:</label>
-                <input
-                  type="datetime-local"
-                  className="form-control"
-                  value={book.year}
-                  onChange={(e) =>
-                    setBook({ ...book, year: e.target.value })
-                  }
-                />
-              </div>
-              <div className="form-group">
-                <label>Image:</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={book.image}
-                  onChange={(e) =>
-                    setBook({ ...book, image: e.target.value })
-                  }
-                />
-              </div>
-            </div>
-  
-            <div className="modal-footer">
-              <Link to="/booklist">
-                <input type="button" className="btn btn-dark" value="Dismiss" />
-              </Link>
+        <form className="form">
+          <div className="modal-header">
+            <h4 className="modal-title">Edit Book</h4>
+            <Link to="/booklist">
+              <button
+                type="button"
+                className="close"
+                data-dismiss="modal"
+                aria-hidden="true"
+              >
+                &times;
+              </button>
+            </Link>
+          </div>
+          <div className="modal-body">
+            <div className="form-group">
+              <label>Title:</label>
               <input
-                onClick={handleSubmit}
-                type="submit"
-                disabled={loading}
-                value="Edit"
-                className="btn btn-primary float-right"
+                type="text"
+                className="form-control"
+                value={book.title}
+                onChange={(e) => setBook({ ...book, title: e.target.value })}
               />
             </div>
-          </form>
-        </div>
+            <div className="form-group">
+              <label>Author:</label>
+              <input
+                type="text"
+                className="form-control"
+                value={book.author}
+                onChange={(e) => setBook({ ...book, author: e.target.value })}
+              />
+            </div>
+            <div className="form-group">
+              <label>Genre:</label>
+              <input
+                type="text"
+                className="form-control"
+                value={book.genre}
+                onChange={(e) => setBook({ ...book, genre: e.target.value })}
+              />
+            </div>
+            <div className="form-group">
+              <label>Content:</label>
+              <input
+                type="text"
+                className="form-control"
+                value={book.content}
+                onChange={(e) => setBook({ ...book, content: e.target.value })}
+              />
+            </div>
+            <div className="form-group">
+              <label>Rating:</label>
+              <input
+                type="text"
+                className="form-control"
+                value={book.rating}
+                onChange={(e) => setBook({ ...book, rating: e.target.value })}
+              />
+            </div>
+            <div className="form-group">
+              <label>Year:</label>
+              <input
+                type="datetime-local"
+                className="form-control"
+                value={book.year}
+                onChange={(e) => setBook({ ...book, year: e.target.value })}
+              />
+            </div>
+            <div className="form-group">
+              <label>Image:</label>
+              <input
+                type="text"
+                className="form-control"
+                value={book.image}
+                onChange={(e) => setBook({ ...book, image: e.target.value })}
+              />
+            </div>
+          </div>
+
+          <div className="modal-footer">
+            <Link to="/booklist">
+              <input type="button" className="btn btn-dark" value="Dismiss" />
+            </Link>
+            <input
+              onClick={handleSubmit}
+              type="submit"
+              disabled={loading}
+              value="Edit"
+              className="btn btn-primary float-right"
+            />
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

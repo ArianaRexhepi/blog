@@ -12,22 +12,23 @@ function CreateBook() {
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
   const books = {
-    title: title,
-    author: author,
-    content: content,
-    genre: genre,
-    rating: rating,
-    year: year,
-    image: image,
+    title: "",
+    author: "",
+    content: "",
+    genre: "",
+    rating: "",
+    year: new Date(),
+    image: "",
   };
   const navigate = useNavigate();
 
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
     
     await axios
-      .post(`/books`, books)
+      .post("/books", books)
       .then(() => {
         navigate("/booklist");
       })
