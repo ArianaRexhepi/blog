@@ -4,7 +4,10 @@ import Post from "./Post";
 const Home = () => {
   return (
     <>
-      <div className="right-section"></div>
+      <div className="home">
+        <h1>Most Commented</h1>
+        <hr></hr>
+      </div>
       
       </>
   );

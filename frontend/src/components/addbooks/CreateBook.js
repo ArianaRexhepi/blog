@@ -7,18 +7,18 @@ function CreateBook() {
   const [author, setAuthor] = useState("");
   const [genre, setGenre] = useState("");
   const [content, setContent] = useState("");
-  const [rating, setRating] = useState("");
+  const [rating, setRating] = useState(0);
   const [year, setYear] = useState(new Date());
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
   const books = {
-    title: "",
-    author: "",
-    content: "",
-    genre: "",
-    rating: "",
-    year: new Date(),
-    image: "",
+    title: title,
+    author: author,
+    content: content,
+    genre: genre,
+    rating: rating,
+    year: year,
+    image: image
   };
   const navigate = useNavigate();
 
@@ -39,7 +39,6 @@ function CreateBook() {
         setLoading(false);
       });
   };
-
   return (
     <div className="modal-dialog" style={{ width: 600 }}>
       <div className="modal-content">

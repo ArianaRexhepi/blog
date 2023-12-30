@@ -5,17 +5,32 @@ import 'react-toastify/dist/ReactToastify.css';
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import axios from "axios";
+import store from "./redux/store";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 axios.defaults.baseURL="http://localhost:5074/api";
 
+axios.interceptors.request.use((config) => {
+  const token = "Bearer " + window.localStorage.getItem("token");
+
+  if (token) {
+    config.headers.Authorization = token;
+  }
+
+  return config;
+});
+
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

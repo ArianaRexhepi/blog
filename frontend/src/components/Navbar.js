@@ -33,7 +33,7 @@ const Navbar = () => {
             <div className="sublinks">
               <a href="#">Movies</a>
               <a href="#">Gift Ideas</a>
-              <a href="#">Books</a>
+              <a href="books">Books</a>
             </div>
           )}
         </div>
@@ -48,6 +48,7 @@ const Navbar = () => {
         <a href="#">Travel</a>
         <a href="#">Relationships</a>
         <a href="#">Account</a>
+        <a href="login">Login</a>
         <a href="booklist">booklist</a>
         
       </div>
