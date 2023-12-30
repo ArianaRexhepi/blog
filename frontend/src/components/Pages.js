@@ -5,6 +5,7 @@ import BookList from "./addbooks/BookList";
 import CreateBook from "./addbooks/CreateBook";
 import EditBook from "./addbooks/EditBook";
 import Login from "./Login"
+import { ProtectedRouteNotLoggedIn } from "./authguard/ProtectedRouteNotLoggedIn";
 
 
 const Pages = () => {
@@ -16,7 +17,9 @@ const Pages = () => {
       <Route path="/booklist" element={<BookList />} />
       <Route path="/createbook" element={<CreateBook />} />
       <Route path="/editbooks/:id" element={<EditBook />} />
+      <Route element={<ProtectedRouteNotLoggedIn redirectPath="/" />}>
       <Route path="/login" element={<Login />} />
+      </Route>
     </Routes>
   </>
   );
