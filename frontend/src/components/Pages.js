@@ -6,6 +6,7 @@ import CreateBook from "./addbooks/CreateBook";
 import EditBook from "./addbooks/EditBook";
 import Login from "./Login"
 import { ProtectedRouteNotLoggedIn } from "./authguard/ProtectedRouteNotLoggedIn";
+import { AdminProtectedRoute } from "./authguard/AdminProtectedRoute";
 
 
 const Pages = () => {
@@ -14,7 +15,9 @@ const Pages = () => {
     <Header/>
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route element={<AdminProtectedRoute redirectPath="/" />}>
       <Route path="/booklist" element={<BookList />} />
+      </Route>
       <Route path="/createbook" element={<CreateBook />} />
       <Route path="/editbooks/:id" element={<EditBook />} />
       <Route element={<ProtectedRouteNotLoggedIn redirectPath="/" />}>

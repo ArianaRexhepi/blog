@@ -13,7 +13,7 @@ import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-axios.defaults.baseURL="http://localhost:5074/api";
+axios.defaults.baseURL="http://localhost:5000/api";
 
 axios.interceptors.request.use((config) => {
   const token = "Bearer " + window.localStorage.getItem("token");

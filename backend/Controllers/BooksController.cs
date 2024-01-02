@@ -1,4 +1,5 @@
 using backend.Data;
+using backend.DTO;
 using backend.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,7 +29,7 @@ namespace back.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetBooksAsync(Guid id)
         {
-            var existingBook= await _context.Book.FindAsync(id);
+            var existingBook = await _context.Book.FindAsync(id);
             if (existingBook == null)
             {
                 return NotFound();
@@ -37,9 +38,21 @@ namespace back.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostAsync(Books books)
+        public async Task<IActionResult> PostAsync(BookAddDto book)
         {
-            await _context.Book.AddAsync(books);
+            var newbook = new Books
+            {
+                Id = new Guid(),
+                Title = book.Title,
+                Author = book.Author,
+                Genre = book.Genre,
+                Year = book.Year,
+                Content = book.Content,
+                Rating = book.Rating,
+                Image = book.Image
+            };
+
+            _context.Book.Add(newbook);
             await _context.SaveChangesAsync();
             return Ok();
         }

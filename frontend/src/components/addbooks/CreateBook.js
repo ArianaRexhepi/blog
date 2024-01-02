@@ -7,26 +7,27 @@ function CreateBook() {
   const [author, setAuthor] = useState("");
   const [genre, setGenre] = useState("");
   const [content, setContent] = useState("");
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState("");
   const [year, setYear] = useState(new Date());
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
-  const books = {
-    title: title,
-    author: author,
-    content: content,
-    genre: genre,
-    rating: rating,
-    year: year,
-    image: image
-  };
+
   const navigate = useNavigate();
 
-  
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
-    
+
+    const books = {
+      title: title,
+      author: author,
+      content: content,
+      genre: genre,
+      rating: rating.toString(),
+      year: new Date(year),
+      image: image,
+    };
+    console.log(books);
     await axios
       .post("/books", books)
       .then(() => {
