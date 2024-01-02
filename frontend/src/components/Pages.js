@@ -15,9 +15,9 @@ const Pages = () => {
     <Header/>
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route element={<AdminProtectedRoute redirectPath="/" />}>
+      {/* <Route element={<AdminProtectedRoute redirectPath="/" />}> */}
       <Route path="/booklist" element={<BookList />} />
-      </Route>
+      {/* </Route> */}
       <Route path="/createbook" element={<CreateBook />} />
       <Route path="/editbooks/:id" element={<EditBook />} />
       <Route element={<ProtectedRouteNotLoggedIn redirectPath="/" />}>
