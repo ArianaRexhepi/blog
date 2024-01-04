@@ -1,56 +1,51 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
-function CreateMovie() {
-  const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
-  const [genre, setGenre] = useState("");
-  const [content, setContent] = useState("");
-  const [description, setDescription] = useState("");
-  const [image, setImage] = useState("");
+function EditGifts() {
   const [loading, setLoading] = useState(false);
-
+  const [gift, setGift] = useState(null);
   const navigate = useNavigate();
+  const { id } = useParams();
+
+  useEffect(() => {
+    axios.get(`giftideas/${id}`).then((response) => {
+      setGift(response.data);
+      console.log(response.data);
+    });
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
 
-    const movies = {
-      title: title,
-      author: author,
-      content: content,
-      genre: genre,
-      description: description,
-      image: image,
-    };
-
-    console.log(movies);
-    await axios
-      .post("/movies", movies)
-      .then(() => {
-        navigate("/movielist");
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
+    try {
+      await axios.put(`giftideas/${id}`, gift).then(() => {
         setLoading(false);
+        navigate("/giftlist");
       });
+    } catch (error) {
+      console.error(error);
+    }
   };
+
+  if (!gift) return <div>Loading...</div>;
+
   return (
-    <div className="modal-dialog" style={{ width: 600 }}>
+    <div className="modal-dialog" style={{ width: 600, marginTop: "50px" }}>
       <div className="modal-content">
-        <form className="form" onSubmit={handleSubmit}>
+        <form className="form">
           <div className="modal-header">
-            <h4 className="modal-title">Add Movie</h4>
-            <Link to="/movielist">
+            <h4 className="modal-title">Edit Gift</h4>
+            <Link to="/booklist">
               <button
                 type="button"
-                className="btn-close"
-                aria-label="Close"
-              ></button>
+                className="close"
+                data-dismiss="modal"
+                aria-hidden="true"
+              >
+                &times;
+              </button>
             </Link>
           </div>
           <div className="modal-body">
@@ -58,66 +53,67 @@ function CreateMovie() {
               <label>Title:</label>
               <input
                 type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
                 className="form-control"
+                value={book.title}
+                onChange={(e) => setBook({ ...book, title: e.target.value })}
               />
             </div>
             <div className="form-group">
               <label>Author:</label>
               <input
                 type="text"
-                value={author}
-                onChange={(e) => setAuthor(e.target.value)}
                 className="form-control"
+                value={book.author}
+                onChange={(e) => setBook({ ...book, author: e.target.value })}
               />
             </div>
             <div className="form-group">
               <label>Genre:</label>
               <input
                 type="text"
-                value={genre}
-                onChange={(e) => setGenre(e.target.value)}
                 className="form-control"
+                value={book.genre}
+                onChange={(e) => setBook({ ...book, genre: e.target.value })}
               />
             </div>
             <div className="form-group">
               <label>Content:</label>
               <input
                 type="text"
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
                 className="form-control"
+                value={book.content}
+                onChange={(e) => setBook({ ...book, content: e.target.value })}
               />
             </div>
             <div className="form-group">
               <label>Description:</label>
-              <textarea
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
+              <input
+                type="text"
                 className="form-control"
-                rows="7"
+                value={book.description}
+                onChange={(e) => setBook({ ...book, rating: e.target.value })}
               />
             </div>
-
             <div className="form-group">
               <label>Image:</label>
               <input
                 type="text"
-                value={image}
-                onChange={(e) => setImage(e.target.value)}
                 className="form-control"
+                value={book.image}
+                onChange={(e) => setBook({ ...book, image: e.target.value })}
               />
             </div>
           </div>
+
           <div className="modal-footer">
-            <Link to="/movielist">
-              <input type="button" className="btn btn-danger" value="Dismiss" />
+            <Link to="/booklist">
+              <input type="button" className="btn btn-dark" value="Dismiss" />
             </Link>
             <input
+              onClick={handleSubmit}
               type="submit"
-              value="Create"
               disabled={loading}
+              value="Edit"
               className="btn btn-primary float-right"
             />
           </div>
@@ -127,4 +123,4 @@ function CreateMovie() {
   );
 }
 
-export default CreateMovie;
+export default EditGifts;

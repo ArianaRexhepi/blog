@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
-function CreateMovie() {
+function CreateBook() {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [genre, setGenre] = useState("");
@@ -17,7 +17,7 @@ function CreateMovie() {
     event.preventDefault();
     setLoading(true);
 
-    const movies = {
+    const books = {
       title: title,
       author: author,
       content: content,
@@ -26,11 +26,11 @@ function CreateMovie() {
       image: image,
     };
 
-    console.log(movies);
+    console.log(books);
     await axios
-      .post("/movies", movies)
+      .post("/books", books)
       .then(() => {
-        navigate("/movielist");
+        navigate("/booklist");
       })
       .catch((error) => {
         console.log(error);
@@ -44,8 +44,8 @@ function CreateMovie() {
       <div className="modal-content">
         <form className="form" onSubmit={handleSubmit}>
           <div className="modal-header">
-            <h4 className="modal-title">Add Movie</h4>
-            <Link to="/movielist">
+            <h4 className="modal-title">Add Book</h4>
+            <Link to="/booklist">
               <button
                 type="button"
                 className="btn-close"
@@ -111,7 +111,7 @@ function CreateMovie() {
             </div>
           </div>
           <div className="modal-footer">
-            <Link to="/movielist">
+            <Link to="/booklist">
               <input type="button" className="btn btn-danger" value="Dismiss" />
             </Link>
             <input
@@ -127,4 +127,4 @@ function CreateMovie() {
   );
 }
 
-export default CreateMovie;
+export default CreateBook;

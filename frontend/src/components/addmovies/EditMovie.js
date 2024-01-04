@@ -36,7 +36,7 @@ function EditMovie() {
       <div className="modal-content">
         <form className="form">
           <div className="modal-header">
-            <h4 className="modal-title">Edit Book</h4>
+            <h4 className="modal-title">Edit Gift</h4>
             <Link to="/movielist">
               <button
                 type="button"
