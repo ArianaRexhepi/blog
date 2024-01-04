@@ -23,9 +23,9 @@ const BookDetail =() => {
         <div className="book-info">
           <h2 className="book-title">{book.title}</h2>
           <p className="book-content">{book.content}</p>
+          <p className="book-genre">Genre: {book.genre}</p>
         </div>
         <p className="book-description">{book.description}</p>
-        <p className="book-author">Genre: {book.genre}</p>
       </div>
     ))}
   </div>

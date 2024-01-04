@@ -99,32 +99,43 @@ hr {
   border-radius: 8px;
   text-align: center;
 }
-
 .book-image {
   width: 100%;
-  object-fit: contain;
-  max-height: 300px;
-  border-radius: 8px;
-  margin-bottom: 10px;
+  height: 500px;
+  object-fit:cover;
 }
-
-
+.book-description {
+  width: 100%;
+  display: block;
+  border: 1px solid #e0e0e0;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  color: #333;
+  font-size: 16px;
+  line-height: 1.6;
+}
 .book-info {
   margin-bottom: 10px;
+  text-align: center;
 }
-
 .book-title {
-  font-size: 1.5em;
-  margin-bottom: 5px;
+  margin-top: 10px;
+  font-size: 1.8em;
+  margin-bottom: 8px; 
+  font-weight: bold;
 }
-
-.book-author,
-.book-date {
-  font-size: 1.2em;
-  margin-bottom: 5px;
+.book-genre {
+  font-size: 1.1em; 
+  margin-bottom: 8px; 
+  color: #666; 
 }
-
 .book-content {
-  font-size: 1.2em;
+  font-size: 1.3em; 
+  line-height: 1.4; 
+  color: #444; 
 }
+
 
