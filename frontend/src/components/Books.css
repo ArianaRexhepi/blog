@@ -1,8 +1,9 @@
 /* BLOG H1 */
 .h-container {
-  /* display: flex;
+  margin-top: 10px;
+  display: flex;
   justify-content: center;
-  align-items: center; */
+  align-items: center;
   text-align: center;
 }
 h1 {
@@ -122,7 +123,7 @@ hr {
   text-align: center;
 }
 .book-title {
-  margin-top: 10px;
+  margin-top: 20px;
   font-size: 1.8em;
   margin-bottom: 8px; 
   font-weight: bold;

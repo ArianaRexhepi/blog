@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import './Navbar.css'; 
-import img1 from './images/img1.png';
+import React, { useState } from "react";
+import "./Navbar.css";
+import img1 from "./images/img1.png";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [showSublinks, setShowSublinks] = useState(false);
@@ -8,7 +9,6 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-      <a href="/">Home</a>
         <div
           className="nav-link"
           onMouseEnter={() => setShowSublinks(true)}
@@ -17,9 +17,9 @@ const Navbar = () => {
           Style
           {showSublinks && (
             <div className="sublinks">
-              <a href="#">Beauty</a>
-              <a href="#">Do or Don't</a>
-              <a href="#">Fashion of the Day</a>
+              <Link to="#">Beauty</Link>
+              <Link to="#">Do or Don't</Link>
+              <Link to="#">Fashion of the Day</Link>
             </div>
           )}
         </div>
@@ -31,26 +31,25 @@ const Navbar = () => {
           Desgin
           {showSublinks && (
             <div className="sublinks">
-              <a href="#">Movies</a>
-              <a href="#">Gift Ideas</a>
-              <a href="books">Books</a>
+              <Link to="/books">Books</Link>
+              <Link to="/movies">Movies</Link>
+              <Link to="/gift-ideas">Gift Ideas</Link>
             </div>
           )}
         </div>
-        <a href="#">Food</a>
+        <Link to="#">Food</Link>
       </div>
       <div className="navbar-center">
         <div className="logo">
-          <img src={img1}  alt="Logo" />
+          <img src={img1} alt="Logo" />
         </div>
       </div>
       <div className="navbar-right">
-        <a href="#">Travel</a>
-        <a href="#">Relationships</a>
-        <a href="#">Account</a>
-        <a href="login">Login</a>
-        <a href="booklist">booklist</a>
-        
+        <Link to="#">Travel</Link>
+        <Link to="#">Relationships</Link>
+        <Link to="#">Account</Link>
+        <Link to="login">Login</Link>
+        <Link to="booklist">Booklist</Link>
       </div>
     </nav>
   );
