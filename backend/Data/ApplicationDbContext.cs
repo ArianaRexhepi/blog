@@ -16,5 +16,6 @@ namespace backend.Data
 
         public DbSet<Books> Book { get; set; }
         public DbSet<Movies> Movie { get; set; }
+        public DbSet<GiftIdeas> GiftIdea { get; set; }
     }
 }
