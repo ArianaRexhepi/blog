@@ -48,7 +48,7 @@ const Navbar = () => {
             <div className="sublinks">
               <Link to="/books">Books</Link>
               <Link to="/movies">Movies</Link>
-              <Link to="/gift-ideas">Gift Ideas</Link>
+              <Link to="/giftideas">Gift Ideas</Link>
             </div>
           )}
         </div>
@@ -76,6 +76,7 @@ const Navbar = () => {
         <Link to="#">Relationships</Link>
         <Link to="booklist">booklist</Link>
         <Link to="movielist">Movielist</Link>
+        <Link to="giftlist">Gift Ideas</Link>
         <Link to="login">Login</Link>
         {/* <DropdownButton id="dropdown-basic-button" title="Account">
           <Dropdown.Item href="login">Login</Dropdown.Item>

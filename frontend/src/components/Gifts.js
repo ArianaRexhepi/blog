@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./MovieDetail";
+import "./GiftDetail";
 
-const Movies = () => {
-  const [movies, setMovies] = useState([]);
+const Gifts = () => {
+  const [gifts, setGifts] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetch = async () => {
-      const res = await axios.get("/movies");
-      setMovies(res.data);
-      console.log("movies", res.data);
+      const res = await axios.get("/giftideas");
+      setGifts(res.data);
+      console.log("gifts", res.data);
     };
     fetch();
   }, []);
 
-  const handleMovieClick = (movieId) => {
-    navigate(`/movies/${movieId}`);
+  const handleMovieClick = (giftId) => {
+    navigate(`/giftideas/${giftId}`);
   };
 
   return (
@@ -25,35 +25,35 @@ const Movies = () => {
       <div className="h-container">
         <br></br>
         <h1>
-          <i>Favorite Movies</i>
+          <i>Favorite Gifts</i>
           <hr></hr>
         </h1>
       </div>
 
       <div className="blog-container">
-        {movies.map((movie) => (
+        {gifts.map((gift) => (
           <div
-            key={movie.id}
+            key={gift.id}
             className="book-card"
-            onClick={() => handleMovieClick(movie.id)}
+            onClick={() => handleMovieClick(gift.id)}
           >
             <div className="blog-box">
               <div className="image-container">
                 <img
-                  src={movie.image}
-                  alt={movie.title}
+                  src={gift.image}
+                  alt={gift.title}
                   className="blog-image"
                 />
               </div>
               <div className="text-container">
                 <h3 className="blog-title">
-                  <b>{movie.title}</b>
+                  <b>{gift.title}</b>
                 </h3>
-                <p className="blog-content">{movie.content}</p>
+                <p className="blog-content">{gift.content}</p>
               </div>
               <div className="info-container">
-                <div className="date">{movie.date}</div>
-                <div className="author">By {movie.author}</div>
+                <div className="date">{gift.date}</div>
+                <div className="author">By {gift.author}</div>
               </div>
             </div>
           </div>
@@ -94,4 +94,4 @@ const Movies = () => {
   );
 };
 
-export default Movies;
+export default Gifts;

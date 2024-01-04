@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
-function CreateBook() {
+function CreateGift() {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [content, setContent] = useState("");
@@ -24,7 +24,7 @@ function CreateBook() {
       image: image,
     };
 
-    console.log(books);
+    console.log(gifts);
     await axios
       .post("/giftideas", gifts)
       .then(() => {
@@ -67,15 +67,6 @@ function CreateBook() {
                 type="text"
                 value={author}
                 onChange={(e) => setAuthor(e.target.value)}
-                className="form-control"
-              />
-            </div>
-            <div className="form-group">
-              <label>Genre:</label>
-              <input
-                type="text"
-                value={genre}
-                onChange={(e) => setGenre(e.target.value)}
                 className="form-control"
               />
             </div>
@@ -125,4 +116,4 @@ function CreateBook() {
   );
 }
 
-export default CreateBook;
+export default CreateGift;
