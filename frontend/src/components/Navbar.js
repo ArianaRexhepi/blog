@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./Navbar.css";
-import img1 from "./images/img1.png";
 import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
@@ -73,13 +72,16 @@ const Navbar = () => {
       </Link>
     </div>
       <div className="navbar-right">
-        <Link to="#">Travel</Link>
+        {/* <Link to="#">Travel</Link> */}
         <Link to="#">Relationships</Link>
-        <DropdownButton id="dropdown-basic-button" title="Account">
+        <Link to="booklist">booklist</Link>
+        <Link to="movielist">Movielist</Link>
+        <Link to="login">Login</Link>
+        {/* <DropdownButton id="dropdown-basic-button" title="Account">
           <Dropdown.Item href="login">Login</Dropdown.Item>
           <Dropdown.Item href="booklist">Booklist</Dropdown.Item>
           <Dropdown.Item href="movielist">Movielist</Dropdown.Item>
-        </DropdownButton>
+        </DropdownButton> */}
       </div>
     </nav>
   );

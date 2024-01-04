@@ -3,7 +3,7 @@
     justify-content: space-between;
     align-items: center;
     background-color: #f9f7f4;
-    padding: 5px;
+    padding: 20px;
     color: black;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
   }
@@ -18,6 +18,9 @@
     text-align: center;
   }
   .navbar-left{
+    display: flex;
+  }
+  .navbar-right{
     display: flex;
   }
   .logo {
