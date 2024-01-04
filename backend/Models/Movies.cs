@@ -7,6 +7,6 @@ namespace backend.Models
 {
     public class Movies
     {
-        
+        public Guid Id { get; set; }
     }
 }
