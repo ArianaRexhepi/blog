@@ -9,6 +9,9 @@ import { ProtectedRouteNotLoggedIn } from "./authguard/ProtectedRouteNotLoggedIn
 import { AdminProtectedRoute } from "./authguard/AdminProtectedRoute";
 import Books from "./Books";
 import BookDetail from "./BookDetail";
+import CreateMovie from "./addmovies/CreateMovie";
+import EditMovie from "./addmovies/EditMovie";
+import MovieList from "./addmovies/MovieList";
 
 
 const Pages = () => {
@@ -21,9 +24,12 @@ const Pages = () => {
       <Route path="/books/:id" element={<BookDetail />} />
       {/* <Route element={<AdminProtectedRoute redirectPath="/" />}> */}
       <Route path="/booklist" element={<BookList />} />
+      <Route path="/booklist" element={<MovieList />} />
       {/* </Route> */}
       <Route path="/createbook" element={<CreateBook />} />
       <Route path="/editbooks/:id" element={<EditBook />} />
+      <Route path="/createmovie" element={<CreateMovie />} />
+      <Route path="/editmovie/:id" element={<EditMovie />} />
       <Route path="/login" element={<Login />} />
     </Routes>
   </>

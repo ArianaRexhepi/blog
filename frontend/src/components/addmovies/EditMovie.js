@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
-function EditBook() {
+function EditMovie() {
   const [loading, setLoading] = useState(false);
-  const [book, setBook] = useState(null);
+  const [movie, setMovie] = useState(null);
   const navigate = useNavigate();
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`books/${id}`).then((response) => {
+    axios.get(`movies/${id}`).then((response) => {
       setBook(response.data);
       console.log(response.data);
     });
@@ -20,9 +20,9 @@ function EditBook() {
     setLoading(true);
 
     try {
-      await axios.put(`books/${id}`, book).then(() => {
+      await axios.put(`movies/${id}`, book).then(() => {
         setLoading(false);
-        navigate("/booklist");
+        navigate("/movielist");
       });
     } catch (error) {
       console.error(error);
@@ -37,7 +37,7 @@ function EditBook() {
         <form className="form">
           <div className="modal-header">
             <h4 className="modal-title">Edit Book</h4>
-            <Link to="/booklist">
+            <Link to="/movielist">
               <button
                 type="button"
                 className="close"
@@ -54,8 +54,8 @@ function EditBook() {
               <input
                 type="text"
                 className="form-control"
-                value={book.title}
-                onChange={(e) => setBook({ ...book, title: e.target.value })}
+                value={movie.title}
+                onChange={(e) => setMovie({ ...movie, title: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -63,8 +63,8 @@ function EditBook() {
               <input
                 type="text"
                 className="form-control"
-                value={book.author}
-                onChange={(e) => setBook({ ...book, author: e.target.value })}
+                value={movie.author}
+                onChange={(e) => setMovie({ ...movie, author: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -72,8 +72,8 @@ function EditBook() {
               <input
                 type="text"
                 className="form-control"
-                value={book.genre}
-                onChange={(e) => setBook({ ...book, genre: e.target.value })}
+                value={movie.genre}
+                onChange={(e) => setMovie({ ...movie, genre: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -81,8 +81,8 @@ function EditBook() {
               <input
                 type="text"
                 className="form-control"
-                value={book.content}
-                onChange={(e) => setBook({ ...book, content: e.target.value })}
+                value={movie.content}
+                onChange={(e) => setMovie({ ...movie, content: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -90,8 +90,8 @@ function EditBook() {
               <input
                 type="text"
                 className="form-control"
-                value={book.description}
-                onChange={(e) => setBook({ ...book, rating: e.target.value })}
+                value={movie.description}
+                onChange={(e) => setMovie({ ...movie, rating: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -99,14 +99,14 @@ function EditBook() {
               <input
                 type="text"
                 className="form-control"
-                value={book.image}
-                onChange={(e) => setBook({ ...book, image: e.target.value })}
+                value={movie.image}
+                onChange={(e) => setMovie({ ...movie, image: e.target.value })}
               />
             </div>
           </div>
 
           <div className="modal-footer">
-            <Link to="/booklist">
+            <Link to="/movielist">
               <input type="button" className="btn btn-dark" value="Dismiss" />
             </Link>
             <input
@@ -123,4 +123,4 @@ function EditBook() {
   );
 }
 
-export default EditBook;
+export default EditMovie;

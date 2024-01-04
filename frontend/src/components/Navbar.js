@@ -50,6 +50,7 @@ const Navbar = () => {
         <Link to="#">Account</Link>
         <Link to="login">Login</Link>
         <Link to="booklist">Booklist</Link>
+        <Link to="booklist">Movielist</Link>
       </div>
     </nav>
   );
