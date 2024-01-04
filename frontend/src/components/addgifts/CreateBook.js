@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 function CreateBook() {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
-  const [genre, setGenre] = useState("");
   const [content, setContent] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
@@ -17,20 +16,19 @@ function CreateBook() {
     event.preventDefault();
     setLoading(true);
 
-    const books = {
+    const gifts = {
       title: title,
       author: author,
       content: content,
-      genre: genre,
       description: description,
       image: image,
     };
 
     console.log(books);
     await axios
-      .post("/books", books)
+      .post("/giftideas", gifts)
       .then(() => {
-        navigate("/booklist");
+        navigate("/giftlist");
       })
       .catch((error) => {
         console.log(error);
@@ -44,8 +42,8 @@ function CreateBook() {
       <div className="modal-content">
         <form className="form" onSubmit={handleSubmit}>
           <div className="modal-header">
-            <h4 className="modal-title">Add Book</h4>
-            <Link to="/booklist">
+            <h4 className="modal-title">Add Gift</h4>
+            <Link to="/giftlist">
               <button
                 type="button"
                 className="btn-close"
@@ -111,7 +109,7 @@ function CreateBook() {
             </div>
           </div>
           <div className="modal-footer">
-            <Link to="/booklist">
+            <Link to="/giftlist">
               <input type="button" className="btn btn-danger" value="Dismiss" />
             </Link>
             <input

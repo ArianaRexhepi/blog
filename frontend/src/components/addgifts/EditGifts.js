@@ -37,7 +37,7 @@ function EditGifts() {
         <form className="form">
           <div className="modal-header">
             <h4 className="modal-title">Edit Gift</h4>
-            <Link to="/booklist">
+            <Link to="/giftlist">
               <button
                 type="button"
                 className="close"
@@ -54,8 +54,8 @@ function EditGifts() {
               <input
                 type="text"
                 className="form-control"
-                value={book.title}
-                onChange={(e) => setBook({ ...book, title: e.target.value })}
+                value={gift.title}
+                onChange={(e) => setGift({ ...gift, title: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -63,8 +63,8 @@ function EditGifts() {
               <input
                 type="text"
                 className="form-control"
-                value={book.author}
-                onChange={(e) => setBook({ ...book, author: e.target.value })}
+                value={gift.author}
+                onChange={(e) => setGift({ ...gift, author: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -72,8 +72,8 @@ function EditGifts() {
               <input
                 type="text"
                 className="form-control"
-                value={book.genre}
-                onChange={(e) => setBook({ ...book, genre: e.target.value })}
+                value={gift.genre}
+                onChange={(e) => setGift({ ...gift, genre: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -81,8 +81,8 @@ function EditGifts() {
               <input
                 type="text"
                 className="form-control"
-                value={book.content}
-                onChange={(e) => setBook({ ...book, content: e.target.value })}
+                value={gift.content}
+                onChange={(e) => setGift({ ...gift, content: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -90,8 +90,8 @@ function EditGifts() {
               <input
                 type="text"
                 className="form-control"
-                value={book.description}
-                onChange={(e) => setBook({ ...book, rating: e.target.value })}
+                value={gift.description}
+                onChange={(e) => setGift({ ...gift, rating: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -99,14 +99,14 @@ function EditGifts() {
               <input
                 type="text"
                 className="form-control"
-                value={book.image}
-                onChange={(e) => setBook({ ...book, image: e.target.value })}
+                value={gift.image}
+                onChange={(e) => setGift({ ...gift, image: e.target.value })}
               />
             </div>
           </div>
 
           <div className="modal-footer">
-            <Link to="/booklist">
+            <Link to="/giftlist">
               <input type="button" className="btn btn-dark" value="Dismiss" />
             </Link>
             <input
