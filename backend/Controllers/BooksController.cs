@@ -46,9 +46,8 @@ namespace back.Controllers
                 Title = book.Title,
                 Author = book.Author,
                 Genre = book.Genre,
-                Year = book.Year,
                 Content = book.Content,
-                Rating = book.Rating,
+                Description = book.Description,
                 Image = book.Image
             };
 
@@ -69,9 +68,8 @@ namespace back.Controllers
             existingBook.Title = books.Title;
             existingBook.Author = books.Author;
             existingBook.Genre = books.Genre;
-            existingBook.Year = books.Year;
             existingBook.Content = books.Content;
-            existingBook.Rating = books.Rating;
+            existingBook.Description = books.Description;
             existingBook.Image = books.Image;
 
 

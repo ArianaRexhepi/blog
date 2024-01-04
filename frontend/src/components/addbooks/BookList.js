@@ -37,8 +37,7 @@ function BookList() {
                       <th>Author</th>
                       <th>Genre</th>
                       <th>Content</th>
-                      <th>Rating</th>
-                      <th>Year</th>
+                      <th>Description</th>
                       <th>Image</th>
                       <th>Actions</th>
                   </tr>
@@ -51,7 +50,7 @@ function BookList() {
                           <td>{book.author}</td>
                           <td>{book.genre}</td>
                           <td>{book.content}</td>
-                          <td>{book.rating}</td>
+                          <td>{book.desription}</td>
                           <td>{book.year}</td>
                           <td> 
                             <img src={book.image} alt='' style={{width:"200px", height:"250px", objectFit:"cover"}}/>

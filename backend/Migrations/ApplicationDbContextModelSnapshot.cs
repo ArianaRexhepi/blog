@@ -225,25 +225,28 @@ namespace backend.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("Author")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Genre")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Image")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Rating")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<DateTime>("Year")
-                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 

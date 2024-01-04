@@ -44,7 +44,7 @@ const Books = () => {
               </div>
               <div className="text-container">
                 <h3 className="blog-title"><b>{book.title}</b></h3>
-                <p className="blog-content">{book.content.slice(0, 109)}...</p>
+                <p className="blog-content">{book.content}</p>
               </div>
               <div className="info-container">
                 <div className="date">{book.date}</div>

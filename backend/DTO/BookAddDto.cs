@@ -15,11 +15,9 @@ namespace backend.DTO
         [Required]
         public string Genre { get; set; }
         [Required]
-        public DateTime Year { get; set; }
-        [Required]
         public string Content { get; set; }
         [Required]
-        public string Rating { get; set; }
+        public string Description { get; set; }
         [Required]
         public string? Image { get; set; }
     }

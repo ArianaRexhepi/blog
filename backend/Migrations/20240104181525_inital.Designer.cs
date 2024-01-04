@@ -11,8 +11,8 @@ using backend.Data;
 namespace backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231224185652_initial")]
-    partial class initial
+    [Migration("20240104181525_inital")]
+    partial class inital
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -228,25 +228,28 @@ namespace backend.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("Author")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Genre")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Image")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Rating")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<DateTime>("Year")
-                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 

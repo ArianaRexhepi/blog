@@ -86,21 +86,12 @@ function EditBook() {
               />
             </div>
             <div className="form-group">
-              <label>Rating:</label>
+              <label>Description:</label>
               <input
                 type="text"
                 className="form-control"
-                value={book.rating}
+                value={book.description}
                 onChange={(e) => setBook({ ...book, rating: e.target.value })}
-              />
-            </div>
-            <div className="form-group">
-              <label>Year:</label>
-              <input
-                type="datetime-local"
-                className="form-control"
-                value={book.year}
-                onChange={(e) => setBook({ ...book, year: e.target.value })}
               />
             </div>
             <div className="form-group">

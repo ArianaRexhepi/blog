@@ -7,8 +7,7 @@ function CreateBook() {
   const [author, setAuthor] = useState("");
   const [genre, setGenre] = useState("");
   const [content, setContent] = useState("");
-  const [rating, setRating] = useState("");
-  const [year, setYear] = useState(new Date());
+  const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -23,10 +22,10 @@ function CreateBook() {
       author: author,
       content: content,
       genre: genre,
-      rating: rating.toString(),
-      year: new Date(year),
+      description: description,
       image: image,
     };
+
     console.log(books);
     await axios
       .post("/books", books)
@@ -92,23 +91,15 @@ function CreateBook() {
               />
             </div>
             <div className="form-group">
-              <label>Year:</label>
-              <input
-                type="date"
-                value={year}
-                onChange={(e) => setYear(e.target.value)}
+              <label>Description:</label>
+              <textarea
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
                 className="form-control"
+                rows="7"
               />
             </div>
-            <div className="form-group">
-              <label>Rating:</label>
-              <input
-                type="number"
-                value={rating}
-                onChange={(e) => setRating(parseInt(e.target.value))}
-                className="form-control"
-              />
-            </div>
+
             <div className="form-group">
               <label>Image:</label>
               <input
