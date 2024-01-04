@@ -25,7 +25,7 @@ function MovieList() {
 
   return (
     <>
-      <h1 style={{ textAlign: "center" }}>Movies</h1>
+      <h1 style={{ textAlign: "center", marginTop:"5px"}}>Movies</h1>
       <div className="card shadow mb-4">
         <div className="card-header py-3">
           <div className="float-right">
