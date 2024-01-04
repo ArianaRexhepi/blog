@@ -94,18 +94,18 @@ hr {
 
 /* BookDetail.css */
 
-.book-detail {
+.blog-detail {
   margin-bottom: 20px;
   padding: 20px;
   border-radius: 8px;
   text-align: center;
 }
-.book-image {
+.blog-image {
   width: 100%;
   height: 500px;
   object-fit:cover;
 }
-.book-description {
+.blog-description {
   width: 100%;
   display: block;
   border: 1px solid #e0e0e0;
@@ -118,22 +118,22 @@ hr {
   font-size: 16px;
   line-height: 1.6;
 }
-.book-info {
+.blog-info {
   margin-bottom: 10px;
   text-align: center;
 }
-.book-title {
+.blog-title {
   margin-top: 20px;
   font-size: 1.8em;
   margin-bottom: 8px; 
   font-weight: bold;
 }
-.book-genre {
+.blog-genre {
   font-size: 1.1em; 
   margin-bottom: 8px; 
   color: #666; 
 }
-.book-content {
+.blog-content {
   font-size: 1.3em; 
   line-height: 1.4; 
   color: #444; 

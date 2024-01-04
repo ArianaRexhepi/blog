@@ -2,8 +2,24 @@ import React, { useState } from "react";
 import "./Navbar.css";
 import img1 from "./images/img1.png";
 import { Link } from "react-router-dom";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
 
 const Navbar = () => {
+  const navbarCenterStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  };
+
+  const teaLinkStyle = {
+    fontSize: '24px',
+    color: 'black', 
+    textDecoration: 'none',
+    fontWeight: 'bold',
+    letterSpacing: '2px',
+    fontFamily: 'Gloria Hallelujah, cursive',
+  };
   const [showSublinks, setShowSublinks] = useState(false);
 
   return (
@@ -38,19 +54,32 @@ const Navbar = () => {
           )}
         </div>
         <Link to="#">Food</Link>
-      </div>
-      <div className="navbar-center">
-        <div className="logo">
-          <img src={img1} alt="Logo" />
+        <div
+          className="nav-link"
+          onMouseEnter={() => setShowSublinks(true)}
+          onMouseLeave={() => setShowSublinks(false)}
+        >
+          Technology
+          {showSublinks && (
+            <div className="sublinks">
+              <Link to="#">Latest News</Link>
+            </div>
+          )}
         </div>
       </div>
+      <div style={navbarCenterStyle}>
+      <Link to="home" style={teaLinkStyle} onMouseOver={() => {}} onMouseOut={() => {}}>
+        TEA WITH ARI
+      </Link>
+    </div>
       <div className="navbar-right">
         <Link to="#">Travel</Link>
         <Link to="#">Relationships</Link>
-        <Link to="#">Account</Link>
-        <Link to="login">Login</Link>
-        <Link to="booklist">Booklist</Link>
-        <Link to="booklist">Movielist</Link>
+        <DropdownButton id="dropdown-basic-button" title="Account">
+          <Dropdown.Item href="login">Login</Dropdown.Item>
+          <Dropdown.Item href="booklist">Booklist</Dropdown.Item>
+          <Dropdown.Item href="movielist">Movielist</Dropdown.Item>
+        </DropdownButton>
       </div>
     </nav>
   );

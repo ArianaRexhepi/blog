@@ -10,7 +10,7 @@ function EditMovie() {
 
   useEffect(() => {
     axios.get(`movies/${id}`).then((response) => {
-      setBook(response.data);
+      setMovie(response.data);
       console.log(response.data);
     });
   }, []);
@@ -20,7 +20,7 @@ function EditMovie() {
     setLoading(true);
 
     try {
-      await axios.put(`movies/${id}`, book).then(() => {
+      await axios.put(`movies/${id}`, movie).then(() => {
         setLoading(false);
         navigate("/movielist");
       });
@@ -29,7 +29,7 @@ function EditMovie() {
     }
   };
 
-  if (!book) return <div>Loading...</div>;
+  if (!movie) return <div>Loading...</div>;
 
   return (
     <div className="modal-dialog" style={{ width: 600, marginTop: "50px" }}>

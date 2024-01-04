@@ -31,8 +31,7 @@
   
   .nav-link {
     position: relative;
-    margin-right: 30px; 
-    margin-left: 20px;
+    margin: 0 15px;
   }
   
   .sublinks {

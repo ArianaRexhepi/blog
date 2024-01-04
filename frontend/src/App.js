@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
+import "./components/General.css"
 
 import Pages from "./components/Pages";
 import { ToastContainer } from "react-toastify";
