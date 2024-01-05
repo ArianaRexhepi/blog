@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
-function EditBook() {
+function EditTech() {
   const [loading, setLoading] = useState(false);
-  const [book, setBook] = useState(null);
+  const [tech, setTech] = useState(null);
   const navigate = useNavigate();
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`books/${id}`).then((response) => {
-      setBook(response.data);
+    axios.get(`technology/${id}`).then((response) => {
+      setTech(response.data);
       console.log(response.data);
     });
   }, []);
@@ -20,24 +20,24 @@ function EditBook() {
     setLoading(true);
 
     try {
-      await axios.put(`books/${id}`, book).then(() => {
+      await axios.put(`technology/${id}`, tech).then(() => {
         setLoading(false);
-        navigate("/booklist");
+        navigate("/techlist");
       });
     } catch (error) {
       console.error(error);
     }
   };
 
-  if (!book) return <div>Loading...</div>;
+  if (!tech) return <div>Loading...</div>;
 
   return (
     <div className="modal-dialog" style={{ width: 600, marginTop: "50px" }}>
       <div className="modal-content">
         <form className="form">
           <div className="modal-header">
-            <h4 className="modal-title">Edit Book</h4>
-            <Link to="/booklist">
+            <h4 className="modal-title">Edit News</h4>
+            <Link to="/techlist">
               <button
                 type="button"
                 className="close"
@@ -54,8 +54,8 @@ function EditBook() {
               <input
                 type="text"
                 className="form-control"
-                value={book.title}
-                onChange={(e) => setBook({ ...book, title: e.target.value })}
+                value={tech.title}
+                onChange={(e) => setTech({ ...tech, title: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -63,8 +63,8 @@ function EditBook() {
               <input
                 type="text"
                 className="form-control"
-                value={book.author}
-                onChange={(e) => setBook({ ...book, author: e.target.value })}
+                value={tech.author}
+                onChange={(e) => setTech({ ...tech, author: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -72,8 +72,8 @@ function EditBook() {
               <input
                 type="text"
                 className="form-control"
-                value={book.genre}
-                onChange={(e) => setBook({ ...book, genre: e.target.value })}
+                value={tech.genre}
+                onChange={(e) => setTech({ ...tech, genre: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -81,8 +81,8 @@ function EditBook() {
               <input
                 type="text"
                 className="form-control"
-                value={book.content}
-                onChange={(e) => setBook({ ...book, content: e.target.value })}
+                value={tech.content}
+                onChange={(e) => setTech({ ...tech, content: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -90,8 +90,8 @@ function EditBook() {
               <input
                 type="text"
                 className="form-control"
-                value={book.description}
-                onChange={(e) => setBook({ ...book, rating: e.target.value })}
+                value={tech.description}
+                onChange={(e) => setTech({ ...tech, rating: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -99,14 +99,14 @@ function EditBook() {
               <input
                 type="text"
                 className="form-control"
-                value={book.image}
-                onChange={(e) => setBook({ ...book, image: e.target.value })}
+                value={tech.image}
+                onChange={(e) => setTech({ ...tech, image: e.target.value })}
               />
             </div>
           </div>
 
           <div className="modal-footer">
-            <Link to="/booklist">
+            <Link to="/techlist">
               <input type="button" className="btn btn-dark" value="Dismiss" />
             </Link>
             <input
@@ -123,4 +123,4 @@ function EditBook() {
   );
 }
 
-export default EditBook;
+export default EditTech;

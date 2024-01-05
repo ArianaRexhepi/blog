@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
-function CreateBook() {
+function CreateTech() {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [genre, setGenre] = useState("");
@@ -17,20 +17,19 @@ function CreateBook() {
     event.preventDefault();
     setLoading(true);
 
-    const books = {
+    const tech = {
       title: title,
       author: author,
       content: content,
-      genre: genre,
       description: description,
       image: image,
     };
 
-    console.log(books);
+    console.log(tech);
     await axios
-      .post("/books", books)
+      .post("/technology", tech)
       .then(() => {
-        navigate("/booklist");
+        navigate("/techlist");
       })
       .catch((error) => {
         console.log(error);
@@ -44,8 +43,8 @@ function CreateBook() {
       <div className="modal-content">
         <form className="form" onSubmit={handleSubmit}>
           <div className="modal-header">
-            <h4 className="modal-title">Add Book</h4>
-            <Link to="/booklist">
+            <h4 className="modal-title">Add News</h4>
+            <Link to="/techlist">
               <button
                 type="button"
                 className="btn-close"
@@ -69,15 +68,6 @@ function CreateBook() {
                 type="text"
                 value={author}
                 onChange={(e) => setAuthor(e.target.value)}
-                className="form-control"
-              />
-            </div>
-            <div className="form-group">
-              <label>Genre:</label>
-              <input
-                type="text"
-                value={genre}
-                onChange={(e) => setGenre(e.target.value)}
                 className="form-control"
               />
             </div>
@@ -111,7 +101,7 @@ function CreateBook() {
             </div>
           </div>
           <div className="modal-footer">
-            <Link to="/booklist">
+            <Link to="/techlist">
               <input type="button" className="btn btn-danger" value="Dismiss" />
             </Link>
             <input
@@ -127,4 +117,4 @@ function CreateBook() {
   );
 }
 
-export default CreateBook;
+export default CreateTech;

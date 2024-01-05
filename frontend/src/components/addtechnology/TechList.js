@@ -2,34 +2,34 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-function BookList() {
-  const [books, setBooks] = useState([]);
+function TechList() {
+  const [tech, setTech] = useState([]);
 
   useEffect(() => {
     const fetch = async () => {
-      const res = await axios.get("/books");
-      setBooks(res.data);
+      const res = await axios.get("/technology");
+      setTech(res.data);
     };
     fetch();
   }, []);
 
   const handleDelete = async (id) => {
     const confirmed = window.confirm(
-      "Are you sure you want to delete this book?"
+      "Are you sure you want to delete this news?"
     );
     if (confirmed) {
-      await axios.delete(`/books/${id}`);
-      setBooks(books.filter((book) => book.id !== id));
+      await axios.delete(`/technology/${id}`);
+      setBooks(tech.filter((techs) => techs.id !== id));
     }
   };
 
   return (
     <>
-      <h1 style={{ textAlign: 'center', marginTop:"5px" }}>Books</h1>
+      <h1 style={{ textAlign: 'center', marginTop:"5px" }}>Tech News</h1>
       <div className="card shadow mb-4">
         <div className="card-header py-3">
           <div className="float-right">
-            <Link to="/createbook">
+            <Link to="/createtech">
               <button className="btn btn-primary">Create new</button>
             </Link>
           </div>
@@ -54,18 +54,18 @@ function BookList() {
             </tr>
           </thead>
           <tbody>
-            {books.map((book) => (
-              <tr key={book.id}>
-                <td>{book.id}</td>
-                <td>{book.title}</td>
-                <td>{book.author}</td>
-                <td>{book.genre}</td>
-                <td>{book.content}</td>
-                <td>{book.desription}</td>
-                <td>{book.year}</td>
+            {tech.map((techs) => (
+              <tr key={techs.id}>
+                <td>{techs.id}</td>
+                <td>{techs.title}</td>
+                <td>{techs.author}</td>
+                <td>{techs.genre}</td>
+                <td>{techs.content}</td>
+                <td>{techs.desription}</td>
+                <td>{techs.year}</td>
                 <td>
                   <img
-                    src={book.image}
+                    src={techs.image}
                     alt=""
                     style={{
                       width: "200px",
@@ -75,12 +75,12 @@ function BookList() {
                   />
                 </td>
                 <td>
-                  <Link to={`/editbooks/${book.id}`}>
+                  <Link to={`/editech/${techs.id}`}>
                     <button className="btn btn-primary">Edit</button>
                   </Link>
                   <button
                     className="btn btn-danger"
-                    onClick={() => handleDelete(book.id)}
+                    onClick={() => handleDelete(techs.id)}
                   >
                     Delete
                   </button>
@@ -94,4 +94,4 @@ function BookList() {
   );
 }
 
-export default BookList;
+export default TechList;
