@@ -125,31 +125,21 @@ const Navbar = () => {
               >
                 Account
               </button>
-              <ul className="dropdown-menu">
-                <li>
-                  <a className="dropdown-item" href="booklist">
-                  Booklist
-                  </a>
+              <ul className="dropdown-menu ">
+                <li className="mb-2">
+                <Link to="booklist">BookList</Link>
                 </li>
-                <li>
-                  <a className="dropdown-item" href="movielist">
-                  Movielist
-                  </a>
+                <li className="mb-2">
+                <Link to="movielist">MovieList</Link>
                 </li>
-                <li>
-                  <a className="dropdown-item" href="techlist">
-                  Techlist
-                  </a>
+                <li className="mb-2">
+                <Link to="techlist">TechList</Link>
                 </li>
-                <li>
-                  <a className="dropdown-item" href="giftlist">
-                  GiftList
-                  </a>
+                <li className="mb-2">
+                <Link to="giftlist">GiftList</Link>
                 </li>
-                <li>
-                  <a className="dropdown-item" href="drinkslist">
-                  DrinksList
-                  </a>
+                <li className="mb-2">
+                <Link to="drinkslist">DrinksList</Link>
                 </li>
               </ul>
               </div>
