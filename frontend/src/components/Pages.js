@@ -24,6 +24,7 @@ import TechList from './addtechnology/TechList';
 import CreateTech from './addtechnology/CreateTech';
 import EditTech from './addtechnology/EditTech';
 import CreateBook from './addbooks/CreateBook';
+import Drinks from './Drinks';
 
 
 const Pages = () => {
@@ -35,6 +36,7 @@ const Pages = () => {
       <Route path="/movies" element={<Movies />} />
       <Route path="/giftideas" element={<Gifts />} />
       <Route path="/technology" element={<Tech />} />
+      <Route path="/drinks" element={<Drinks />} />
       <Route path="/movies/:id" element={<MovieDetail />} />
       <Route path="/giftideas/:id" element={<GiftDetail />} />
       <Route path="/books/:id" element={<BookDetail />} />
