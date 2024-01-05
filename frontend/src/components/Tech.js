@@ -9,15 +9,15 @@ const Tech = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      const res = await axios.get("/giftideas");
-      setGifts(res.data);
-      console.log("gifts", res.data);
+      const res = await axios.get("/techbology");
+      setTech(res.data);
+      console.log("tech", res.data);
     };
     fetch();
   }, []);
 
-  const handleMovieClick = (giftId) => {
-    navigate(`/giftideas/${giftId}`);
+  const handleMovieClick = (techId) => {
+    navigate(`/technology/${techId}`);
   };
 
   return (
@@ -25,35 +25,35 @@ const Tech = () => {
       <div className="h-container">
         <br></br>
         <h1>
-          <i>Favorite Gifts</i>
+          <i>Latest Tech News</i>
           <hr></hr>
         </h1>
       </div>
 
       <div className="blog-container">
-        {gifts.map((gift) => (
+        {tech.map((techs) => (
           <div
-            key={gift.id}
+            key={techs.id}
             className="book-card"
-            onClick={() => handleMovieClick(gift.id)}
+            onClick={() => handleMovieClick(techs.id)}
           >
             <div className="blog-box">
               <div className="image-container">
                 <img
-                  src={gift.image}
-                  alt={gift.title}
+                  src={techs.image}
+                  alt={techs.title}
                   className="blog-image"
                 />
               </div>
               <div className="text-container">
                 <h3 className="blog-title">
-                  <b>{gift.title}</b>
+                  <b>{techs.title}</b>
                 </h3>
-                <p className="blog-content">{gift.content}</p>
+                <p className="blog-content">{techs.content}</p>
               </div>
               <div className="info-container">
-                <div className="date">{gift.date}</div>
-                <div className="author">By {gift.author}</div>
+                <div className="date">{techs.year}</div>
+                <div className="author">By {techs.author}</div>
               </div>
             </div>
           </div>

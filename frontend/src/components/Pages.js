@@ -28,6 +28,7 @@ const Pages = () => {
       <Route path="/books" element={<Books />} />
       <Route path="/movies" element={<Movies />} />
       <Route path="/giftideas" element={<Gifts />} />
+      <Route path="/technology" element={<Gifts />} />
       <Route path="/movies/:id" element={<MovieDetail />} />
       <Route path="/giftideas/:id" element={<GiftDetail />} />
       <Route path="/books/:id" element={<BookDetail />} />

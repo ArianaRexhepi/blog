@@ -68,12 +68,12 @@ function EditTech() {
               />
             </div>
             <div className="form-group">
-              <label>Genre:</label>
+              <label>Year:</label>
               <input
                 type="text"
                 className="form-control"
-                value={tech.genre}
-                onChange={(e) => setTech({ ...tech, genre: e.target.value })}
+                value={tech.year}
+                onChange={(e) => setTech({ ...tech, year: e.target.value })}
               />
             </div>
             <div className="form-group">

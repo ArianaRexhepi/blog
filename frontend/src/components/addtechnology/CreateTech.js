@@ -9,6 +9,7 @@ function CreateTech() {
   const [content, setContent] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
+  const [year, setYear] = useState(newDate());
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ function CreateTech() {
       title: title,
       author: author,
       content: content,
+      year: DateTime.Now.Date,
       description: description,
       image: image,
     };
@@ -89,7 +91,14 @@ function CreateTech() {
                 rows="7"
               />
             </div>
-
+            <div className="form-group">
+              <label>Year:</label>
+              <textarea
+                value={year}
+                onChange={(e) => setYear(e.target.value)}
+                className="form-control"
+              />
+            </div>
             <div className="form-group">
               <label>Image:</label>
               <input

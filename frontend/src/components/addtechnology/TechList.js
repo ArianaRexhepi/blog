@@ -46,9 +46,9 @@ function TechList() {
               <th>ID</th>
               <th>Title</th>
               <th>Author</th>
-              <th>Genre</th>
               <th>Content</th>
               <th>Description</th>
+              <th>Year</th>
               <th>Image</th>
               <th>Actions</th>
             </tr>
@@ -59,7 +59,6 @@ function TechList() {
                 <td>{techs.id}</td>
                 <td>{techs.title}</td>
                 <td>{techs.author}</td>
-                <td>{techs.genre}</td>
                 <td>{techs.content}</td>
                 <td>{techs.desription}</td>
                 <td>{techs.year}</td>
