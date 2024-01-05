@@ -1,14 +1,14 @@
-import React, { useState } from "react";
 import axios from "axios";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-function CreateTech() {
+function CreateBook() {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [content, setContent] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
-  const [year, setYear] = useState(new Date());
+  const [genre, setGenre] = useState("");
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -17,20 +17,20 @@ function CreateTech() {
     event.preventDefault();
     setLoading(true);
 
-    const tech = {
+    const books = {
       title: title,
       author: author,
       content: content,
-      year: year,
+      genre: genre,
       description: description,
       image: image,
     };
 
-    console.log(tech);
+    console.log(books);
     await axios
-      .post("/technology", tech)
+      .post("/books", books)
       .then(() => {
-        navigate("/techlist");
+        navigate("/booklist");
       })
       .catch((error) => {
         console.log(error);
@@ -39,13 +39,14 @@ function CreateTech() {
         setLoading(false);
       });
   };
+
   return (
     <div className="modal-dialog" style={{ width: 600 }}>
       <div className="modal-content">
         <form className="form" onSubmit={handleSubmit}>
           <div className="modal-header">
-            <h4 className="modal-title">Add News</h4>
-            <Link to="/techlist">
+            <h4 className="modal-title">Add Book</h4>
+            <Link to="/booklist">
               <button
                 type="button"
                 className="btn-close"
@@ -91,10 +92,10 @@ function CreateTech() {
               />
             </div>
             <div className="form-group">
-              <label>Year:</label>
+              <label>Genre:</label>
               <input
-                value={year}
-                onChange={(e) => setYear(e.target.value)}
+                value={genre}
+                onChange={(e) => setGenre(e.target.value)}
                 className="form-control"
               />
             </div>
@@ -109,7 +110,7 @@ function CreateTech() {
             </div>
           </div>
           <div className="modal-footer">
-            <Link to="/techlist">
+            <Link to="/booklist">
               <input type="button" className="btn btn-danger" value="Dismiss" />
             </Link>
             <input
@@ -125,4 +126,4 @@ function CreateTech() {
   );
 }
 
-export default CreateTech;
+export default CreateBook;

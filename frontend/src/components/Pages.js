@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from "./Navbar";
 import BookList from "./addbooks/BookList";
-import CreateBook from "./addbooks/CreateBook";
+
 import EditBook from "./addbooks/EditBook";
 import Login from "./Login"
 import { ProtectedRouteNotLoggedIn } from "./authguard/ProtectedRouteNotLoggedIn";
@@ -18,6 +18,12 @@ import GiftDetail from './GiftDetail';
 import GiftList from './addgifts/GiftList';
 import CreateGift from './addgifts/CreateGift';
 import EditGifts from './addgifts/EditGifts';
+import Tech from './Tech';
+import TechDetail from './TechDetail';
+import TechList from './addtechnology/TechList';
+import CreateTech from './addtechnology/CreateTech';
+import EditTech from './addtechnology/EditTech';
+import CreateBook from './addbooks/CreateBook';
 
 
 const Pages = () => {
@@ -28,17 +34,21 @@ const Pages = () => {
       <Route path="/books" element={<Books />} />
       <Route path="/movies" element={<Movies />} />
       <Route path="/giftideas" element={<Gifts />} />
-      <Route path="/technology" element={<Gifts />} />
+      <Route path="/technology" element={<Tech />} />
       <Route path="/movies/:id" element={<MovieDetail />} />
       <Route path="/giftideas/:id" element={<GiftDetail />} />
       <Route path="/books/:id" element={<BookDetail />} />
+      <Route path="/technology/:id" element={<TechDetail />} />
       {/* <Route element={<AdminProtectedRoute redirectPath="/" />}> */}
       <Route path="/booklist" element={<BookList />} />
       <Route path="/giftlist" element={<GiftList />} />
       <Route path="/movielist" element={<MovieList />} />
+      <Route path="/techlist" element={<TechList />} />
       {/* </Route> */}
       <Route path="/createbook" element={<CreateBook />} />
       <Route path="/editbooks/:id" element={<EditBook />} />
+      <Route path="/createtech" element={<CreateTech />} />
+      <Route path="/editech/:id" element={<EditTech />} />
       <Route path="/createmovie" element={<CreateMovie />} />
       <Route path="/editmovies/:id" element={<EditMovie />} />
       <Route path="/creategifts" element={<CreateGift />} />

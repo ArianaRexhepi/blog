@@ -76,6 +76,7 @@ const Navbar = () => {
         <Link to="#">Relationships</Link>
         <Link to="booklist">booklist</Link>
         <Link to="movielist">Movielist</Link>
+        <Link to="techlist">Techlist</Link>
         <Link to="giftlist">Gift Ideas</Link>
         <Link to="login">Login</Link>
         {/* <DropdownButton id="dropdown-basic-button" title="Account">
