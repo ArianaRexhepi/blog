@@ -61,7 +61,7 @@ const Navbar = () => {
           Technology
           {showSublinks && (
             <div className="sublinks">
-              <Link to="#">Latest News</Link>
+              <Link to="technology">Latest News</Link>
             </div>
           )}
         </div>
