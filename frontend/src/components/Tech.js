@@ -9,7 +9,7 @@ const Tech = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      const res = await axios.get("/techbology");
+      const res = await axios.get("/technology");
       setTech(res.data);
       console.log("tech", res.data);
     };

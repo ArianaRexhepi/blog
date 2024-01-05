@@ -6,7 +6,7 @@ const TechDetail =() => {
 
     useEffect(() => {
         const fetch = async () => {
-          const res = await axios.get("/giftideas");
+          const res = await axios.get("/technology");
           setTech(res.data);
           console.log("tech", res.data);
         };
