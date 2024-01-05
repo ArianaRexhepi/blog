@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
 
 const Navbar = () => {
   const navbarCenterStyle = {
@@ -115,11 +113,7 @@ const Navbar = () => {
             </div>
           )}
         </div>
-        {/* <Link to="booklist">booklist</Link>
-        <Link to="movielist">Movielist</Link>
-        <Link to="techlist">Techlist</Link>
-        <Link to="giftlist">Gift Ideas</Link>
-        <Link to="login">Login</Link> */}
+        {/* <Link to="login">Login</Link>  */}
         <div>
           <>
             <div class="btn-group">
@@ -147,8 +141,13 @@ const Navbar = () => {
                   Techlist
                   </a>
                 </li>
+                <li>
+                  <a class="dropdown-item" href="giftlist">
+                  GiftList
+                  </a>
+                </li>
               </ul>
-            </div>
+              </div>
           </>
         </div>
       </div>
