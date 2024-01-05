@@ -52,7 +52,7 @@ const Pages = () => {
       <Route path="/createmovie" element={<CreateMovie />} />
       <Route path="/editmovies/:id" element={<EditMovie />} />
       <Route path="/creategifts" element={<CreateGift />} />
-      <Route path="/editgift/:id" element={<EditGifts />} />
+      <Route path="/editgifts/:id" element={<EditGifts />} />
       <Route path="/login" element={<Login />} />
     </Routes>
   </>
