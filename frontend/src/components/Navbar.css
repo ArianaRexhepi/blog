@@ -18,9 +18,11 @@
     text-align: center;
   }
   .navbar-left{
+    margin-left: 10px;
     display: flex;
   }
   .navbar-right{
+    margin-right: 40px;
     display: flex;
   }
   .logo {

@@ -46,7 +46,7 @@ const Books = () => {
                 <p className="blog-content">{book.content}</p>
               </div>
               <div className="info-container">
-                <div className="date">{book.year}</div>
+                <div className="date">{book.date}</div>
                 <div className="author">By {book.author}</div>
               </div>
             </div>
