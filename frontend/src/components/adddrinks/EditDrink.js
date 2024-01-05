@@ -22,7 +22,7 @@ function EditDrink() {
     try {
       await axios.put(`drinks/${id}`, drink).then(() => {
         setLoading(false);
-        navigate("/drinklist");
+        navigate("drinkslist");
       });
     } catch (error) {
       console.error(error);
@@ -37,7 +37,7 @@ function EditDrink() {
         <form className="form">
           <div className="modal-header">
             <h4 className="modal-title">Edit Drink</h4>
-            <Link to="/drinklist">
+            <Link to="drinkslist">
               <button
                 type="button"
                 className="close"
@@ -54,8 +54,8 @@ function EditDrink() {
               <input
                 type="text"
                 className="form-control"
-                value={tech.title}
-                onChange={(e) => setTech({ ...tech, title: e.target.value })}
+                value={drink.title}
+                onChange={(e) => setDrink({ ...drink, title: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -63,8 +63,8 @@ function EditDrink() {
               <input
                 type="text"
                 className="form-control"
-                value={tech.author}
-                onChange={(e) => setTech({ ...tech, author: e.target.value })}
+                value={drink.author}
+                onChange={(e) => setDrink({ ...drink, author: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -72,8 +72,8 @@ function EditDrink() {
               <input
                 type="text"
                 className="form-control"
-                value={tech.year}
-                onChange={(e) => setTech({ ...tech, year: e.target.value })}
+                value={drink.year}
+                onChange={(e) => setDrink({ ...drink, year: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -81,8 +81,8 @@ function EditDrink() {
               <input
                 type="text"
                 className="form-control"
-                value={tech.content}
-                onChange={(e) => setTech({ ...tech, content: e.target.value })}
+                value={drink.content}
+                onChange={(e) => setDrink({ ...drink, content: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -90,8 +90,8 @@ function EditDrink() {
               <input
                 type="text"
                 className="form-control"
-                value={tech.description}
-                onChange={(e) => setTech({ ...tech, rating: e.target.value })}
+                value={drink.description}
+                onChange={(e) => setDrink({ ...drink, rating: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -99,14 +99,14 @@ function EditDrink() {
               <input
                 type="text"
                 className="form-control"
-                value={tech.image}
-                onChange={(e) => setTech({ ...tech, image: e.target.value })}
+                value={drink.image}
+                onChange={(e) => setDrink({ ...drink, image: e.target.value })}
               />
             </div>
           </div>
 
           <div className="modal-footer">
-            <Link to="/drinklist">
+            <Link to="drinkslist">
               <input type="button" className="btn btn-dark" value="Dismiss" />
             </Link>
             <input

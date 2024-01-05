@@ -17,7 +17,7 @@ function CreateDrink() {
     event.preventDefault();
     setLoading(true);
 
-    const drink = {
+    const drinks = {
       title: title,
       author: author,
       content: content,
@@ -26,11 +26,11 @@ function CreateDrink() {
       image: image,
     };
 
-    console.log(drink);
+    console.log(drinks);
     await axios
-      .post("/drinks", drink)
+      .post("/drinks", drinks)
       .then(() => {
-        navigate("/drinklist");
+        navigate("/drinkslist");
       })
       .catch((error) => {
         console.log(error);
@@ -45,7 +45,7 @@ function CreateDrink() {
         <form className="form" onSubmit={handleSubmit}>
           <div className="modal-header">
             <h4 className="modal-title">Add Drink</h4>
-            <Link to="/drinklist">
+            <Link to="/drinkslist">
               <button
                 type="button"
                 className="btn-close"
@@ -109,7 +109,7 @@ function CreateDrink() {
             </div>
           </div>
           <div className="modal-footer">
-            <Link to="/drinklist">
+            <Link to="/drinkslist">
               <input type="button" className="btn btn-danger" value="Dismiss" />
             </Link>
             <input

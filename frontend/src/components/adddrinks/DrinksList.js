@@ -30,7 +30,7 @@ function DrinksList() {
         <div className="card-header py-3">
           <div className="float-right">
             <Link to="/createdrink">
-              <button className="btn btn-primary">Create new</button>
+              <button className="btn btn-primary ">Create new</button>
             </Link>
           </div>
         </div>
@@ -54,17 +54,17 @@ function DrinksList() {
             </tr>
           </thead>
           <tbody>
-            {drinks.map((drink) => (
-              <tr key={drink.id}>
-                <td>{drink.id}</td>
-                <td>{drink.title}</td>
-                <td>{drink.author}</td>
-                <td>{drink.content}</td>
-                <td>{drink.desription}</td>
-                <td>{drink.year}</td>
+            {drink.map((drinks) => (
+              <tr key={drinks.id}>
+                <td>{drinks.id}</td>
+                <td>{drinks.title}</td>
+                <td>{drinks.author}</td>
+                <td>{drinks.content}</td>
+                <td>{drinks.year}</td>
+                <td>{drinks.description}</td>
                 <td>
                   <img
-                    src={drink.image}
+                    src={drinks.image}
                     alt=""
                     style={{
                       width: "200px",
@@ -74,12 +74,12 @@ function DrinksList() {
                   />
                 </td>
                 <td>
-                  <Link to={`/editdrink/${v.id}`}>
+                  <Link to={`/editdrink/${drinks.id}`}>
                     <button className="btn btn-primary">Edit</button>
                   </Link>
                   <button
                     className="btn btn-danger"
-                    onClick={() => handleDelete(drink.id)}
+                    onClick={() => handleDelete(drinks.id)}
                   >
                     Delete
                   </button>

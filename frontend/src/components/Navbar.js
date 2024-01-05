@@ -71,7 +71,7 @@ const Navbar = () => {
           {showSublinks && (
             <div className="sublinks">
               <Link to="#">Best Recepies</Link>
-              <Link to="#">Drink</Link>
+              <Link to="drinks">Drinks</Link>
             </div>
           )}
         </div>
@@ -116,34 +116,39 @@ const Navbar = () => {
         {/* <Link to="login">Login</Link>  */}
         <div>
           <>
-            <div class="btn-group">
+            <div className="btn-group">
               <button
-                class="btn btn-white btn-sm dropdown-toggle"
+                className="btn btn-white btn-sm dropdown-toggle"
                 type="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
                 Account
               </button>
-              <ul class="dropdown-menu">
+              <ul className="dropdown-menu">
                 <li>
-                  <a class="dropdown-item" href="booklist">
+                  <a className="dropdown-item" href="booklist">
                   Booklist
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="movielist">
+                  <a className="dropdown-item" href="movielist">
                   Movielist
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="techlist">
+                  <a className="dropdown-item" href="techlist">
                   Techlist
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="giftlist">
+                  <a className="dropdown-item" href="giftlist">
                   GiftList
+                  </a>
+                </li>
+                <li>
+                  <a className="dropdown-item" href="drinkslist">
+                  DrinksList
                   </a>
                 </li>
               </ul>

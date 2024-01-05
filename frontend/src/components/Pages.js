@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from "./Navbar";
 import BookList from "./addbooks/BookList";
-
 import EditBook from "./addbooks/EditBook";
 import Login from "./Login"
 import { ProtectedRouteNotLoggedIn } from "./authguard/ProtectedRouteNotLoggedIn";
@@ -25,6 +24,10 @@ import CreateTech from './addtechnology/CreateTech';
 import EditTech from './addtechnology/EditTech';
 import CreateBook from './addbooks/CreateBook';
 import Drinks from './Drinks';
+import DrinksDetail from './DrinksDetail';
+import DrinksList from './adddrinks/DrinksList';
+import CreateDrink from './adddrinks/CreateDrink';
+import EditDrink from './adddrinks/EditDrink';
 
 
 const Pages = () => {
@@ -41,11 +44,13 @@ const Pages = () => {
       <Route path="/giftideas/:id" element={<GiftDetail />} />
       <Route path="/books/:id" element={<BookDetail />} />
       <Route path="/technology/:id" element={<TechDetail />} />
+      <Route path="/drinks/:id" element={<DrinksDetail />} />
       {/* <Route element={<AdminProtectedRoute redirectPath="/" />}> */}
       <Route path="/booklist" element={<BookList />} />
       <Route path="/giftlist" element={<GiftList />} />
       <Route path="/movielist" element={<MovieList />} />
       <Route path="/techlist" element={<TechList />} />
+      <Route path="/drinkslist" element={<DrinksList />} />
       {/* </Route> */}
       <Route path="/createbook" element={<CreateBook />} />
       <Route path="/editbooks/:id" element={<EditBook />} />
@@ -55,6 +60,8 @@ const Pages = () => {
       <Route path="/editmovies/:id" element={<EditMovie />} />
       <Route path="/creategifts" element={<CreateGift />} />
       <Route path="/editgifts/:id" element={<EditGifts />} />
+      <Route path="/createdrink" element={<CreateDrink />} />
+      <Route path="/editdrink/:id" element={<EditDrink />} />
       <Route path="/login" element={<Login />} />
     </Routes>
   </>
