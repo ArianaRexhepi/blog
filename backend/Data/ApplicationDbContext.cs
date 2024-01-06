@@ -21,5 +21,6 @@ namespace backend.Data
         public DbSet<Drinks> Drink { get; set; }
         public DbSet<Beauty> Beauties { get; set; }
         public DbSet<Fashion> Fashions { get; set; }
+        public DbSet<Dating> Datings { get; set; }
     }
 }

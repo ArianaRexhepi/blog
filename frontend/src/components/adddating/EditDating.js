@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
-function EditFashion() {
+function EditDating() {
   const [loading, setLoading] = useState(false);
-  const [fashion, setFashion] = useState(null);
+  const [dating, setDating] = useState(null);
   const navigate = useNavigate();
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`fashion/${id}`).then((response) => {
-      setFashion(response.data);
+    axios.get(`dating/${id}`).then((response) => {
+      setDating(response.data);
       console.log(response.data);
     });
   }, []);
@@ -20,16 +20,16 @@ function EditFashion() {
     setLoading(true);
 
     try {
-      await axios.put(`fashion/${id}`, fashion).then(() => {
+      await axios.put(`dating/${id}`, dating).then(() => {
         setLoading(false);
-        navigate("/fashionlist");
+        navigate("/datinglist");
       });
     } catch (error) {
       console.error(error);
     }
   };
 
-  if (!fashion) return <div>Loading...</div>;
+  if (!dating) return <div>Loading...</div>;
 
   return (
     <div className="modal-dialog" style={{ width: 600, marginTop: "50px" }}>
@@ -37,7 +37,7 @@ function EditFashion() {
         <form className="form">
           <div className="modal-header">
             <h4 className="modal-title">Edit Article</h4>
-            <Link to="/fashionlist">
+            <Link to="/datinglist">
             <button
                 type="button"
                 className="btn-close"
@@ -51,8 +51,8 @@ function EditFashion() {
               <input
                 type="text"
                 className="form-control"
-                value={fashion.title}
-                onChange={(e) => setFashion({ ...fashion, title: e.target.value })}
+                value={dating.title}
+                onChange={(e) => setDating({ ...dating, title: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -60,8 +60,8 @@ function EditFashion() {
               <input
                 type="text"
                 className="form-control"
-                value={fashion.author}
-                onChange={(e) => setFashion({ ...fashion, author: e.target.value })}
+                value={dating.author}
+                onChange={(e) => setDating({ ...dating, author: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -69,8 +69,8 @@ function EditFashion() {
               <input
                 type="text"
                 className="form-control"
-                value={fashion.content}
-                onChange={(e) => setFashion({ ...fashion, content: e.target.value })}
+                value={dating.content}
+                onChange={(e) => setDating({ ...dating, content: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -79,8 +79,8 @@ function EditFashion() {
                 type="text"
                 className="form-control"
                 rows={7}
-                value={fashion.description}
-                onChange={(e) => setFashion({ ...fashion, description: e.target.value })}
+                value={dating.description}
+                onChange={(e) => setDating({ ...dating, description: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -88,8 +88,8 @@ function EditFashion() {
               <input
                 type="text"
                 className="form-control"
-                value={fashion.image}
-                onChange={(e) => setFashion({ ...fashion, image: e.target.value })}
+                value={dating.image}
+                onChange={(e) => setDating({ ...dating, image: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -97,14 +97,14 @@ function EditFashion() {
               <input
                 type="year"
                 className="form-control"
-                value={fashion.year}
-                onChange={(e) => setFashion({ ...fashion, year: e.target.value })}
+                value={dating.year}
+                onChange={(e) => setDating({ ...dating, year: e.target.value })}
               />
             </div>
           </div>
 
           <div className="modal-footer">
-            <Link to="/beautylist">
+            <Link to="/datinglist">
               <input type="button" style={{margin:"5px"}} className="btn btn-danger" value="Dismiss" />
             </Link>
             <input
@@ -121,4 +121,4 @@ function EditFashion() {
   );
 }
 
-export default EditFashion;
+export default EditDating;

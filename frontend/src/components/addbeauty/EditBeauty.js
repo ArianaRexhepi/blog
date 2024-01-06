@@ -65,15 +65,6 @@ function EditBeauty() {
               />
             </div>
             <div className="form-group">
-              <label>Year:</label>
-              <input
-                type="text"
-                className="form-control"
-                value={beauty.year}
-                onChange={(e) => setBeauty({ ...beauty, year: e.target.value })}
-              />
-            </div>
-            <div className="form-group">
               <label>Content:</label>
               <input
                 type="text"

@@ -57,7 +57,7 @@ const Navbar = () => {
           Relationship
           {showSublinks && (
             <div className="sublinks">
-              <Link to="#">Dating Tips</Link>
+              <Link to="dating">Dating Tips</Link>
               <Link to="#">Friendships</Link>
             </div>
           )}
@@ -146,6 +146,9 @@ const Navbar = () => {
               </li>
               <li className="mb-2">
                 <Link to="fashionlist">FashionList</Link>
+              </li>
+              <li className="mb-2">
+                <Link to="datinglist">DatingList</Link>
               </li>
             </ul>
           </div>

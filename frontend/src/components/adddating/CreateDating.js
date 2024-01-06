@@ -1,43 +1,51 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-function EditFashion() {
+function CreateDating() {
+  const [title, setTitle] = useState("");
+  const [author, setAuthor] = useState("");
+  const [content, setContent] = useState("");
+  const [description, setDescription] = useState("");
+  const [image, setImage] = useState("");
+  const [year, setYear] = useState(new Date());
   const [loading, setLoading] = useState(false);
-  const [fashion, setFashion] = useState(null);
-  const navigate = useNavigate();
-  const { id } = useParams();
 
-  useEffect(() => {
-    axios.get(`fashion/${id}`).then((response) => {
-      setFashion(response.data);
-      console.log(response.data);
-    });
-  }, []);
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
 
-    try {
-      await axios.put(`fashion/${id}`, fashion).then(() => {
+    const dating = {
+      title: title,
+      author: author,
+      content: content,
+      year: year,
+      description: description,
+      image: image,
+    };
+
+    console.log(dating);
+    await axios
+      .post("/dating", dating)
+      .then(() => {
+        navigate("/datinglist");
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
         setLoading(false);
-        navigate("/fashionlist");
       });
-    } catch (error) {
-      console.error(error);
-    }
   };
-
-  if (!fashion) return <div>Loading...</div>;
-
   return (
-    <div className="modal-dialog" style={{ width: 600, marginTop: "50px" }}>
+    <div className="modal-dialog" style={{ width: 600 }}>
       <div className="modal-content">
-        <form className="form">
-          <div className="modal-header">
-            <h4 className="modal-title">Edit Article</h4>
-            <Link to="/fashionlist">
+        <form className="form" onSubmit={handleSubmit}>
+          <div style={{ marginTop:"30px"}}  className="modal-header">
+            <h4 className="modal-title">Add Article</h4>
+            <Link to="/datinglist">
             <button
                 type="button"
                 className="btn-close"
@@ -45,73 +53,69 @@ function EditFashion() {
               ></button>
             </Link>
           </div>
-          <div style={{ marginTop:"5px"}}  className="modal-body">
+          <div style={{ marginTop:"10px"}}  className="modal-body">
             <div className="form-group">
               <label>Title:</label>
               <input
                 type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
                 className="form-control"
-                value={fashion.title}
-                onChange={(e) => setFashion({ ...fashion, title: e.target.value })}
               />
             </div>
             <div className="form-group">
               <label>Author:</label>
               <input
                 type="text"
+                value={author}
+                onChange={(e) => setAuthor(e.target.value)}
                 className="form-control"
-                value={fashion.author}
-                onChange={(e) => setFashion({ ...fashion, author: e.target.value })}
               />
             </div>
             <div className="form-group">
               <label>Content:</label>
               <input
                 type="text"
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
                 className="form-control"
-                value={fashion.content}
-                onChange={(e) => setFashion({ ...fashion, content: e.target.value })}
               />
             </div>
             <div className="form-group">
               <label>Description:</label>
               <textarea
-                type="text"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
                 className="form-control"
-                rows={7}
-                value={fashion.description}
-                onChange={(e) => setFashion({ ...fashion, description: e.target.value })}
+                rows="7"
               />
             </div>
             <div className="form-group">
               <label>Image:</label>
               <input
                 type="text"
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
                 className="form-control"
-                value={fashion.image}
-                onChange={(e) => setFashion({ ...fashion, image: e.target.value })}
               />
             </div>
             <div className="form-group">
               <label>Year:</label>
               <input
-                type="year"
+                value={year}
+                onChange={(e) => setYear(e.target.value)}
                 className="form-control"
-                value={fashion.year}
-                onChange={(e) => setFashion({ ...fashion, year: e.target.value })}
               />
             </div>
           </div>
-
           <div className="modal-footer">
-            <Link to="/beautylist">
+            <Link to="/datinglist">
               <input type="button" style={{margin:"5px"}} className="btn btn-danger" value="Dismiss" />
             </Link>
             <input
-              onClick={handleSubmit}
               type="submit"
+              value="Create"
               disabled={loading}
-              value="Edit"
               className="btn btn-primary float-right"
             />
           </div>
@@ -121,4 +125,4 @@ function EditFashion() {
   );
 }
 
-export default EditFashion;
+export default CreateDating;
