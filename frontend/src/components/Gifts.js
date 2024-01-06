@@ -38,7 +38,7 @@ const Gifts = () => {
       <div className="h-container">
         <br></br>
         <h1>
-          <i>Favorite Gifts</i>
+          <i>Gift Ideas</i>
           <hr></hr>
         </h1>
       </div>
@@ -65,7 +65,7 @@ const Gifts = () => {
                 <p className="blog-content">{gift.content}</p>
               </div>
               <div className="info-container">
-                <div className="date">{gift.date}</div>
+                <div className="date">{gift.year}</div>
                 <div className="author">By {gift.author}</div>
               </div>
             </div>

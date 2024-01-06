@@ -65,7 +65,7 @@ const Movies = () => {
                 <p className="blog-content">{movie.content}</p>
               </div>
               <div className="info-container">
-                <div className="date">{movie.date}</div>
+                <div className="date">{movie.year}</div>
                 <div className="author">By {movie.author}</div>
               </div>
             </div>
