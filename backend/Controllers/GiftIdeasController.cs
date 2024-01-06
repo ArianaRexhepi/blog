@@ -47,7 +47,8 @@ namespace back.Controllers
                 Author = gift.Author,
                 Content = gift.Content,
                 Description = gift.Description,
-                Image = gift.Image
+                Image = gift.Image,
+                Year = gift.Year
             };
 
             _context.GiftIdea.Add(newgift);
@@ -69,6 +70,7 @@ namespace back.Controllers
             existingGifts.Content = gift.Content;
             existingGifts.Description = gift.Description;
             existingGifts.Image = gift.Image;
+            existingGifts.Year = gift.Year;
 
 
             _context.SaveChanges();

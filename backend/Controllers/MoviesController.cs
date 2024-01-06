@@ -48,7 +48,8 @@ namespace back.Controllers
                 Genre = movies.Genre,
                 Content = movies.Content,
                 Description = movies.Description,
-                Image = movies.Image
+                Image = movies.Image,
+                Year = movies.Year
             };
 
             _context.Movie.Add(newmovie);
@@ -71,6 +72,7 @@ namespace back.Controllers
             existingMovie.Content = movies.Content;
             existingMovie.Description = movies.Description;
             existingMovie.Image = movies.Image;
+            existingMovie.Year = movies.Year;
 
 
             _context.SaveChanges();

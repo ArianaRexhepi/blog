@@ -70,6 +70,7 @@ namespace back.Controllers
             existingTech.Content = tech.Content;
             existingTech.Description = tech.Description;
             existingTech.Image = tech.Image;
+            existingTech.Year = tech.Year;
 
 
             _context.SaveChanges();

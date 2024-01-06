@@ -70,6 +70,7 @@ namespace back.Controllers
             existingDrink.Content = drink.Content;
             existingDrink.Description = drink.Description;
             existingDrink.Image = drink.Image;
+            existingDrink.Year = drink.Year;
 
 
             _context.SaveChanges();

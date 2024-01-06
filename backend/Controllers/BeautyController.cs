@@ -48,7 +48,7 @@ namespace back.Controllers
                 Content = beauty.Content,
                 Year = beauty.Year,
                 Description = beauty.Description,
-                Image = beauty.Image
+                Image = beauty.Image,
             };
 
             _context.Beauties.Add(newbeauty);
@@ -70,6 +70,7 @@ namespace back.Controllers
             existingBeauty.Content = beauty.Content;
             existingBeauty.Description = beauty.Description;
             existingBeauty.Image = beauty.Image;
+            existingBeauty.Year = beauty.Year;
 
 
             _context.SaveChanges();

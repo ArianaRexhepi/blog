@@ -48,7 +48,8 @@ namespace back.Controllers
                 Genre = book.Genre,
                 Content = book.Content,
                 Description = book.Description,
-                Image = book.Image
+                Image = book.Image,
+                Year = book.Year
             };
 
             _context.Book.Add(newbook);
@@ -71,6 +72,7 @@ namespace back.Controllers
             existingBook.Content = books.Content;
             existingBook.Description = books.Description;
             existingBook.Image = books.Image;
+            existingBook.Year = books.Year;
 
 
             _context.SaveChanges();
