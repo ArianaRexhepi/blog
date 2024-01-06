@@ -22,7 +22,7 @@ function EditBeauty() {
     try {
       await axios.put(`beauty/${id}`, beauty).then(() => {
         setLoading(false);
-        navigate("beautylist");
+        navigate("/beautylist");
       });
     } catch (error) {
       console.error(error);
@@ -37,7 +37,7 @@ function EditBeauty() {
         <form className="form">
           <div className="modal-header">
             <h4 className="modal-title">Edit Article</h4>
-            <Link to="beautylist">
+            <Link to="/beautylist">
             <button
                 type="button"
                 className="btn-close"
@@ -45,7 +45,7 @@ function EditBeauty() {
               ></button>
             </Link>
           </div>
-          <div className="modal-body">
+          <div style={{ marginTop:"5px"}}  className="modal-body">
             <div className="form-group">
               <label>Title:</label>
               <input
@@ -113,8 +113,8 @@ function EditBeauty() {
           </div>
 
           <div className="modal-footer">
-            <Link to="beautylist">
-              <input type="button" className="btn btn-danger" value="Dismiss" />
+            <Link to="/beautylist">
+              <input type="button" style={{margin:"5px"}} className="btn btn-danger" value="Dismiss" />
             </Link>
             <input
               onClick={handleSubmit}

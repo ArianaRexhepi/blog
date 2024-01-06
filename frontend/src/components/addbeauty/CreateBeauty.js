@@ -43,7 +43,7 @@ function CreateBeauty() {
     <div className="modal-dialog" style={{ width: 600 }}>
       <div className="modal-content">
         <form className="form" onSubmit={handleSubmit}>
-          <div className="modal-header">
+          <div style={{ marginTop:"30px"}}  className="modal-header">
             <h4 className="modal-title">Add Article</h4>
             <Link to="/beautylist">
             <button
@@ -53,7 +53,7 @@ function CreateBeauty() {
               ></button>
             </Link>
           </div>
-          <div className="modal-body">
+          <div style={{ marginTop:"10px"}}  className="modal-body">
             <div className="form-group">
               <label>Title:</label>
               <input
@@ -110,7 +110,7 @@ function CreateBeauty() {
           </div>
           <div className="modal-footer">
             <Link to="/beautylist">
-              <input type="button" className="btn btn-danger" value="Dismiss" />
+              <input type="button" style={{margin:"5px"}} className="btn btn-danger" value="Dismiss" />
             </Link>
             <input
               type="submit"

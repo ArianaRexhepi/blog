@@ -15,7 +15,7 @@ function DrinksList() {
 
   const handleDelete = async (id) => {
     const confirmed = window.confirm(
-      "Are you sure you want to delete this drink?"
+      "Are you sure you want to delete this article?"
     );
     if (confirmed) {
       await axios.delete(`/drinks/${id}`);
@@ -28,7 +28,7 @@ function DrinksList() {
       <h1 style={{ textAlign: 'center', marginTop:"5px" }}>Drinks</h1>
       <div className="card shadow mb-4">
         <div className="card-header py-3">
-          <div className="float-right">
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} className="float-right">
             <Link to="/createdrink">
               <button className="btn btn-primary ">Create new</button>
             </Link>
@@ -60,7 +60,6 @@ function DrinksList() {
                 <td>{drinks.title}</td>
                 <td>{drinks.author}</td>
                 <td>{drinks.content}</td>
-                <td>{drinks.year}</td>
                 <td>{drinks.description}</td>
                 <td>
                   <img
@@ -73,9 +72,10 @@ function DrinksList() {
                     }}
                   />
                 </td>
+                <td>{drinks.year}</td>
                 <td>
                   <Link to={`/editdrink/${drinks.id}`}>
-                    <button className="btn btn-primary">Edit</button>
+                    <button style={{margin:"5px"}} className="btn btn-primary">Edit</button>
                   </Link>
                   <button
                     className="btn btn-danger"

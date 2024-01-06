@@ -1,34 +1,39 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 const BookDetail =() => {
     const [books, setBooks] = useState([]);
+    const { id } = useParams();
 
     useEffect(() => {
-        const fetch = async () => {
-          const res = await axios.get("/books");
+      const fetchBook = async () => {
+        try {
+          const res = await axios.get(`/books/${id}`);
           setBooks(res.data);
           console.log("books", res.data);
-        };
-        fetch();
-      }, []);
+        } catch (error) {
+          console.error("Error fetching beauty:", error);
+        }
+      };
+      fetchBook();
+    }, [id]);
 
 
-  return (
-    <div>
-    {books.map((book) => (
-      <div key={book.id} className="blog-detail">
-        <img src={book.image} alt={book.title} className="blog-image" />
+    if (!books) {
+      return <p>Loading...</p>;
+    }
+  
+    return (
+      <div className="blog-detail">
+        <img src={books.image} alt={books.title} className="blog-image" />
         <div className="blog-info">
-          <h2 className="blog-title">{book.title}</h2>
-          <p className="blog-content">{book.content}</p>
-          <p className="blog-genre">Genre: {book.genre}</p>
+          <h2 className="blog-title">{books.title}</h2>
+          <p className="blog-content">{books.content}</p>
         </div>
-        <p className="blog-description">{book.description}</p>
+        <p className="blog-description">{books.description}</p>
       </div>
-    ))}
-  </div>
-  );
+    );
 };
 
 export default BookDetail;

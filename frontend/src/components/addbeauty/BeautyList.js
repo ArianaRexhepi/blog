@@ -48,8 +48,8 @@ function BeautyList() {
               <th>Author</th>
               <th>Content</th>
               <th>Description</th>
-              <th>Year</th>
               <th>Image</th>
+              <th>Year</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -60,7 +60,7 @@ function BeautyList() {
                 <td>{beauties.title}</td>
                 <td>{beauties.author}</td>
                 <td>{beauties.content}</td>
-                <td>{beauties.year}</td>
+                
                 <td>{beauties.description}</td>
                 <td>
                   <img
@@ -73,9 +73,10 @@ function BeautyList() {
                     }}
                   />
                 </td>
+                <td>{beauties.year}</td>
                 <td>
                   <Link to={`/editbeauty/${beauties.id}`}>
-                    <button className="btn btn-primary">Edit</button>
+                    <button style={{margin:"5px"}} className="btn btn-primary">Edit</button>
                   </Link>
                   <button
                     className="btn btn-danger"
