@@ -78,7 +78,7 @@ const Navbar = () => {
       </div>
       <div style={navbarCenterStyle}>
         <Link
-          to="home"
+          to="/"
           style={teaLinkStyle}
           onMouseOver={() => {}}
           onMouseOut={() => {}}
@@ -112,7 +112,6 @@ const Navbar = () => {
             </div>
           )}
         </div>
-        <Link to="sleep">Sleep</Link>
         {/* <Link to="login">Login</Link>  */}
         <div>
           <>

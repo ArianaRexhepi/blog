@@ -43,6 +43,7 @@ import Dating from './Dating';
 import DatingList from './adddating/DatingList';
 import CreateDating from './adddating/CreateDating';
 import EditDating from './adddating/EditDating';
+import AddBlog from './AddBlog';
 
 
 const Pages = () => {
@@ -66,6 +67,7 @@ const Pages = () => {
       <Route path="/beauty/:id" element={<BeautyDetail />} />
       <Route path="/fashion/:id" element={<FashionDetail />} />
       <Route path="/dating/:id" element={<DatingDetail />} />
+      <Route path="/" element={<AddBlog />} />
       {/* <Route element={<AdminProtectedRoute redirectPath="/" />}> */}
       <Route path="/booklist" element={<BookList />} />
       <Route path="/giftlist" element={<GiftList />} />
