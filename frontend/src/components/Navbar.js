@@ -100,7 +100,6 @@ const Navbar = () => {
             </div>
           )}
         </div>
-        
         <div
           className="nav-link"
           onMouseEnter={() => setShowSublinks(true)}
@@ -113,39 +112,40 @@ const Navbar = () => {
             </div>
           )}
         </div>
+        <Link to="sleep">Sleep</Link>
         {/* <Link to="login">Login</Link>  */}
         <div>
           <>
-            <div className="btn-group">
-              <button
-                className="btn btn-white btn-sm dropdown-toggle"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Account
-              </button>
-              <ul className="dropdown-menu ">
-                <li className="mb-2">
+          <div className="btn-group">
+            <button
+              className="btn btn-primary btn-sm dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Account
+            </button>
+            <ul className="dropdown-menu">
+              <li className="mb-2">
                 <Link to="booklist">BookList</Link>
-                </li>
-                <li className="mb-2">
+              </li>
+              <li className="mb-2">
                 <Link to="movielist">MovieList</Link>
-                </li>
-                <li className="mb-2">
+              </li>
+              <li className="mb-2">
                 <Link to="techlist">TechList</Link>
-                </li>
-                <li className="mb-2">
+              </li>
+              <li className="mb-2">
                 <Link to="giftlist">GiftList</Link>
-                </li>
-                <li className="mb-2">
+              </li>
+              <li className="mb-2">
                 <Link to="drinkslist">DrinksList</Link>
-                </li>
-                <li className="mb-2">
+              </li>
+              <li className="mb-2">
                 <Link to="beautylist">BeautyList</Link>
-                </li>
-              </ul>
-              </div>
+              </li>
+            </ul>
+          </div>
           </>
         </div>
       </div>

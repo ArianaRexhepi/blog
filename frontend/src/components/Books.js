@@ -7,6 +7,19 @@ const Books = () => {
   const [books, setBooks] = useState([]);
   const navigate = useNavigate();
 
+  const itemsPerPage = 6;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentBlogs = books.slice(indexOfFirstItem, indexOfLastItem);
+
+  const pageNumbers = Array.from({ length: Math.ceil(books.length / itemsPerPage) }, (_, index) => index + 1);
+
+  const handleClick = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   useEffect(() => {
     const fetch = async () => {
       const res = await axios.get("/books");
@@ -53,36 +66,28 @@ const Books = () => {
           </div>
         ))}
       </div>
-      <div style= {{display: 'flex', justifyContent:'center', alignItems: 'center'}}>
-      <nav aria-label="Page navigation example">
-        <ul className="pagination">
-          <li className="page-item">
-            <a className="page-link" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <li className="page-item">
-            <a className="page-link" href="#">
-              1
-            </a>
-          </li>
-          <li className="page-item">
-            <a className="page-link" href="#">
-              2
-            </a>
-          </li>
-          <li className="page-item">
-            <a className="page-link" href="#">
-              3
-            </a>
-          </li>
-          <li className="page-item">
-            <a className="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop:"80px" }}>
+        <nav aria-label="Page navigation example">
+          <ul className="pagination">
+            <li className="page-item">
+              <a className="page-link" href="#" aria-label="Previous" onClick={() => handleClick(currentPage - 1)}>
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            {pageNumbers.map((number) => (
+              <li className={`page-item ${currentPage === number ? 'active' : ''}`} key={number}>
+                <a className="page-link" href="#" onClick={() => handleClick(number)}>
+                  {number}
+                </a>
+              </li>
+            ))}
+            <li className="page-item">
+              <a className="page-link" href="#" aria-label="Next" onClick={() => handleClick(currentPage + 1)}>
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
   );
