@@ -33,6 +33,11 @@ import BeautyDetail from './BeautyDetail';
 import BeautyList from './addbeauty/BeautyList';
 import CreateBeauty from './addbeauty/CreateBeauty';
 import EditBeauty from './addbeauty/EditBeauty';
+import Fashion from './Fashion';
+import FashionDetail from './FashionDetail';
+import FashionList from './addfashion/FashionList';
+import CreateFashion from './addfashion/CreateFashion';
+import EditFashion from './addfashion/EditFashion';
 
 
 const Pages = () => {
@@ -46,12 +51,14 @@ const Pages = () => {
       <Route path="/technology" element={<Tech />} />
       <Route path="/drinks" element={<Drinks />} />
       <Route path="/beauty" element={<Beauty />} />
+      <Route path="/fashion" element={<Fashion />} />
       <Route path="/movies/:id" element={<MovieDetail />} />
       <Route path="/giftideas/:id" element={<GiftDetail />} />
       <Route path="/books/:id" element={<BookDetail />} />
       <Route path="/technology/:id" element={<TechDetail />} />
       <Route path="/drinks/:id" element={<DrinksDetail />} />
       <Route path="/beauty/:id" element={<BeautyDetail />} />
+      <Route path="/fashion/:id" element={<FashionDetail />} />
       {/* <Route element={<AdminProtectedRoute redirectPath="/" />}> */}
       <Route path="/booklist" element={<BookList />} />
       <Route path="/giftlist" element={<GiftList />} />
@@ -59,6 +66,7 @@ const Pages = () => {
       <Route path="/techlist" element={<TechList />} />
       <Route path="/drinkslist" element={<DrinksList />} />
       <Route path="/beautylist" element={<BeautyList />} />
+      <Route path="/fashionlist" element={<FashionList />} />
       {/* </Route> */}
       <Route path="/createbook" element={<CreateBook />} />
       <Route path="/editbook/:id" element={<EditBook />} />
@@ -72,6 +80,8 @@ const Pages = () => {
       <Route path="/editdrink/:id" element={<EditDrink />} />
       <Route path="/createbeauty" element={<CreateBeauty />} />
       <Route path="/editbeauty/:id" element={<EditBeauty />} />
+      <Route path="/createfashion" element={<CreateFashion />} />
+      <Route path="/editfashion/:id" element={<EditFashion />} />
       <Route path="/login" element={<Login />} />
     </Routes>
   </>

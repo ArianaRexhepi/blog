@@ -31,7 +31,7 @@ const Navbar = () => {
           {showSublinks && (
             <div className="sublinks">
               <Link to="beauty">Beauty</Link>
-              <Link to="#">Fashion of the Day</Link>
+              <Link to="fashion">Fashion of the Day</Link>
             </div>
           )}
         </div>
@@ -143,6 +143,9 @@ const Navbar = () => {
               </li>
               <li className="mb-2">
                 <Link to="beautylist">BeautyList</Link>
+              </li>
+              <li className="mb-2">
+                <Link to="fashionlist">FashionList</Link>
               </li>
             </ul>
           </div>
