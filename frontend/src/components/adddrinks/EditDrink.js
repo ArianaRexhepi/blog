@@ -91,7 +91,7 @@ function EditDrink() {
                 type="text"
                 className="form-control"
                 value={drink.description}
-                onChange={(e) => setDrink({ ...drink, rating: e.target.value })}
+                onChange={(e) => setDrink({ ...drink, description: e.target.value })}
               />
             </div>
             <div className="form-group">

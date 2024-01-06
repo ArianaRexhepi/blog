@@ -91,7 +91,7 @@ function EditTech() {
                 type="text"
                 className="form-control"
                 value={tech.description}
-                onChange={(e) => setTech({ ...tech, rating: e.target.value })}
+                onChange={(e) => setTech({ ...tech, description: e.target.value })}
               />
             </div>
             <div className="form-group">

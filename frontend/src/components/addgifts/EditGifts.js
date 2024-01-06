@@ -91,7 +91,7 @@ function EditGifts() {
                 type="text"
                 className="form-control"
                 value={gift.description}
-                onChange={(e) => setGift({ ...gift, rating: e.target.value })}
+                onChange={(e) => setGift({ ...gift, description: e.target.value })}
               />
             </div>
             <div className="form-group">
