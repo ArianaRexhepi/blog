@@ -7,6 +7,7 @@ function CreateGift() {
   const [author, setAuthor] = useState("");
   const [content, setContent] = useState("");
   const [description, setDescription] = useState("");
+  const [year, setYear] = useState(new Date());
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -21,6 +22,7 @@ function CreateGift() {
       author: author,
       content: content,
       description: description,
+      year:year,
       image: image,
     };
 
@@ -41,8 +43,8 @@ function CreateGift() {
     <div className="modal-dialog" style={{ width: 600 }}>
       <div className="modal-content">
         <form className="form" onSubmit={handleSubmit}>
-          <div className="modal-header">
-            <h4 className="modal-title">Add Gift</h4>
+          <div style={{marginTop:"30px"}} className="modal-header">
+            <h4 className="modal-title">Add Article</h4>
             <Link to="/giftlist">
               <button
                 type="button"
@@ -51,7 +53,7 @@ function CreateGift() {
               ></button>
             </Link>
           </div>
-          <div className="modal-body">
+          <div style={{marginTop:"5px"}} className="modal-body">
             <div className="form-group">
               <label>Title:</label>
               <input
@@ -98,10 +100,18 @@ function CreateGift() {
                 className="form-control"
               />
             </div>
+            <div className="form-group">
+              <label>Year:</label>
+              <input
+                value={year}
+                onChange={(e) => setYear(e.target.value)}
+                className="form-control"
+              />
+            </div>
           </div>
           <div className="modal-footer">
             <Link to="/giftlist">
-              <input type="button" className="btn btn-danger" value="Dismiss" />
+              <input type="button" style={{margin:"5px"}} className="btn btn-danger" value="Dismiss" />
             </Link>
             <input
               type="submit"

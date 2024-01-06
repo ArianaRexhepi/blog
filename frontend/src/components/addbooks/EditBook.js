@@ -111,7 +111,6 @@ function EditBook() {
               />
             </div>
           </div>
-
           <div className="modal-footer">
             <Link to="/booklist">
               <input type="button" style={{ margin:"5px"}}className="btn btn-danger" value="Dismiss" />

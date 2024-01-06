@@ -15,7 +15,7 @@ function GiftList() {
 
   const handleDelete = async (id) => {
     const confirmed = window.confirm(
-      "Are you sure you want to delete this gift?"
+      "Are you sure you want to delete this article?"
     );
     if (confirmed) {
       await axios.delete(`/giftideas/${id}`);
@@ -28,9 +28,9 @@ function GiftList() {
       <h1 style={{ textAlign: 'center', marginTop:"5px" }}>Gifts</h1>
       <div className="card shadow mb-4">
         <div className="card-header py-3">
-          <div className="float-right">
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} className="float-right">
             <Link to="/creategifts">
-              <button className="btn btn-primary">Create new</button>
+              <button className="btn btn-primary">Create New</button>
             </Link>
           </div>
         </div>
@@ -49,6 +49,7 @@ function GiftList() {
               <th>Content</th>
               <th>Description</th>
               <th>Image</th>
+              <th>Year</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -59,8 +60,7 @@ function GiftList() {
                 <td>{gift.title}</td>
                 <td>{gift.author}</td>
                 <td>{gift.content}</td>
-                <td>{gift.desription}</td>
-                <td>{gift.year}</td>
+                <td>{gift.description}</td>
                 <td>
                   <img
                     src={gift.image}
@@ -72,9 +72,10 @@ function GiftList() {
                     }}
                   />
                 </td>
+                <td>{gift.year}</td>
                 <td>
                   <Link to={`/editgifts/${gift.id}`}>
-                    <button className="btn btn-primary">Edit</button>
+                    <button style={{margin:"5px"}} className="btn btn-primary">Edit</button>
                   </Link>
                   <button
                     className="btn btn-danger"

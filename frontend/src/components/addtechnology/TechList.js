@@ -15,7 +15,7 @@ function TechList() {
 
   const handleDelete = async (id) => {
     const confirmed = window.confirm(
-      "Are you sure you want to delete this news?"
+      "Are you sure you want to delete this article?"
     );
     if (confirmed) {
       await axios.delete(`/technology/${id}`);
@@ -48,8 +48,8 @@ function TechList() {
               <th>Author</th>
               <th>Content</th>
               <th>Description</th>
-              <th>Year</th>
               <th>Image</th>
+              <th>Year</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -61,7 +61,6 @@ function TechList() {
                 <td>{techs.author}</td>
                 <td>{techs.content}</td>
                 <td>{techs.description}</td>
-                <td>{techs.year}</td>
                 <td>
                   <img
                     src={techs.image}
@@ -73,6 +72,8 @@ function TechList() {
                     }}
                   />
                 </td>
+                <td>{techs.year}</td>
+                
                 <td>
                   <Link to={`/editech/${techs.id}`}>
                     <button style={{margin:"5px"}} className="btn btn-primary">Edit</button>
