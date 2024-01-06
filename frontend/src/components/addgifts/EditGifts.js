@@ -68,15 +68,6 @@ function EditGifts() {
               />
             </div>
             <div className="form-group">
-              <label>Genre:</label>
-              <input
-                type="text"
-                className="form-control"
-                value={gift.genre}
-                onChange={(e) => setGift({ ...gift, genre: e.target.value })}
-              />
-            </div>
-            <div className="form-group">
               <label>Content:</label>
               <input
                 type="text"
@@ -87,9 +78,10 @@ function EditGifts() {
             </div>
             <div className="form-group">
               <label>Description:</label>
-              <input
+              <textarea
                 type="text"
                 className="form-control"
+                rows="7"
                 value={gift.description}
                 onChange={(e) => setGift({ ...gift, description: e.target.value })}
               />

@@ -20,5 +20,7 @@ namespace backend.DTO
         public string Description { get; set; }
         [Required]
         public string? Image { get; set; }
+        [Required]
+        public DateTime Year { get; set;}
     }
 }

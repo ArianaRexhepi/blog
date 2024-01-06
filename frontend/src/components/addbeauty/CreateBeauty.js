@@ -46,7 +46,7 @@ function CreateBeauty() {
           <div className="modal-header">
             <h4 className="modal-title">Add Article</h4>
             <Link to="/beautylist">
-              <button
+            <button
                 type="button"
                 className="btn-close"
                 aria-label="Close"
@@ -91,19 +91,19 @@ function CreateBeauty() {
               />
             </div>
             <div className="form-group">
-              <label>Year:</label>
-              <input
-                value={year}
-                onChange={(e) => setYear(e.target.value)}
-                className="form-control"
-              />
-            </div>
-            <div className="form-group">
               <label>Image:</label>
               <input
                 type="text"
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
+                className="form-control"
+              />
+            </div>
+            <div className="form-group">
+              <label>Year:</label>
+              <input
+                value={year}
+                onChange={(e) => setYear(e.target.value)}
                 className="form-control"
               />
             </div>

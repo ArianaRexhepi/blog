@@ -103,11 +103,20 @@ function EditBook() {
                 onChange={(e) => setBook({ ...book, image: e.target.value })}
               />
             </div>
+            <div className="form-group">
+              <label>Year:</label>
+              <input
+                type="year"
+                className="form-control"
+                value={book.year}
+                onChange={(e) => setBook({ ...book, year: e.target.value })}
+              />
+            </div>
           </div>
 
           <div className="modal-footer">
             <Link to="/booklist">
-              <input type="button" className="btn btn-dark" value="Dismiss" />
+              <input type="button" className="btn btn-danger" value="Dismiss" />
             </Link>
             <input
               onClick={handleSubmit}

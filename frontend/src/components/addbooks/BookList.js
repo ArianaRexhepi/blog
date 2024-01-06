@@ -15,7 +15,7 @@ function BookList() {
 
   const handleDelete = async (id) => {
     const confirmed = window.confirm(
-      "Are you sure you want to delete this book?"
+      "Are you sure you want to delete this article?"
     );
     if (confirmed) {
       await axios.delete(`/books/${id}`);
@@ -28,9 +28,9 @@ function BookList() {
       <h1 style={{ textAlign: "center", marginTop:"5px"}}>Books</h1>
       <div className="card shadow mb-4">
         <div className="card-header py-3">
-          <div className="float-right">
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}className="float-right">
             <Link to="/createbook">
-              <button className="btn btn-primary">Create new</button>
+              <button className="btn btn-primary">Create New</button>
             </Link>
           </div>
         </div>
@@ -50,6 +50,7 @@ function BookList() {
               <th>Content</th>
               <th>Description</th>
               <th>Image</th>
+              <th>Year</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -62,7 +63,6 @@ function BookList() {
                 <td>{book.genre}</td>
                 <td>{book.content}</td>
                 <td>{book.description}</td>
-                <td>{book.year}</td>
                 <td>
                   <img
                     src={book.image}
@@ -74,6 +74,7 @@ function BookList() {
                     }}
                   />
                 </td>
+                <td>{book.year}</td>
                 <td>
                   <Link to={`/editbook/${book.id}`}>
                     <button className="btn btn-primary">Edit</button>

@@ -8,6 +8,7 @@ function CreateBook() {
   const [content, setContent] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
+  const [year, setYear] = useState(new Date());
   const [genre, setGenre] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -22,6 +23,7 @@ function CreateBook() {
       author: author,
       content: content,
       genre: genre,
+      year:year,
       description: description,
       image: image,
     };
@@ -45,7 +47,7 @@ function CreateBook() {
       <div className="modal-content">
         <form className="form" onSubmit={handleSubmit}>
           <div className="modal-header">
-            <h4 className="modal-title">Add Book</h4>
+            <h4 className="modal-title">Add Article</h4>
             <Link to="/booklist">
               <button
                 type="button"
@@ -105,6 +107,14 @@ function CreateBook() {
                 type="text"
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
+                className="form-control"
+              />
+            </div>
+            <div className="form-group">
+              <label>Year:</label>
+              <input
+                value={year}
+                onChange={(e) => setYear(e.target.value)}
                 className="form-control"
               />
             </div>

@@ -61,7 +61,7 @@ const Pages = () => {
       <Route path="/beautylist" element={<BeautyList />} />
       {/* </Route> */}
       <Route path="/createbook" element={<CreateBook />} />
-      <Route path="/editbooks/:id" element={<EditBook />} />
+      <Route path="/editbook/:id" element={<EditBook />} />
       <Route path="/createtech" element={<CreateTech />} />
       <Route path="/editech/:id" element={<EditTech />} />
       <Route path="/createmovie" element={<CreateMovie />} />

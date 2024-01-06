@@ -103,6 +103,15 @@ function EditBeauty() {
                 onChange={(e) => setBeauty({ ...beauty, image: e.target.value })}
               />
             </div>
+            <div className="form-group">
+              <label>Year:</label>
+              <input
+                type="year"
+                className="form-control"
+                value={beauty.year}
+                onChange={(e) => setBeauty({ ...beauty, year: e.target.value })}
+              />
+            </div>
           </div>
 
           <div className="modal-footer">
