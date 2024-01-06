@@ -55,7 +55,7 @@ function EditBeauty() {
                 type="text"
                 className="form-control"
                 value={beauty.title}
-                onChange={(e) => setDrink({ ...beauty, title: e.target.value })}
+                onChange={(e) => setBeauty({ ...beauty, title: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -64,7 +64,7 @@ function EditBeauty() {
                 type="text"
                 className="form-control"
                 value={beauty.author}
-                onChange={(e) => setDrink({ ...beauty, author: e.target.value })}
+                onChange={(e) => setBeauty({ ...beauty, author: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -73,7 +73,7 @@ function EditBeauty() {
                 type="text"
                 className="form-control"
                 value={beauty.year}
-                onChange={(e) => setDrink({ ...beauty, year: e.target.value })}
+                onChange={(e) => setBeauty({ ...beauty, year: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -82,7 +82,7 @@ function EditBeauty() {
                 type="text"
                 className="form-control"
                 value={beauty.content}
-                onChange={(e) => setDrink({ ...beauty, content: e.target.value })}
+                onChange={(e) => setBeauty({ ...beauty, content: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -91,7 +91,7 @@ function EditBeauty() {
                 type="text"
                 className="form-control"
                 value={beauty.description}
-                onChange={(e) => setDrink({ ...beauty, description: e.target.value })}
+                onChange={(e) => setBeauty({ ...beauty, description: e.target.value })}
               />
             </div>
             <div className="form-group">
@@ -100,7 +100,7 @@ function EditBeauty() {
                 type="text"
                 className="form-control"
                 value={beauty.image}
-                onChange={(e) => setDrink({ ...beauty, image: e.target.value })}
+                onChange={(e) => setBeauty({ ...beauty, image: e.target.value })}
               />
             </div>
           </div>

@@ -30,7 +30,7 @@ const Navbar = () => {
           Style
           {showSublinks && (
             <div className="sublinks">
-              <Link to="#">Beauty</Link>
+              <Link to="beauty">Beauty</Link>
               <Link to="#">Fashion of the Day</Link>
             </div>
           )}
@@ -140,6 +140,9 @@ const Navbar = () => {
                 </li>
                 <li className="mb-2">
                 <Link to="drinkslist">DrinksList</Link>
+                </li>
+                <li className="mb-2">
+                <Link to="beautylist">BeautyList</Link>
                 </li>
               </ul>
               </div>
