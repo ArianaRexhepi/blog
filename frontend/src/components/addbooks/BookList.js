@@ -77,7 +77,7 @@ function BookList() {
                 <td>{book.year}</td>
                 <td>
                   <Link to={`/editbook/${book.id}`}>
-                    <button className="btn btn-primary">Edit</button>
+                    <button style={{margin:"5px"}} className="btn btn-primary">Edit</button>
                   </Link>
                   <button
                     className="btn btn-danger"

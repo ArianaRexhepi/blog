@@ -28,9 +28,9 @@ function BeautyList() {
       <h1 style={{ textAlign: 'center', marginTop:"5px" }}>Beauty</h1>
       <div className="card shadow mb-4">
         <div className="card-header py-3">
-          <div className="float-right">
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} className="float-right">
             <Link to="/createbeauty">
-              <button className="btn btn-primary ">Create new</button>
+              <button className="btn btn-primary ">Create New</button>
             </Link>
           </div>
         </div>

@@ -15,7 +15,7 @@ function MovieList() {
 
   const handleDelete = async (id) => {
     const confirmed = window.confirm(
-      "Are you sure you want to delete this movie?"
+      "Are you sure you want to delete this article?"
     );
     if (confirmed) {
       await axios.delete(`/movies/${id}`);
@@ -28,9 +28,9 @@ function MovieList() {
       <h1 style={{ textAlign: "center", marginTop:"5px"}}>Movies</h1>
       <div className="card shadow mb-4">
         <div className="card-header py-3">
-          <div className="float-right">
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} className="float-right">
             <Link to="/createmovie">
-              <button className="btn btn-primary">Create new</button>
+              <button className="btn btn-primary">Create New</button>
             </Link>
           </div>
         </div>
@@ -50,6 +50,7 @@ function MovieList() {
               <th>Content</th>
               <th>Description</th>
               <th>Image</th>
+              <th>Year</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -61,8 +62,7 @@ function MovieList() {
                 <td>{movie.author}</td>
                 <td>{movie.genre}</td>
                 <td>{movie.content}</td>
-                <td>{movie.desription}</td>
-                <td>{movie.year}</td>
+                <td>{movie.description}</td>
                 <td>
                   <img
                     src={movie.image}
@@ -74,9 +74,11 @@ function MovieList() {
                     }}
                   />
                 </td>
+                <td>{movie.year}</td>
+                
                 <td>
                   <Link to={`/editmovies/${movie.id}`}>
-                    <button className="btn btn-primary">Edit</button>
+                    <button style={{margin:"5px"}} className="btn btn-primary">Edit</button>
                   </Link>
                   <button
                     className="btn btn-danger"

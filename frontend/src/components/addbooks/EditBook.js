@@ -36,19 +36,16 @@ function EditBook() {
       <div className="modal-content">
         <form className="form">
           <div className="modal-header">
-            <h4 className="modal-title">Edit Book</h4>
+            <h4 className="modal-title">Edit Article</h4>
             <Link to="/booklist">
-              <button
+               <button
                 type="button"
-                className="close"
-                data-dismiss="modal"
-                aria-hidden="true"
-              >
-                &times;
-              </button>
+                className="btn-close"
+                aria-label="Close"
+              ></button>
             </Link>
           </div>
-          <div className="modal-body">
+          <div style={{ marginTop:"5px"}} className="modal-body">
             <div className="form-group">
               <label>Title:</label>
               <input
@@ -87,10 +84,11 @@ function EditBook() {
             </div>
             <div className="form-group">
               <label>Description:</label>
-              <input
+              <textarea
                 type="text"
                 className="form-control"
                 value={book.description}
+                rows={7}
                 onChange={(e) => setBook({ ...book, description: e.target.value })}
               />
             </div>
@@ -116,7 +114,7 @@ function EditBook() {
 
           <div className="modal-footer">
             <Link to="/booklist">
-              <input type="button" className="btn btn-danger" value="Dismiss" />
+              <input type="button" style={{ margin:"5px"}}className="btn btn-danger" value="Dismiss" />
             </Link>
             <input
               onClick={handleSubmit}

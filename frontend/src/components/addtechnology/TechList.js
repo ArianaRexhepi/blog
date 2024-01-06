@@ -28,7 +28,7 @@ function TechList() {
       <h1 style={{ textAlign: 'center', marginTop:"5px" }}>Tech News</h1>
       <div className="card shadow mb-4">
         <div className="card-header py-3">
-          <div className="float-right">
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}className="float-right">
             <Link to="/createtech">
               <button className="btn btn-primary">Create new</button>
             </Link>
@@ -60,7 +60,7 @@ function TechList() {
                 <td>{techs.title}</td>
                 <td>{techs.author}</td>
                 <td>{techs.content}</td>
-                <td>{techs.desription}</td>
+                <td>{techs.description}</td>
                 <td>{techs.year}</td>
                 <td>
                   <img
@@ -75,7 +75,7 @@ function TechList() {
                 </td>
                 <td>
                   <Link to={`/editech/${techs.id}`}>
-                    <button className="btn btn-primary">Edit</button>
+                    <button style={{margin:"5px"}} className="btn btn-primary">Edit</button>
                   </Link>
                   <button
                     className="btn btn-danger"

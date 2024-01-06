@@ -36,16 +36,13 @@ function EditMovie() {
       <div className="modal-content">
         <form className="form">
           <div className="modal-header">
-            <h4 className="modal-title">Edit Movie</h4>
+            <h4 className="modal-title">Edit Article</h4>
             <Link to="/movielist">
-              <button
+            <button
                 type="button"
-                className="close"
-                data-dismiss="modal"
-                aria-hidden="true"
-              >
-                &times;
-              </button>
+                className="btn-close"
+                aria-label="Close"
+              ></button>
             </Link>
           </div>
           <div className="modal-body">
@@ -87,9 +84,10 @@ function EditMovie() {
             </div>
             <div className="form-group">
               <label>Description:</label>
-              <input
+              <textarea
                 type="text"
                 className="form-control"
+                rows={7}
                 value={movie.description}
                 onChange={(e) => setMovie({ ...movie, description: e.target.value })}
               />
@@ -103,11 +101,20 @@ function EditMovie() {
                 onChange={(e) => setMovie({ ...movie, image: e.target.value })}
               />
             </div>
+            <div className="form-group">
+              <label>Year:</label>
+              <input
+                type="year"
+                className="form-control"
+                value={movie.year}
+                onChange={(e) => setMovie({ ...movie, year: e.target.value })}
+              />
+            </div>
           </div>
 
           <div className="modal-footer">
             <Link to="/movielist">
-              <input type="button" className="btn btn-dark" value="Dismiss" />
+              <input type="button" style={{margin:"5px"}} className="btn btn-danger" value="Dismiss" />
             </Link>
             <input
               onClick={handleSubmit}

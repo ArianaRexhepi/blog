@@ -38,14 +38,11 @@ function EditBeauty() {
           <div className="modal-header">
             <h4 className="modal-title">Edit Article</h4>
             <Link to="beautylist">
-              <button
+            <button
                 type="button"
-                className="close"
-                data-dismiss="modal"
-                aria-hidden="true"
-              >
-                &times;
-              </button>
+                className="btn-close"
+                aria-label="Close"
+              ></button>
             </Link>
           </div>
           <div className="modal-body">
@@ -87,9 +84,10 @@ function EditBeauty() {
             </div>
             <div className="form-group">
               <label>Description:</label>
-              <input
+              <textarea
                 type="text"
                 className="form-control"
+                rows={7}
                 value={beauty.description}
                 onChange={(e) => setBeauty({ ...beauty, description: e.target.value })}
               />
@@ -116,7 +114,7 @@ function EditBeauty() {
 
           <div className="modal-footer">
             <Link to="beautylist">
-              <input type="button" className="btn btn-dark" value="Dismiss" />
+              <input type="button" className="btn btn-danger" value="Dismiss" />
             </Link>
             <input
               onClick={handleSubmit}
