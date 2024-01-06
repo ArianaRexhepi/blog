@@ -28,6 +28,11 @@ import DrinksDetail from './DrinksDetail';
 import DrinksList from './adddrinks/DrinksList';
 import CreateDrink from './adddrinks/CreateDrink';
 import EditDrink from './adddrinks/EditDrink';
+import Beauty from './Beauty';
+import BeautyDetail from './BeautyDetail';
+import BeautyList from './addbeauty/BeautyList';
+import CreateBeauty from './addbeauty/CreateBeauty';
+import EditBeauty from './addbeauty/EditBeauty';
 
 
 const Pages = () => {
@@ -40,17 +45,20 @@ const Pages = () => {
       <Route path="/giftideas" element={<Gifts />} />
       <Route path="/technology" element={<Tech />} />
       <Route path="/drinks" element={<Drinks />} />
+      <Route path="/beauty" element={<Beauty />} />
       <Route path="/movies/:id" element={<MovieDetail />} />
       <Route path="/giftideas/:id" element={<GiftDetail />} />
       <Route path="/books/:id" element={<BookDetail />} />
       <Route path="/technology/:id" element={<TechDetail />} />
       <Route path="/drinks/:id" element={<DrinksDetail />} />
+      <Route path="/beauty/:id" element={<BeautyDetail />} />
       {/* <Route element={<AdminProtectedRoute redirectPath="/" />}> */}
       <Route path="/booklist" element={<BookList />} />
       <Route path="/giftlist" element={<GiftList />} />
       <Route path="/movielist" element={<MovieList />} />
       <Route path="/techlist" element={<TechList />} />
       <Route path="/drinkslist" element={<DrinksList />} />
+      <Route path="/beautylist" element={<BeautyList />} />
       {/* </Route> */}
       <Route path="/createbook" element={<CreateBook />} />
       <Route path="/editbooks/:id" element={<EditBook />} />
@@ -62,6 +70,8 @@ const Pages = () => {
       <Route path="/editgifts/:id" element={<EditGifts />} />
       <Route path="/createdrink" element={<CreateDrink />} />
       <Route path="/editdrink/:id" element={<EditDrink />} />
+      <Route path="/createbeauty" element={<CreateBeauty />} />
+      <Route path="/editbeauty/:id" element={<EditBeauty />} />
       <Route path="/login" element={<Login />} />
     </Routes>
   </>
