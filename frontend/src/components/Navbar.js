@@ -62,19 +62,6 @@ const Navbar = () => {
             </div>
           )}
         </div>
-        <div
-          className="nav-link"
-          onMouseEnter={() => setShowSublinks(true)}
-          onMouseLeave={() => setShowSublinks(false)}
-        >
-          Food
-          {showSublinks && (
-            <div className="sublinks">
-              <Link to="#">Best Recepies</Link>
-              <Link to="drinks">Drinks</Link>
-            </div>
-          )}
-        </div>
       </div>
       <div style={navbarCenterStyle}>
         <Link
@@ -87,6 +74,19 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="navbar-right">
+      <div
+          className="nav-link"
+          onMouseEnter={() => setShowSublinks(true)}
+          onMouseLeave={() => setShowSublinks(false)}
+        >
+          Food
+          {showSublinks && (
+            <div className="sublinks">
+              <Link to="#">Best Recepies</Link>
+              <Link to="drinks">Drinks</Link>
+            </div>
+          )}
+        </div>
         <div
           className="nav-link"
           onMouseEnter={() => setShowSublinks(true)}

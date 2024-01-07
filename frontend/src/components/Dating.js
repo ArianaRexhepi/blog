@@ -38,7 +38,7 @@ const Dating = () => {
       <div className="h-container">
         <br></br>
         <h1>
-          <i>Beauty</i>
+          <i>Dating Tips</i>
           <hr></hr>
         </h1>
       </div>
