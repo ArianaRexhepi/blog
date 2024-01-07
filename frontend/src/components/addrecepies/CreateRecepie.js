@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
-function CreateDrink() {
+function CreateRecepie() {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [content, setContent] = useState("");
@@ -17,7 +17,7 @@ function CreateDrink() {
     event.preventDefault();
     setLoading(true);
 
-    const drinks = {
+    const recepie = {
       title: title,
       author: author,
       content: content,
@@ -26,11 +26,11 @@ function CreateDrink() {
       image: image,
     };
 
-    console.log(drinks);
+    console.log(recepie);
     await axios
-      .post("/drinks", drinks)
+      .post("/recepies", recepie)
       .then(() => {
-        navigate("/drinkslist");
+        navigate("/recepielist");
       })
       .catch((error) => {
         console.log(error);
@@ -45,7 +45,7 @@ function CreateDrink() {
         <form className="form" onSubmit={handleSubmit}>
           <div style={{ marginTop:"30px"}} className="modal-header">
             <h4 className="modal-title">Add Article</h4>
-            <Link to="/drinkslist">
+            <Link to="/recepielist">
               <button
                 type="button"
                 className="btn-close"
@@ -109,7 +109,7 @@ function CreateDrink() {
             </div>
           </div>
           <div className="modal-footer">
-            <Link to="/drinkslist">
+            <Link to="/recepielist">
               <input type="button" style={{margin:"5px"}} className="btn btn-danger" value="Dismiss" />
             </Link>
             <input
@@ -125,4 +125,4 @@ function CreateDrink() {
   );
 }
 
-export default CreateDrink;
+export default CreateRecepie;
