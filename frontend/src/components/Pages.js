@@ -44,6 +44,11 @@ import DatingList from './adddating/DatingList';
 import CreateDating from './adddating/CreateDating';
 import EditDating from './adddating/EditDating';
 import AddBlog from './AddBlog';
+import Packing from './Packing';
+import PackingDetail from './PackingDetail';
+import PackingList from './addpacking/PackingList';
+import CreatePacking from './addpacking/CreatePacking';
+import EditPacking from './addpacking/EditPacking';
 
 
 const Pages = () => {
@@ -59,6 +64,7 @@ const Pages = () => {
       <Route path="/beauty" element={<Beauty />} />
       <Route path="/fashion" element={<Fashion />} />
       <Route path="/dating" element={<Dating />} />
+      <Route path="/packing" element={<Packing />} />
       <Route path="/movies/:id" element={<MovieDetail />} />
       <Route path="/giftideas/:id" element={<GiftDetail />} />
       <Route path="/books/:id" element={<BookDetail />} />
@@ -67,6 +73,7 @@ const Pages = () => {
       <Route path="/beauty/:id" element={<BeautyDetail />} />
       <Route path="/fashion/:id" element={<FashionDetail />} />
       <Route path="/dating/:id" element={<DatingDetail />} />
+      <Route path="/packing/:id" element={<PackingDetail />} />
       <Route path="/" element={<AddBlog />} />
       {/* <Route element={<AdminProtectedRoute redirectPath="/" />}> */}
       <Route path="/booklist" element={<BookList />} />
@@ -77,6 +84,7 @@ const Pages = () => {
       <Route path="/beautylist" element={<BeautyList />} />
       <Route path="/fashionlist" element={<FashionList />} />
       <Route path="/datinglist" element={<DatingList />} />
+      <Route path="/packinglist" element={<PackingList />} />
       {/* </Route> */}
       <Route path="/createbook" element={<CreateBook />} />
       <Route path="/editbook/:id" element={<EditBook />} />
@@ -94,6 +102,8 @@ const Pages = () => {
       <Route path="/editfashion/:id" element={<EditFashion />} />
       <Route path="/createdating" element={<CreateDating />} />
       <Route path="/editdating/:id" element={<EditDating />} />
+      <Route path="/createpacking" element={<CreatePacking />} />
+      <Route path="/editpacking/:id" element={<EditPacking />} />
       <Route path="/login" element={<Login />} />
     </Routes>
   </>

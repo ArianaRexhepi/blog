@@ -35,4 +35,4 @@ const PackingDetail = () => {
   );
 };
 
-export default BeautyDetail;
+export default PackingDetail;
