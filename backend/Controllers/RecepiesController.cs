@@ -26,12 +26,12 @@ namespace backend.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetRecepieAsync(Guid id)
         {
-            var existingrecepie = await _context.Recepie.FindAsync(id);
-            if (existingrecepie == null)
+            var existingRecepie = await _context.Recepie.FindAsync(id);
+            if (existingRecepie == null)
             {
                 return NotFound();
             }
-            return Ok(existingrecepie);
+            return Ok(existingRecepie);
         }
 
         [HttpPost]
@@ -56,18 +56,18 @@ namespace backend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAsync(Guid id, Recepies recepie)
         {
-            var existingrecepie = await _context.Recepie.FindAsync(id);
-            if (existingrecepie == null)
+            var existingRecepie = await _context.Recepie.FindAsync(id);
+            if (existingRecepie == null)
             {
                 return NotFound();
             }
 
-            existingrecepie.Title = recepie.Title;
-            existingrecepie.Author = recepie.Author;
-            existingrecepie.Content = recepie.Content;
-            existingrecepie.Description = recepie.Description;
-            existingrecepie.Image = recepie.Image;
-            existingrecepie.Year = recepie.Year;
+            existingRecepie.Title = recepie.Title;
+            existingRecepie.Author = recepie.Author;
+            existingRecepie.Content = recepie.Content;
+            existingRecepie.Description = recepie.Description;
+            existingRecepie.Image = recepie.Image;
+            existingRecepie.Year = recepie.Year;
 
 
             _context.SaveChanges();
@@ -78,13 +78,13 @@ namespace backend.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAsync(Guid id)
         {
-            var existingrecepie = await _context.Recepie.FindAsync(id);
-            if (existingrecepie == null)
+            var existingRecepie = await _context.Recepie.FindAsync(id);
+            if (existingRecepie == null)
             {
                 return NotFound();
             }
 
-            _context.Recepie.Remove(existingrecepie);
+            _context.Recepie.Remove(existingRecepie);
             await _context.SaveChangesAsync();
 
             return Ok();

@@ -21,7 +21,7 @@ const Recepies = () => {
   useEffect(() => {
     const fetch = async () => {
       const res = await axios.get("/recepies");
-      setDrink(res.data);
+      setRecepies(res.data);
       console.log("recepies", res.data);
     };
     fetch();

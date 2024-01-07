@@ -49,6 +49,11 @@ import PackingDetail from './PackingDetail';
 import PackingList from './addpacking/PackingList';
 import CreatePacking from './addpacking/CreatePacking';
 import EditPacking from './addpacking/EditPacking';
+import Recepies from './Recepies';
+import RecepiesDetail from './RecepiesDetail';
+import RecepiesList from './addrecepies/RecepiesList';
+import CreateRecepie from './addrecepies/CreateRecepie';
+import EditRecepie from './addrecepies/EditRecepie';
 
 
 const Pages = () => {
@@ -65,6 +70,7 @@ const Pages = () => {
       <Route path="/fashion" element={<Fashion />} />
       <Route path="/dating" element={<Dating />} />
       <Route path="/packing" element={<Packing />} />
+      <Route path="/recepies" element={<Recepies />} />
       <Route path="/movies/:id" element={<MovieDetail />} />
       <Route path="/giftideas/:id" element={<GiftDetail />} />
       <Route path="/books/:id" element={<BookDetail />} />
@@ -74,6 +80,7 @@ const Pages = () => {
       <Route path="/fashion/:id" element={<FashionDetail />} />
       <Route path="/dating/:id" element={<DatingDetail />} />
       <Route path="/packing/:id" element={<PackingDetail />} />
+      <Route path="/recepies/:id" element={<RecepiesDetail />} />
       <Route path="/" element={<AddBlog />} />
       {/* <Route element={<AdminProtectedRoute redirectPath="/" />}> */}
       <Route path="/booklist" element={<BookList />} />
@@ -85,6 +92,7 @@ const Pages = () => {
       <Route path="/fashionlist" element={<FashionList />} />
       <Route path="/datinglist" element={<DatingList />} />
       <Route path="/packinglist" element={<PackingList />} />
+      <Route path="/recepielist" element={<RecepiesList />} />
       {/* </Route> */}
       <Route path="/createbook" element={<CreateBook />} />
       <Route path="/editbook/:id" element={<EditBook />} />
@@ -104,6 +112,8 @@ const Pages = () => {
       <Route path="/editdating/:id" element={<EditDating />} />
       <Route path="/createpacking" element={<CreatePacking />} />
       <Route path="/editpacking/:id" element={<EditPacking />} />
+      <Route path="/createrecepie" element={<CreateRecepie />} />
+      <Route path="/editrecepie/:id" element={<EditRecepie />} />
       <Route path="/login" element={<Login />} />
     </Routes>
   </>
