@@ -38,7 +38,7 @@ const Packing = () => {
       <div className="h-container">
         <br></br>
         <h1>
-          <i>Beauty</i>
+          <i>Packing Tips</i>
           <hr></hr>
         </h1>
       </div>
