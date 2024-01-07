@@ -38,7 +38,7 @@ namespace back.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostAsync(Beauty beauty)
+        public async Task<IActionResult> PostAsync(BeautyAddDto beauty)
         {
             var newbeauty = new Beauty
             {

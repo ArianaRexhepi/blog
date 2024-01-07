@@ -38,7 +38,7 @@ namespace back.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostAsync(Fashion fashion)
+        public async Task<IActionResult> PostAsync(FashionAddDto fashion)
         {
             var newfashion = new Fashion
             {

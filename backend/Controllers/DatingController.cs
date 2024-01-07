@@ -38,7 +38,7 @@ namespace back.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostAsync(Dating dating)
+        public async Task<IActionResult> PostAsync(DatingAddDto dating)
         {
             var newdating = new Dating
             {

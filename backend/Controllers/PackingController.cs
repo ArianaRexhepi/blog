@@ -38,7 +38,7 @@ namespace back.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostAsync(Packing packing)
+        public async Task<IActionResult> PostAsync(PackingAddDto packing)
         {
             var newpacking = new Packing
             {
