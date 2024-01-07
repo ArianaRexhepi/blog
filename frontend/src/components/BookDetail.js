@@ -30,6 +30,7 @@ const BookDetail =() => {
         <div className="blog-info">
           <h2 className="blog-title">{books.title}</h2>
           <p className="blog-content">{books.content}</p>
+          <p className="blog-genre">Genre:{books.genre}</p>
         </div>
         <p className="blog-description">{books.description}</p>
       </div>
