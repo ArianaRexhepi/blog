@@ -59,6 +59,11 @@ import FriendshipsDetail from './FriendshipsDetail';
 import FriendshipsList from './addfriendships/FriendshipsList';
 import CreateFriendship from './addfriendships/CreateFriendship';
 import EditFriendship from './addfriendships/EditFriendship';
+import Vacations from './Vacations';
+import VacationDetail from './VacationsDetail';
+import VacationsList from './addvacations/VacationsList';
+import CreateVacation from './addvacations/CreateVacation';
+import EditVacation from './addvacations/EditVacation';
 
 
 const Pages = () => {
@@ -76,6 +81,7 @@ const Pages = () => {
       <Route path="/dating" element={<Dating />} />
       <Route path="/packing" element={<Packing />} />
       <Route path="/recepies" element={<Recepies />} />
+      <Route path="/vacations" element={<Vacations />} />
       <Route path="/friendships" element={<Friendships />} />
       <Route path="/movies/:id" element={<MovieDetail />} />
       <Route path="/giftideas/:id" element={<GiftDetail />} />
@@ -88,6 +94,7 @@ const Pages = () => {
       <Route path="/packing/:id" element={<PackingDetail />} />
       <Route path="/recepies/:id" element={<RecepiesDetail />} />
       <Route path="/friendships/:id" element={<FriendshipsDetail />} />
+      <Route path="/vacations/:id" element={<VacationDetail />} />
       <Route path="/" element={<AddBlog />} />
       {/* <Route element={<AdminProtectedRoute redirectPath="/" />}> */}
       <Route path="/booklist" element={<BookList />} />
@@ -101,6 +108,7 @@ const Pages = () => {
       <Route path="/packinglist" element={<PackingList />} />
       <Route path="/recepielist" element={<RecepiesList />} />
       <Route path="/friendshiplist" element={<FriendshipsList />} />
+      <Route path="/vacationslist" element={<VacationsList />} />
       {/* </Route> */}
       <Route path="/createbook" element={<CreateBook />} />
       <Route path="/editbook/:id" element={<EditBook />} />
@@ -124,6 +132,8 @@ const Pages = () => {
       <Route path="/editrecepie/:id" element={<EditRecepie />} />
       <Route path="/createfriendship" element={<CreateFriendship />} />
       <Route path="/editfriendship/:id" element={<EditFriendship />} />
+      <Route path="/createvacation" element={<CreateVacation />} />
+      <Route path="/editvacation/:id" element={<EditVacation />} />
       <Route path="/login" element={<Login />} />
     </Routes>
   </>

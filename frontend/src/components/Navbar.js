@@ -95,7 +95,7 @@ const Navbar = () => {
           Travel
           {showSublinks && (
             <div className="sublinks">
-              <Link to="#">Family Vacations</Link>
+              <Link to="vacations">Family Vacations</Link>
               <Link to="packing">Packing Tips</Link>
             </div>
           )}
@@ -157,6 +157,9 @@ const Navbar = () => {
               </li>
               <li className="mb-2">
                 <Link to="friendshiplist">FriendshipList</Link>
+              </li>
+              <li className="mb-2">
+                <Link to="vacationslist">VacationList</Link>
               </li>
             </ul>
           </div>

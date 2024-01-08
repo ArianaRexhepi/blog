@@ -3,38 +3,38 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const VacationDetail =() => {
-    const [drinks, setDrinks] = useState([]);
+    const [vacations, setVacations] = useState([]);
     const { id } = useParams();
 
   useEffect(() => {
-    const fetchDrinks = async () => {
+    const fetchVacations = async () => {
       try {
-        const res = await axios.get(`/drinks/${id}`);
-        setDrinks(res.data);
-        console.log("drinks", res.data);
+        const res = await axios.get(`/vacations/${id}`);
+        setVacations(res.data);
+        console.log("vacations", res.data);
       } catch (error) {
-        console.error("Error fetching drinks:", error);
+        console.error("Error fetching vacations:", error);
       }
     };
-    fetchDrinks();
+    fetchVacations();
   }, [id]);
 
-  if (!drinks) {
+  if (!vacations) {
     return <p>Loading...</p>;
   }
 
   return (
     <div className="blog-detail">
-      <img src={drinks.image} alt={drinks.title} className="blog-image" />
+      <img src={vacations.image} alt={vacations.title} className="blog-image" />
       <div className="blog-info">
-        <h2 className="blog-title">{drinks.title}</h2>
-        <p className="blog-content">{drinks.content}</p>
+        <h2 className="blog-title">{vacations.title}</h2>
+        <p className="blog-content">{vacations.content}</p>
       </div>
-      <p className="blog-description">{drinks.description}</p>
+      <p className="blog-description">{vacations.description}</p>
     </div>
   );
     
 
 };
 
-export default DrinksDetail;
+export default VacationDetail;
