@@ -7,6 +7,30 @@ const Movies = () => {
   const [movies, setMovies] = useState([]);
   const navigate = useNavigate();
 
+  const [selectedGenre, setSelectedGenre] = useState("all");
+
+  const filterStyle = {
+    marginBottom: '20px',
+    marginLeft:'45px'
+  };
+
+  const selectStyle = {
+    padding: '8px',
+    fontSize: '16px',
+    borderRadius: '4px',
+    marginLeft: '10px',
+  };
+
+  const filteredBooks =
+    selectedGenre === "all"
+      ? movies
+      : movies.filter((movie) => movie.genre === selectedGenre);
+
+  const handleGenreChange = (genre) => {
+    setCurrentPage(1); 
+    setSelectedGenre(genre);
+  };
+
   const itemsPerPage = 6;
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -42,6 +66,22 @@ const Movies = () => {
           <hr></hr>
         </h1>
       </div>
+
+      <div style={filterStyle}>
+      <label style={{ fontWeight: 'bold' }}>Select Genre: </label>
+      <select
+        style={selectStyle}
+        value={selectedGenre}
+        onChange={(e) => handleGenreChange(e.target.value)}
+      >
+        <option value="all">All Genres</option>
+        <option value="action">Action</option>
+        <option value="action">Comedy</option>
+        <option value="action">Drama</option>
+        <option value="action">Fiction</option>
+        <option value="romance">Romance</option>
+      </select>
+    </div>
 
       <div className="blog-container">
         {movies.map((movie) => (
