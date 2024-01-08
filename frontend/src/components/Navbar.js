@@ -84,18 +84,6 @@ const Navbar = () => {
             </div>
           )}
         </div>
-      </div>
-      <div style={navbarCenterStyle}>
-        <Link
-          to="/"
-          style={teaLinkStyle}
-          onMouseOver={() => {}}
-          onMouseOut={() => {}}
-        >
-          TEA WITH ARI
-        </Link>
-      </div>
-      <div className="navbar-right">
         <div
           className="nav-link"
           onMouseEnter={() => setShowSublinks(true)}
@@ -109,6 +97,18 @@ const Navbar = () => {
             </div>
           )}
         </div>
+      </div>
+      <div style={navbarCenterStyle}>
+        <Link
+          to="/"
+          style={teaLinkStyle}
+          onMouseOver={() => {}}
+          onMouseOut={() => {}}
+        >
+          TEA WITH ARI
+        </Link>
+      </div>
+      <div className="navbar-right">
         <div
           className="nav-link"
           onMouseEnter={() => setShowSublinks(true)}
@@ -134,6 +134,43 @@ const Navbar = () => {
             </div>
           )}
         </div>
+        {state.user && (
+            <>
+              <div className="dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  {state.user.username}
+                </a>
+                <ul className="dropdown-menu">
+                  <li className="dropdown-item">
+                    <Link to="/myprofile" className="nav-link">
+                      My Profile
+                    </Link>
+                  </li>
+                  <li className="dropdown-item">
+                    <Link to="/likes" className="nav-link">
+                      My Favorites
+                    </Link>
+                  </li>
+                  <li onClick={() => handleLogOut()} className="dropdown-item">
+                    Logout
+                  </li>
+                </ul>
+              </div>
+            </>
+          )}
+        {!state.user && (
+          <>
+            <div className="nav-link">
+              <Link to="login">Sign in</Link>
+            </div>
+          </>
+        )}
 
         <div>
           {isAdmin && (
@@ -186,14 +223,6 @@ const Navbar = () => {
                   </li>
                 </ul>
               </div>
-            </>
-          )}
-          
-          {!state.user && (
-            <>
-                <Link to="/login" className="nav-link">
-                  Sign in
-                </Link>
             </>
           )}
         </div>

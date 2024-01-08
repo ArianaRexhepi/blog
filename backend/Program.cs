@@ -1,3 +1,4 @@
+using backend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using backend.Models;
@@ -5,7 +6,6 @@ using Data;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using backend.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
