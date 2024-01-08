@@ -7,7 +7,7 @@ function FriendshipsList() {
 
   useEffect(() => {
     const fetch = async () => {
-      const res = await axios.get("/friendship");
+      const res = await axios.get("/friendships");
       setFriendship(res.data);
     };
     fetch();
@@ -18,7 +18,7 @@ function FriendshipsList() {
       "Are you sure you want to delete this article?"
     );
     if (confirmed) {
-      await axios.delete(`/friendship/${id}`);
+      await axios.delete(`/friendships/${id}`);
       setFriendship(friendship.filter((friendships) => friendships.id !== id));
     }
   };

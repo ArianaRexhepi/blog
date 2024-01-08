@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
-function CreateBeauty() {
+function CreateFriendship() {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [content, setContent] = useState("");
@@ -17,7 +17,7 @@ function CreateBeauty() {
     event.preventDefault();
     setLoading(true);
 
-    const beauty = {
+    const friendship = {
       title: title,
       author: author,
       content: content,
@@ -26,11 +26,11 @@ function CreateBeauty() {
       image: image,
     };
 
-    console.log(beauty);
+    console.log(friendship);
     await axios
-      .post("/beauty", beauty)
+      .post("/friendships", friendship)
       .then(() => {
-        navigate("/beautylist");
+        navigate("/friendshiplist");
       })
       .catch((error) => {
         console.log(error);
@@ -45,7 +45,7 @@ function CreateBeauty() {
         <form className="form" onSubmit={handleSubmit}>
           <div style={{ marginTop:"30px"}}  className="modal-header">
             <h4 className="modal-title">Add Article</h4>
-            <Link to="/beautylist">
+            <Link to="/friendshiplist">
             <button
                 type="button"
                 className="btn-close"
@@ -109,7 +109,7 @@ function CreateBeauty() {
             </div>
           </div>
           <div className="modal-footer">
-            <Link to="/beautylist">
+            <Link to="/friendshiplist">
               <input type="button" style={{margin:"5px"}} className="btn btn-danger" value="Dismiss" />
             </Link>
             <input
@@ -125,4 +125,4 @@ function CreateBeauty() {
   );
 }
 
-export default CreateBeauty;
+export default CreateFriendship;

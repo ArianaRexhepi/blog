@@ -54,6 +54,11 @@ import RecepiesDetail from './RecepiesDetail';
 import RecepiesList from './addrecepies/RecepiesList';
 import CreateRecepie from './addrecepies/CreateRecepie';
 import EditRecepie from './addrecepies/EditRecepie';
+import Friendships from './Friendships';
+import FriendshipsDetail from './FriendshipsDetail';
+import FriendshipsList from './addfriendships/FriendshipsList';
+import CreateFriendship from './addfriendships/CreateFriendship';
+import EditFriendship from './addfriendships/EditFriendship';
 
 
 const Pages = () => {
@@ -71,6 +76,7 @@ const Pages = () => {
       <Route path="/dating" element={<Dating />} />
       <Route path="/packing" element={<Packing />} />
       <Route path="/recepies" element={<Recepies />} />
+      <Route path="/friendships" element={<Friendships />} />
       <Route path="/movies/:id" element={<MovieDetail />} />
       <Route path="/giftideas/:id" element={<GiftDetail />} />
       <Route path="/books/:id" element={<BookDetail />} />
@@ -81,6 +87,7 @@ const Pages = () => {
       <Route path="/dating/:id" element={<DatingDetail />} />
       <Route path="/packing/:id" element={<PackingDetail />} />
       <Route path="/recepies/:id" element={<RecepiesDetail />} />
+      <Route path="/friendships/:id" element={<FriendshipsDetail />} />
       <Route path="/" element={<AddBlog />} />
       {/* <Route element={<AdminProtectedRoute redirectPath="/" />}> */}
       <Route path="/booklist" element={<BookList />} />
@@ -93,6 +100,7 @@ const Pages = () => {
       <Route path="/datinglist" element={<DatingList />} />
       <Route path="/packinglist" element={<PackingList />} />
       <Route path="/recepielist" element={<RecepiesList />} />
+      <Route path="/friendshiplist" element={<FriendshipsList />} />
       {/* </Route> */}
       <Route path="/createbook" element={<CreateBook />} />
       <Route path="/editbook/:id" element={<EditBook />} />
@@ -114,6 +122,8 @@ const Pages = () => {
       <Route path="/editpacking/:id" element={<EditPacking />} />
       <Route path="/createrecepie" element={<CreateRecepie />} />
       <Route path="/editrecepie/:id" element={<EditRecepie />} />
+      <Route path="/createfriendship" element={<CreateFriendship />} />
+      <Route path="/editfriendship/:id" element={<EditFriendship />} />
       <Route path="/login" element={<Login />} />
     </Routes>
   </>

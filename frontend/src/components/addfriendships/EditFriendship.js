@@ -9,7 +9,7 @@ function EditFriendship() {
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`friendship/${id}`).then((response) => {
+    axios.get(`friendships/${id}`).then((response) => {
       setFriendship(response.data);
       console.log(response.data);
     });
@@ -20,7 +20,7 @@ function EditFriendship() {
     setLoading(true);
 
     try {
-      await axios.put(`friendship/${id}`, friendship).then(() => {
+      await axios.put(`friendships/${id}`, friendship).then(() => {
         setLoading(false);
         navigate("/friendshiplist");
       });
