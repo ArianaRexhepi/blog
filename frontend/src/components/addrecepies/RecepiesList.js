@@ -48,8 +48,8 @@ function RecepiesList() {
               <th>Author</th>
               <th>Content</th>
               <th>Description</th>
-              <th>Year</th>
               <th>Image</th>
+              <th>Year</th>
               <th>Actions</th>
             </tr>
           </thead>

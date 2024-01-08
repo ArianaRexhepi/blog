@@ -2,12 +2,15 @@ using backend.Data;
 using backend.DTO;
 using backend.Models;
 using Microsoft.AspNetCore.Mvc;
+
+
 using Microsoft.EntityFrameworkCore;
 
-namespace backend.Controllers
+namespace back.Controllers
 {
-    [Route("[controller]")]
-    public class RecepiesController : Controller
+    [ApiController]
+    [Route("api/[controller]")]
+    public class RecepiesController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
@@ -26,12 +29,12 @@ namespace backend.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetRecepieAsync(Guid id)
         {
-            var existingRecepie = await _context.Recepie.FindAsync(id);
-            if (existingRecepie == null)
+            var existingRecpie = await _context.Recepie.FindAsync(id);
+            if (existingRecpie == null)
             {
                 return NotFound();
             }
-            return Ok(existingRecepie);
+            return Ok(existingRecpie);
         }
 
         [HttpPost]

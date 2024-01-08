@@ -91,19 +91,19 @@ function CreateRecepie() {
               />
             </div>
             <div className="form-group">
-              <label>Year:</label>
-              <input
-                value={year}
-                onChange={(e) => setYear(e.target.value)}
-                className="form-control"
-              />
-            </div>
-            <div className="form-group">
               <label>Image:</label>
               <input
                 type="text"
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
+                className="form-control"
+              />
+            </div>
+            <div className="form-group">
+              <label>Year:</label>
+              <input
+                value={year}
+                onChange={(e) => setYear(e.target.value)}
                 className="form-control"
               />
             </div>
