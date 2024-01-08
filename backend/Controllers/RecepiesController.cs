@@ -29,12 +29,12 @@ namespace back.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetRecepieAsync(Guid id)
         {
-            var existingRecpie = await _context.Recepie.FindAsync(id);
-            if (existingRecpie == null)
+            var existingRecepie = await _context.Recepie.FindAsync(id);
+            if (existingRecepie == null)
             {
                 return NotFound();
             }
-            return Ok(existingRecpie);
+            return Ok(existingRecepie);
         }
 
         [HttpPost]
