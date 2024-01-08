@@ -24,5 +24,6 @@ namespace backend.Data
         public DbSet<Dating> Datings { get; set; }
         public DbSet<Packing> Packings { get; set; }
         public DbSet<Recepies> Recepie { get; set; }
+        public DbSet<Friendships> Friendship { get; set; }
     }
 }
