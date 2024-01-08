@@ -10,18 +10,6 @@ const Movies = () => {
   const [selectedGenre, setSelectedGenre] = useState("all");
   const [sortOrder, setSortOrder] = useState('newest');
 
-  const filterStyle = {
-    marginBottom: '20px',
-    marginLeft:'45px'
-  };
-
-  const selectStyle = {
-    padding: '8px',
-    fontSize: '16px',
-    borderRadius: '4px',
-    marginLeft: '10px',
-  };
-
   const filteredMovies =
     selectedGenre === "all"
       ? movies
@@ -73,38 +61,34 @@ const Movies = () => {
         </h1>
       </div>
 
-      <div style={filterStyle}>
-      <label style={{ fontWeight: 'bold' }}>Select Genre: </label>
-      <select
-        style={selectStyle}
-        value={selectedGenre}
-        onChange={(e) => handleGenreChange(e.target.value)}
-      >
-        <option value="all">All Genres</option>
-        <option value="action">Action</option>
-        <option value="action">Comedy</option>
-        <option value="action">Drama</option>
-        <option value="action">Fiction</option>
-        <option value="romance">Romance</option>
-        {Array.from(new Set(movies.map((movie) => movie.genre))).map((genre) => (
-          <option key={genre} value={genre}>
-            {genre}
-          </option>
-        ))}
-      </select>
+      <div className="filter-container filter-container-mobile">
+        <label style={{ fontWeight: 'bold' }}>Select Genre: </label>
+        <select
+          className="select-element select-element-mobile"
+          value={selectedGenre}
+          onChange={(e) => handleGenreChange(e.target.value)}
+        >
+          <option value="all">All Genres</option>
+          <option value="action">Action</option>
+          <option value="comedy">Comedy</option>
+          <option value="drama">Drama</option>
+          <option value="fiction">Fiction</option>
+          <option value="romance">Romance</option>
+        </select>
 
-      <label style={{ fontWeight: 'bold', marginLeft: '10px' }}>Sort Order: </label>
-      <select
-        style={selectStyle}
-        value={sortOrder}
-        onChange={(e) => handleSortOrderChange(e.target.value)}
-      >
-        <option value="newest">Newest First</option>
-        <option value="oldest">Oldest First</option>
-      </select>
+        <label style={{ fontWeight: 'bold', marginLeft: '10px' }}>Sort Order: </label>
+        <select
+          className="select-element select-element-mobile"
+          value={sortOrder}
+          onChange={(e) => handleSortOrderChange(e.target.value)}
+        >
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+        </select>
+      </div>
 
-    </div>
 
+      
       <div className="blog-container">
         {movies.map((movie) => (
           <div
