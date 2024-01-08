@@ -8,6 +8,7 @@ const Movies = () => {
   const navigate = useNavigate();
 
   const [selectedGenre, setSelectedGenre] = useState("all");
+  const [sortOrder, setSortOrder] = useState('newest');
 
   const filterStyle = {
     marginBottom: '20px',
@@ -25,10 +26,15 @@ const Movies = () => {
     selectedGenre === "all"
       ? movies
       : movies.filter((movie) => movie.genre === selectedGenre);
+      
 
   const handleGenreChange = (genre) => {
     setCurrentPage(1); 
     setSelectedGenre(genre);
+  };
+
+  const handleSortOrderChange = (selectedValue) => {
+    setSortOrder(selectedValue);
   };
 
   const itemsPerPage = 6;
@@ -46,7 +52,7 @@ const Movies = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      const res = await axios.get("/movies");
+      const res = await axios.get(`/movies?genre=${selectedGenre}&sort=${sortOrder}`);
       setMovies(res.data);
       console.log("movies", res.data);
     };
@@ -80,11 +86,27 @@ const Movies = () => {
         <option value="action">Drama</option>
         <option value="action">Fiction</option>
         <option value="romance">Romance</option>
+        {Array.from(new Set(movies.map((movie) => movie.genre))).map((genre) => (
+          <option key={genre} value={genre}>
+            {genre}
+          </option>
+        ))}
       </select>
+
+      <label style={{ fontWeight: 'bold', marginLeft: '10px' }}>Sort Order: </label>
+      <select
+        style={selectStyle}
+        value={sortOrder}
+        onChange={(e) => handleSortOrderChange(e.target.value)}
+      >
+        <option value="newest">Newest First</option>
+        <option value="oldest">Oldest First</option>
+      </select>
+
     </div>
 
       <div className="blog-container">
-        {filteredMovies.map((movie) => (
+        {movies.map((movie) => (
           <div
             key={movie.id}
             className="book-card"
