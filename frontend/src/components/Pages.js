@@ -95,8 +95,7 @@ const Pages = () => {
       <Route path="/recepies/:id" element={<RecepiesDetail />} />
       <Route path="/friendships/:id" element={<FriendshipsDetail />} />
       <Route path="/vacations/:id" element={<VacationDetail />} />
-      <Route path="/" element={<AddBlog />} />
-      {/* <Route element={<AdminProtectedRoute redirectPath="/" />}> */}
+      <Route element={<AdminProtectedRoute redirectPath="/" />}>
       <Route path="/booklist" element={<BookList />} />
       <Route path="/giftlist" element={<GiftList />} />
       <Route path="/movielist" element={<MovieList />} />
@@ -109,7 +108,6 @@ const Pages = () => {
       <Route path="/recepielist" element={<RecepiesList />} />
       <Route path="/friendshiplist" element={<FriendshipsList />} />
       <Route path="/vacationslist" element={<VacationsList />} />
-      {/* </Route> */}
       <Route path="/createbook" element={<CreateBook />} />
       <Route path="/editbook/:id" element={<EditBook />} />
       <Route path="/createtech" element={<CreateTech />} />
@@ -134,7 +132,10 @@ const Pages = () => {
       <Route path="/editfriendship/:id" element={<EditFriendship />} />
       <Route path="/createvacation" element={<CreateVacation />} />
       <Route path="/editvacation/:id" element={<EditVacation />} />
-      <Route path="/login" element={<Login />} />
+      </Route>
+      <Route element={<ProtectedRouteNotLoggedIn redirectPath="/" />}>
+          <Route path="/login" element={<Login />} />
+        </Route>
     </Routes>
   </>
   );

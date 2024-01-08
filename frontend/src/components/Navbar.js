@@ -1,8 +1,31 @@
 import React, { useState } from "react";
 import "./Navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setFavorites, setUser } from "../redux/actions";
 
 const Navbar = () => {
+  const [visible, setVisible] = useState(true);
+  const navigate = useNavigate();
+  const state = useSelector((state) => state);
+  const [showSublinks, setShowSublinks] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const handleLogOut = () => {
+    localStorage.removeItem("token");
+    dispatch(setUser(null));
+    dispatch(setFavorites([]));
+    navigate("/");
+  };
+
+  let isAdmin = false;
+  if (state.user) {
+    const role = state.user.userRoles.find((role) => role === "Admin");
+    if (role) {
+      isAdmin = true;
+    }
+  }
   const navbarCenterStyle = {
     display: "flex",
     justifyContent: "center",
@@ -17,7 +40,6 @@ const Navbar = () => {
     letterSpacing: "2px",
     fontFamily: "Gloria Hallelujah, cursive",
   };
-  const [showSublinks, setShowSublinks] = useState(false);
 
   return (
     <nav className="navbar">
@@ -74,7 +96,7 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="navbar-right">
-      <div
+        <div
           className="nav-link"
           onMouseEnter={() => setShowSublinks(true)}
           onMouseLeave={() => setShowSublinks(false)}
@@ -112,58 +134,68 @@ const Navbar = () => {
             </div>
           )}
         </div>
-        {/* <Link to="login">Login</Link>  */}
+
         <div>
-          <>
-          <div className="btn-group">
-            <button
-              className="btn btn-primary btn-sm dropdown-toggle"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Account
-            </button>
-            <ul className="dropdown-menu">
-              <li className="mb-2">
-                <Link to="booklist">BookList</Link>
-              </li>
-              <li className="mb-2">
-                <Link to="movielist">MovieList</Link>
-              </li>
-              <li className="mb-2">
-                <Link to="techlist">TechList</Link>
-              </li>
-              <li className="mb-2">
-                <Link to="giftlist">GiftList</Link>
-              </li>
-              <li className="mb-2">
-                <Link to="drinkslist">DrinksList</Link>
-              </li>
-              <li className="mb-2">
-                <Link to="beautylist">BeautyList</Link>
-              </li>
-              <li className="mb-2">
-                <Link to="fashionlist">FashionList</Link>
-              </li>
-              <li className="mb-2">
-                <Link to="datinglist">DatingList</Link>
-              </li>
-              <li className="mb-2">
-                <Link to="packinglist">PackingList</Link>
-              </li>
-              <li className="mb-2">
-                <Link to="recepielist">RecepieList</Link>
-              </li>
-              <li className="mb-2">
-                <Link to="friendshiplist">FriendshipList</Link>
-              </li>
-              <li className="mb-2">
-                <Link to="vacationslist">VacationList</Link>
-              </li>
-            </ul>
-          </div>
-          </>
+          {isAdmin && (
+            <>
+              <div className="btn-group">
+                <button
+                  className="btn btn-primary btn-sm dropdown-toggle"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Account
+                </button>
+                <ul className="dropdown-menu">
+                  <li className="mb-2">
+                    <Link to="booklist">BookList</Link>
+                  </li>
+                  <li className="mb-2">
+                    <Link to="movielist">MovieList</Link>
+                  </li>
+                  <li className="mb-2">
+                    <Link to="techlist">TechList</Link>
+                  </li>
+                  <li className="mb-2">
+                    <Link to="giftlist">GiftList</Link>
+                  </li>
+                  <li className="mb-2">
+                    <Link to="drinkslist">DrinksList</Link>
+                  </li>
+                  <li className="mb-2">
+                    <Link to="beautylist">BeautyList</Link>
+                  </li>
+                  <li className="mb-2">
+                    <Link to="fashionlist">FashionList</Link>
+                  </li>
+                  <li className="mb-2">
+                    <Link to="datinglist">DatingList</Link>
+                  </li>
+                  <li className="mb-2">
+                    <Link to="packinglist">PackingList</Link>
+                  </li>
+                  <li className="mb-2">
+                    <Link to="recepielist">RecepieList</Link>
+                  </li>
+                  <li className="mb-2">
+                    <Link to="friendshiplist">FriendshipList</Link>
+                  </li>
+                  <li className="mb-2">
+                    <Link to="vacationslist">VacationList</Link>
+                  </li>
+                </ul>
+              </div>
+            </>
+          )}
+          
+          {!state.user && (
+            <>
+                <Link to="/login" className="nav-link">
+                  Sign in
+                </Link>
+            </>
+          )}
         </div>
       </div>
     </nav>
