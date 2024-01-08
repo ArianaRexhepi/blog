@@ -21,7 +21,7 @@ const Movies = () => {
     marginLeft: '10px',
   };
 
-  const filteredBooks =
+  const filteredMovies =
     selectedGenre === "all"
       ? movies
       : movies.filter((movie) => movie.genre === selectedGenre);
@@ -84,7 +84,7 @@ const Movies = () => {
     </div>
 
       <div className="blog-container">
-        {movies.map((movie) => (
+        {filteredMovies.map((movie) => (
           <div
             key={movie.id}
             className="book-card"
