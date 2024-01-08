@@ -3,34 +3,34 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const FriendshipsDetail = () => {
-  const [beauty, setBeauty] = useState(null);
+  const [friendship, setFriendship] = useState(null);
   const { id } = useParams();
 
   useEffect(() => {
-    const fetchBeauty = async () => {
+    const fetchFriendship = async () => {
       try {
-        const res = await axios.get(`/beauty/${id}`);
-        setBeauty(res.data);
-        console.log("beauty", res.data);
+        const res = await axios.get(`/friendships/${id}`);
+        setFriendship(res.data);
+        console.log("friendship", res.data);
       } catch (error) {
-        console.error("Error fetching beauty:", error);
+        console.error("Error fetching friendship:", error);
       }
     };
-    fetchBeauty();
+    fetchFriendship();
   }, [id]);
 
-  if (!beauty) {
+  if (!friendship) {
     return <p>Loading...</p>;
   }
 
   return (
     <div className="blog-detail">
-      <img src={beauty.image} alt={beauty.title} className="blog-image" />
+      <img src={friendship.image} alt={friendship.title} className="blog-image" />
       <div className="blog-info">
-        <h2 className="blog-title">{beauty.title}</h2>
-        <p className="blog-content">{beauty.content}</p>
+        <h2 className="blog-title">{friendship.title}</h2>
+        <p className="blog-content">{friendship.content}</p>
       </div>
-      <p className="blog-description">{beauty.description}</p>
+      <p className="blog-description">{friendship.description}</p>
     </div>
   );
 };
