@@ -115,6 +115,7 @@ function CreateMovie() {
                 value={year}
                 onChange={(e) => setYear(e.target.value)}
                 className="form-control"
+                type="date"
               />
             </div>
           </div>

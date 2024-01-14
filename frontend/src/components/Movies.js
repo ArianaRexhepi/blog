@@ -8,16 +8,24 @@ const Movies = () => {
   const navigate = useNavigate();
 
   const [selectedGenre, setSelectedGenre] = useState("all");
-  const [sortOrder, setSortOrder] = useState('newest');
+  const [sortOrder, setSortOrder] = useState("newest");
 
   const filteredMovies =
     selectedGenre === "all"
       ? movies
-      : movies.filter((movie) => movie.genre === selectedGenre);
-      
+      : movies.filter((movie) => {
+          if (movie.genre.toLowerCase() === selectedGenre) {
+            return movie;
+          }
+        });
+
+  const sortedMovies =
+    sortOrder === "newest"
+      ? filteredMovies.sort((a, b) => a.year - b.year)
+      : filteredMovies.sort((a, b) => b.year - a.year);
 
   const handleGenreChange = (genre) => {
-    setCurrentPage(1); 
+    setCurrentPage(1);
     setSelectedGenre(genre);
   };
 
@@ -32,7 +40,10 @@ const Movies = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentBlogs = movies.slice(indexOfFirstItem, indexOfLastItem);
 
-  const pageNumbers = Array.from({ length: Math.ceil(movies.length / itemsPerPage) }, (_, index) => index + 1);
+  const pageNumbers = Array.from(
+    { length: Math.ceil(movies.length / itemsPerPage) },
+    (_, index) => index + 1
+  );
 
   const handleClick = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -40,7 +51,9 @@ const Movies = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      const res = await axios.get(`/movies?genre=${selectedGenre}&sort=${sortOrder}`);
+      const res = await axios.get(
+        `/movies?genre=${selectedGenre}&sort=${sortOrder}`
+      );
       setMovies(res.data);
       console.log("movies", res.data);
     };
@@ -62,7 +75,7 @@ const Movies = () => {
       </div>
 
       <div className="filter-container filter-container-mobile">
-        <label style={{ fontWeight: 'bold' }}>Select Genre: </label>
+        <label style={{ fontWeight: "bold" }}>Select Genre: </label>
         <select
           className="select-element select-element-mobile"
           value={selectedGenre}
@@ -76,7 +89,9 @@ const Movies = () => {
           <option value="romance">Romance</option>
         </select>
 
-        <label style={{ fontWeight: 'bold', marginLeft: '10px' }}>Sort Order: </label>
+        <label style={{ fontWeight: "bold", marginLeft: "10px" }}>
+          Sort Order:{" "}
+        </label>
         <select
           className="select-element select-element-mobile"
           value={sortOrder}
@@ -87,54 +102,80 @@ const Movies = () => {
         </select>
       </div>
 
-
-      
       <div className="blog-container">
-        {movies.map((movie) => (
-          <div
-            key={movie.id}
-            className="book-card"
-            onClick={() => handleMovieClick(movie.id)}
-          >
-            <div className="blog-box">
-              <div className="image-container">
-                <img
-                  src={movie.image}
-                  alt={movie.title}
-                  className="blog-image"
-                />
-              </div>
-              <div className="text-container">
-                <h3 className="blog-title">
-                  <b>{movie.title}</b>
-                </h3>
-                <p className="blog-content">{movie.content}</p>
-              </div>
-              <div className="info-container">
-                <div className="date">{movie.year}</div>
-                <div className="author">By {movie.author}</div>
+        {sortedMovies
+          .sort((a, b) => a.year - b.year)
+          .map((movie) => (
+            <div
+              key={movie.id}
+              className="book-card"
+              onClick={() => handleMovieClick(movie.id)}
+            >
+              <div className="blog-box">
+                <div className="image-container">
+                  <img
+                    src={movie.image}
+                    alt={movie.title}
+                    className="blog-image"
+                  />
+                </div>
+                <div className="text-container">
+                  <h3 className="blog-title">
+                    <b>{movie.title}</b>
+                  </h3>
+                  <p className="blog-content">{movie.content}</p>
+                </div>
+                <div className="info-container">
+                  <div className="date">{movie.year}</div>
+                  <div className="author">By {movie.author}</div>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop:"80px" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: "80px",
+        }}
+      >
         <nav aria-label="Page navigation example">
           <ul className="pagination">
             <li className="page-item">
-              <a className="page-link" href="#" aria-label="Previous" onClick={() => handleClick(currentPage - 1)}>
+              <a
+                className="page-link"
+                href="#"
+                aria-label="Previous"
+                onClick={() => handleClick(currentPage - 1)}
+              >
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
             {pageNumbers.map((number) => (
-              <li className={`page-item ${currentPage === number ? 'active' : ''}`} key={number}>
-                <a className="page-link" href="#" onClick={() => handleClick(number)}>
+              <li
+                className={`page-item ${
+                  currentPage === number ? "active" : ""
+                }`}
+                key={number}
+              >
+                <a
+                  className="page-link"
+                  href="#"
+                  onClick={() => handleClick(number)}
+                >
                   {number}
                 </a>
               </li>
             ))}
             <li className="page-item">
-              <a className="page-link" href="#" aria-label="Next" onClick={() => handleClick(currentPage + 1)}>
+              <a
+                className="page-link"
+                href="#"
+                aria-label="Next"
+                onClick={() => handleClick(currentPage + 1)}
+              >
                 <span aria-hidden="true">&raquo;</span>
               </a>
             </li>

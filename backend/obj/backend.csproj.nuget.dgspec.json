@@ -17,7 +17,7 @@
           "/Users/els/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net7.0"
+          "net6.0"
         ],
         "sources": {
           "/usr/local/share/dotnet/library-packs": {},
@@ -25,8 +25,8 @@
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net7.0": {
-            "targetAlias": "net7.0",
+          "net6.0": {
+            "targetAlias": "net6.0",
             "projectReferences": {}
           }
         },
@@ -37,76 +37,76 @@
         }
       },
       "frameworks": {
-        "net7.0": {
-          "targetAlias": "net7.0",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "dependencies": {
             "Database": {
               "target": "Package",
               "version": "[2.5.0, )"
             },
+            "Microsoft.AspNet.WebApi.Core": {
+              "target": "Package",
+              "version": "[5.2.8, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[7.0.0, )"
+              "version": "[6.0.10, )"
             },
             "Microsoft.AspNetCore.Cors": {
               "target": "Package",
               "version": "[2.2.0, )"
             },
-            "Microsoft.AspNetCore.Identity": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.10, )"
+            },
+            "Microsoft.AspNetCore.Mvc": {
               "target": "Package",
               "version": "[2.2.0, )"
             },
-            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[7.0.0, )"
-            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[7.0.3, )"
+              "version": "[6.0.10, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.0, )"
+              "version": "[6.0.10, )"
             },
             "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
-              "version": "[7.0.2, )"
+              "version": "[6.0.10, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[7.0.2, )"
+              "version": "[6.0.10, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.0, )"
+              "version": "[6.0.10, )"
             },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
-              "version": "[7.0.0, )"
+              "version": "[6.0.1, )"
             },
             "Microsoft.IdentityModel.Tokens": {
               "target": "Package",
-              "version": "[7.0.0, )"
-            },
-            "MySqlConnector": {
-              "target": "Package",
-              "version": "[2.3.3, )"
+              "version": "[6.17.0, )"
             },
             "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
-              "version": "[7.0.0, )"
+              "version": "[6.0.2, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.3, )"
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
-              "version": "[7.0.0, )"
-            },
-            "System.Security.Claims": {
-              "target": "Package",
-              "version": "[4.3.0, )"
+              "version": "[6.17.0, )"
             }
           },
           "imports": [

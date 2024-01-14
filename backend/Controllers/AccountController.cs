@@ -38,7 +38,7 @@ namespace backend.Controllers
             if (user != null)
             {
                 var role = await GetUserRole(user);
-                return createUserObject(user, role);
+                return CreateUserObject(user, role);
             }
             else
             {
@@ -64,7 +64,7 @@ namespace backend.Controllers
 
             if (result.Succeeded)
             {
-                return createUserObject(user, role);
+                return CreateUserObject(user, role);
             }
             else
             {
@@ -89,7 +89,7 @@ namespace backend.Controllers
 
             if (result.Succeeded)
             {
-                return createUserObject(user, roles);
+                return CreateUserObject(user, roles);
             }
             else
             {
@@ -102,7 +102,7 @@ namespace backend.Controllers
             return new List<string>(await _userManager.GetRolesAsync(user));
         }
 
-        private AppUserDto createUserObject(AppUser user, List<string> roles)
+        private AppUserDto CreateUserObject(AppUser user, List<string> roles)
         {
             return new AppUserDto
             {
