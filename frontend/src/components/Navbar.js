@@ -222,6 +222,9 @@ const Navbar = () => {
                   <li className="mb-2">
                     <Link to="vacationslist">VacationList</Link>
                   </li>
+                  <li className="mb-2">
+                    <Link to="userlist">UserList</Link>
+                  </li>
                   </ul>
               </div>
             </>

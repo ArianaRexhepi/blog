@@ -66,6 +66,7 @@ import EditVacation from './addvacations/EditVacation';
 import PersonalProfile from './PersonalProfile';
 import { ProtectedRoute } from './authguard/ProtectedRoute';
 import Home from './Home';
+import UserList from './UserList';
 
 
 const Pages = () => {
@@ -112,6 +113,8 @@ const Pages = () => {
       <Route path="/recepielist" element={<RecepiesList />} />
       <Route path="/friendshiplist" element={<FriendshipsList />} />
       <Route path="/vacationslist" element={<VacationsList />} />
+      <Route path="/userlist" element={<UserList />} />
+
       <Route path="/createbook" element={<CreateBook />} />
       <Route path="/editbook/:id" element={<EditBook />} />
       <Route path="/createtech" element={<CreateTech />} />

@@ -9,6 +9,7 @@ using backend.DTO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using back.Models;
+using backend.Data;
 
 namespace backend.Controllers
 {
@@ -20,8 +21,10 @@ namespace backend.Controllers
         private readonly UserManager<AppUser> _userManager;
         public readonly SignInManager<AppUser> _signInManager;
         public readonly IHttpContextAccessor _accessor;
-        public AccountController(IConfiguration configuration, SignInManager<AppUser> signInManager, UserManager<AppUser> userManager, IHttpContextAccessor accessor)
+        public readonly ApplicationDbContext _context;
+        public AccountController(IConfiguration configuration, SignInManager<AppUser> signInManager, UserManager<AppUser> userManager, IHttpContextAccessor accessor, ApplicationDbContext context)
         {
+            _context = context;
             _accessor = accessor;
             _signInManager = signInManager;
             _userManager = userManager;
@@ -45,6 +48,24 @@ namespace backend.Controllers
                 return Unauthorized("Unauthorized no user found");
             }
         }
+
+        [HttpGet("GetAllUsers")]
+        [Authorize]
+        public async Task<ActionResult<AppUserDto>> GetAllUser()
+        {
+            var users = await _context.Users.ToListAsync();
+
+            var usersDto = new List<AppUserDto>();
+
+            foreach (var user in users)
+            {
+                var role = await GetUserRole(user);
+                var userDto = CreateUserObject(user, role);
+                usersDto.Add(userDto);
+            }
+            return Ok(usersDto);
+        }
+
 
         [AllowAnonymous]
         [HttpPost("register")]
