@@ -1,38 +1,19 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import "./App.css";
 import "./components/General.css"
-
 import Pages from "./components/Pages";
 import { ToastContainer } from "react-toastify";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { setFavorites, setUser } from "./redux/actions";
+import { setUser } from "./redux/actions";
 
 function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
 
   useEffect(() => {
     getUser();
   }, []);
-
-  useEffect(() => {
-    if (state.user) {
-      getFavorites();
-    }
-  }, [state.user]);
-
-  const getFavorites = async () => {
-    await axios
-      .get("/favorite")
-      .then((result) => {
-        dispatch(setFavorites(result.data));
-      })
-      .catch((error) => {
-        console.log(error.response);
-      });
-  };
 
   const getUser = async () => {
     const token = window.localStorage.getItem("token");

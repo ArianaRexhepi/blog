@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setFavorites, setUser } from "../redux/actions";
+import { setUser } from "../redux/actions";
 
 const Navbar = () => {
-  const [visible, setVisible] = useState(true);
   const navigate = useNavigate();
   const state = useSelector((state) => state);
   const [showSublinks, setShowSublinks] = useState(false);
@@ -15,7 +14,6 @@ const Navbar = () => {
   const handleLogOut = () => {
     localStorage.removeItem("token");
     dispatch(setUser(null));
-    dispatch(setFavorites([]));
     navigate("/");
   };
 
@@ -134,44 +132,7 @@ const Navbar = () => {
             </div>
           )}
         </div>
-        {state.user && (
-            <>
-              <div className="dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  {state.user.username}
-                </a>
-                <ul className="dropdown-menu">
-                  <li className="dropdown-item">
-                    <Link to="/myprofile" className="nav-link">
-                      My Profile
-                    </Link>
-                  </li>
-                  <li className="dropdown-item">
-                    <Link to="/likes" className="nav-link">
-                      My Favorites
-                    </Link>
-                  </li>
-                  <li onClick={() => handleLogOut()} className="dropdown-item">
-                    Logout
-                  </li>
-                </ul>
-              </div>
-            </>
-          )}
-        {!state.user && (
-          <>
-            <div className="nav-link">
-              <Link to="login">Sign in</Link>
-            </div>
-          </>
-        )}
-
+        
         <div>
           {isAdmin && (
             <>
@@ -230,6 +191,40 @@ const Navbar = () => {
             </>
           )}
         </div>
+        {state.user && (
+            <>
+              <div className="dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  {state.user.username}
+                </a>
+                <ul className="dropdown-menu">
+                  <li className="dropdown-item">
+                    <Link to="/myprofile" className="nav-link">
+                      My Profile
+                    </Link>
+                  </li>
+                  <li className="dropdown-item" onClick={() => handleLogOut()}>
+                    Logout
+                  </li>
+                </ul>
+              </div>
+            </>
+          )}
+        {!state.user && (
+          <>
+            <div className="nav-link">
+              <Link to="login">Sign in</Link>
+            </div>
+          </>
+        )}
+
+       
       </div>
     </nav>
   );
