@@ -43,7 +43,6 @@ import Dating from './Dating';
 import DatingList from './adddating/DatingList';
 import CreateDating from './adddating/CreateDating';
 import EditDating from './adddating/EditDating';
-import AddBlog from './AddBlog';
 import Packing from './Packing';
 import PackingDetail from './PackingDetail';
 import PackingList from './addpacking/PackingList';
@@ -64,6 +63,9 @@ import VacationDetail from './VacationsDetail';
 import VacationsList from './addvacations/VacationsList';
 import CreateVacation from './addvacations/CreateVacation';
 import EditVacation from './addvacations/EditVacation';
+import PersonalProfile from './PersonalProfile';
+import { ProtectedRoute } from './authguard/ProtectedRoute';
+import Home from './Home';
 
 
 const Pages = () => {
@@ -71,6 +73,7 @@ const Pages = () => {
     <>
     <Header/>
     <Routes>
+    <Route path="/" element={<Home />} />
       <Route path="/books" element={<Books />} />
       <Route path="/movies" element={<Movies />} />
       <Route path="/giftideas" element={<Gifts />} />
@@ -95,6 +98,7 @@ const Pages = () => {
       <Route path="/recepies/:id" element={<RecepiesDetail />} />
       <Route path="/friendships/:id" element={<FriendshipsDetail />} />
       <Route path="/vacations/:id" element={<VacationDetail />} />
+
       <Route element={<AdminProtectedRoute redirectPath="/" />}>
       <Route path="/booklist" element={<BookList />} />
       <Route path="/giftlist" element={<GiftList />} />
@@ -133,6 +137,12 @@ const Pages = () => {
       <Route path="/createvacation" element={<CreateVacation />} />
       <Route path="/editvacation/:id" element={<EditVacation />} />
       </Route>
+
+
+      <Route element={<ProtectedRoute redirectPath="/" />}>
+      <Route path="/myprofile" element={<PersonalProfile />} />
+      </Route>
+
       <Route element={<ProtectedRouteNotLoggedIn redirectPath="/" />}>
           <Route path="/login" element={<Login />} />
         </Route>

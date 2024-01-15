@@ -175,15 +175,16 @@ const Navbar = () => {
         <div>
           {isAdmin && (
             <>
-              <div className="btn-group">
-                <button
-                  className="btn btn-primary btn-sm dropdown-toggle"
-                  type="button"
+              <div className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Account
-                </button>
+                  Dashboard
+                </a>
                 <ul className="dropdown-menu">
                   <li className="mb-2">
                     <Link to="booklist">BookList</Link>
@@ -221,7 +222,7 @@ const Navbar = () => {
                   <li className="mb-2">
                     <Link to="vacationslist">VacationList</Link>
                   </li>
-                </ul>
+                  </ul>
               </div>
             </>
           )}

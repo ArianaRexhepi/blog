@@ -104,7 +104,7 @@ function EditMovie() {
             <div className="form-group">
               <label>Year:</label>
               <input
-                type="year"
+                type="date"
                 className="form-control"
                 value={movie.year}
                 onChange={(e) => setMovie({ ...movie, year: e.target.value })}

@@ -48,7 +48,7 @@ body {
 }
 
 .login-form input:focus {
-  border-color: pink;
+  border-color: rgba(206, 184, 96, 0.4);
 }
 
 .login-form button {

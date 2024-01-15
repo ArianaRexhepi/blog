@@ -74,7 +74,7 @@ function MovieList() {
                     }}
                   />
                 </td>
-                <td>{movie.year}</td>
+                <td>{new Date(movie.year).toLocaleString()}</td>
                 
                 <td>
                   <Link to={`/editmovies/${movie.id}`}>

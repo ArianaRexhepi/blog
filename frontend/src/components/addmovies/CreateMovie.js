@@ -25,6 +25,7 @@ function CreateMovie() {
       genre: genre,
       description: description,
       image: image,
+      year:year
     };
 
     console.log(movies);
@@ -44,7 +45,7 @@ function CreateMovie() {
     <div className="modal-dialog" style={{ width: 600 }}>
       <div className="modal-content">
         <form className="form" onSubmit={handleSubmit}>
-          <div style={{ marginTop:"30px"}} className="modal-header">
+          <div style={{ marginTop: "30px" }} className="modal-header">
             <h4 className="modal-title">Add Article</h4>
             <Link to="/movielist">
               <button
@@ -54,7 +55,7 @@ function CreateMovie() {
               ></button>
             </Link>
           </div>
-          <div style={{ marginTop:"10px"}}className="modal-body">
+          <div style={{ marginTop: "10px" }} className="modal-body">
             <div className="form-group">
               <label>Title:</label>
               <input
@@ -112,16 +113,21 @@ function CreateMovie() {
             <div className="form-group">
               <label>Year:</label>
               <input
+                type="date"
                 value={year}
                 onChange={(e) => setYear(e.target.value)}
                 className="form-control"
-                type="date"
               />
             </div>
           </div>
           <div className="modal-footer">
             <Link to="/movielist">
-              <input type="button" style={{margin:"5px"}} className="btn btn-danger" value="Dismiss" />
+              <input
+                type="button"
+                style={{ margin: "5px" }}
+                className="btn btn-danger"
+                value="Dismiss"
+              />
             </Link>
             <input
               type="submit"

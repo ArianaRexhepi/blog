@@ -126,7 +126,7 @@ const Movies = () => {
                   <p className="blog-content">{movie.content}</p>
                 </div>
                 <div className="info-container">
-                  <div className="date">{movie.year}</div>
+                <div className="date">{new Date(movie.year).toLocaleString()}</div>
                   <div className="author">By {movie.author}</div>
                 </div>
               </div>
