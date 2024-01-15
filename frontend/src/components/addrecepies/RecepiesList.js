@@ -72,7 +72,7 @@ function RecepiesList() {
                     }}
                   />
                 </td>
-                <td>{recepie.year}</td>
+                <td>{new Date(recepie.year).toLocaleDateString()}</td>
                 <td>
                   <Link to={`/editrecepie/${recepie.id}`}>
                     <button style={{margin:"5px"}} className="btn btn-primary">Edit</button>

@@ -73,7 +73,7 @@ function PackingList() {
                     }}
                   />
                 </td>
-                <td>{packings.year}</td>
+                <td>{new Date(packings.year).toLocaleDateString()}</td>
                 <td>
                   <Link to={`/editpacking/${packings.id}`}>
                     <button style={{margin:"5px"}} className="btn btn-primary">Edit</button>

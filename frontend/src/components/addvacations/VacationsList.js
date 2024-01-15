@@ -72,7 +72,7 @@ function VacationsList() {
                     }}
                   />
                 </td>
-                <td>{vacations.year}</td>
+                <td>{new Date(vacations.year).toLocaleDateString()}</td>
                 <td>
                   <Link to={`/editvacation/${vacations.id}`}>
                     <button style={{margin:"5px"}} className="btn btn-primary">Edit</button>

@@ -95,7 +95,7 @@ function EditVacation() {
             <div className="form-group">
               <label>Year:</label>
               <input
-                type="year"
+                type="date"
                 className="form-control"
                 value={vacation.year}
                 onChange={(e) => setVacation({ ...vacation, year: e.target.value })}

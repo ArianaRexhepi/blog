@@ -93,6 +93,7 @@ function CreateDrink() {
             <div className="form-group">
               <label>Year:</label>
               <input
+                type="date"
                 value={year}
                 onChange={(e) => setYear(e.target.value)}
                 className="form-control"

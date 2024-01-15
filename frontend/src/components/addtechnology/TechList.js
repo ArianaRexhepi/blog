@@ -72,7 +72,7 @@ function TechList() {
                     }}
                   />
                 </td>
-                <td>{techs.year}</td>
+                <td>{new Date(techs.year).toLocaleDateString()}</td>
                 
                 <td>
                   <Link to={`/editech/${techs.id}`}>

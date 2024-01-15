@@ -95,7 +95,7 @@ function EditDating() {
             <div className="form-group">
               <label>Year:</label>
               <input
-                type="year"
+                type="date"
                 className="form-control"
                 value={dating.year}
                 onChange={(e) => setDating({ ...dating, year: e.target.value })}

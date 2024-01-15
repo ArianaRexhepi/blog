@@ -104,7 +104,7 @@ function EditBook() {
             <div className="form-group">
               <label>Year:</label>
               <input
-                type="year"
+                type="date"
                 className="form-control"
                 value={book.year}
                 onChange={(e) => setBook({ ...book, year: e.target.value })}

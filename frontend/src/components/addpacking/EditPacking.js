@@ -95,7 +95,7 @@ function EditPacking() {
             <div className="form-group">
               <label>Year:</label>
               <input
-                type="year"
+                type="date"
                 className="form-control"
                 value={packing.year}
                 onChange={(e) => setPacking({ ...packing, year: e.target.value })}

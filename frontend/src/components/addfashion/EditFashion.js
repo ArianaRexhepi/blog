@@ -95,7 +95,7 @@ function EditFashion() {
             <div className="form-group">
               <label>Year:</label>
               <input
-                type="year"
+                type="date"
                 className="form-control"
                 value={fashion.year}
                 onChange={(e) => setFashion({ ...fashion, year: e.target.value })}

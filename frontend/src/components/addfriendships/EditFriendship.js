@@ -95,7 +95,7 @@ function EditFriendship() {
             <div className="form-group">
               <label>Year:</label>
               <input
-                type="year"
+                type="date"
                 className="form-control"
                 value={friendship.year}
                 onChange={(e) => setFriendship({ ...friendship, year: e.target.value })}
