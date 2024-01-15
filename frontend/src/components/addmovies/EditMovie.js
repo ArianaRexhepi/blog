@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import dayjs from "dayjs";
 
 function EditMovie() {
   const [loading, setLoading] = useState(false);
@@ -10,6 +11,8 @@ function EditMovie() {
 
   useEffect(() => {
     axios.get(`movies/${id}`).then((response) => {
+      response.data.year = dayjs(response.data.year).format("YYYY-MM-DD");
+      console.log("year", response.data.year);
       setMovie(response.data);
       console.log(response.data);
     });
@@ -38,7 +41,7 @@ function EditMovie() {
           <div className="modal-header">
             <h4 className="modal-title">Edit Article</h4>
             <Link to="/movielist">
-            <button
+              <button
                 type="button"
                 className="btn-close"
                 aria-label="Close"
@@ -79,7 +82,9 @@ function EditMovie() {
                 type="text"
                 className="form-control"
                 value={movie.content}
-                onChange={(e) => setMovie({ ...movie, content: e.target.value })}
+                onChange={(e) =>
+                  setMovie({ ...movie, content: e.target.value })
+                }
               />
             </div>
             <div className="form-group">
@@ -89,7 +94,9 @@ function EditMovie() {
                 className="form-control"
                 rows={7}
                 value={movie.description}
-                onChange={(e) => setMovie({ ...movie, description: e.target.value })}
+                onChange={(e) =>
+                  setMovie({ ...movie, description: e.target.value })
+                }
               />
             </div>
             <div className="form-group">
@@ -107,14 +114,22 @@ function EditMovie() {
                 type="date"
                 className="form-control"
                 value={movie.year}
-                onChange={(e) => setMovie({ ...movie, year: e.target.value })}
+                onChange={(e) => {
+                  console.log(e.target.value);
+                  setMovie({ ...movie, year: e.target.value });
+                }}
               />
             </div>
           </div>
 
           <div className="modal-footer">
             <Link to="/movielist">
-              <input type="button" style={{margin:"5px"}} className="btn btn-danger" value="Dismiss" />
+              <input
+                type="button"
+                style={{ margin: "5px" }}
+                className="btn btn-danger"
+                value="Dismiss"
+              />
             </Link>
             <input
               onClick={handleSubmit}

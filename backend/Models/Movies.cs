@@ -13,8 +13,8 @@ namespace backend.Models
         public string Genre { get; set; }
         public string Content { get; set; }
         public string Description { get; set; }
-        public DateTime Year { get; set;}
+        public DateTime Year { get; set; }
         public string Image { get; set; }
-
+        public int VisitCount { get; set; } = 0;
     }
 }

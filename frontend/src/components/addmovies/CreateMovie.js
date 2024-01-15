@@ -25,7 +25,7 @@ function CreateMovie() {
       genre: genre,
       description: description,
       image: image,
-      year:year
+      year: year,
     };
 
     console.log(movies);
@@ -118,6 +118,15 @@ function CreateMovie() {
                 onChange={(e) => setYear(e.target.value)}
                 className="form-control"
               />
+            </div>
+            <div className="form-group">
+              <label>Tags:</label>
+              <select>
+                <option>Select Tags:</option>
+                <option value="Romantic">Romantic</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Action">Action</option>
+              </select>
             </div>
           </div>
           <div className="modal-footer">

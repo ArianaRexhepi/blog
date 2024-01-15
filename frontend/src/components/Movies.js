@@ -6,23 +6,34 @@ import "./MovieDetail";
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   const navigate = useNavigate();
-
   const [selectedGenre, setSelectedGenre] = useState("all");
   const [sortOrder, setSortOrder] = useState("newest");
+  const [loadingInit, setLoadingInit] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const filteredMovies =
+  useEffect(() => {
+    const fetch = async () => {
+      const res = await axios.get(
+        `/movies?genre=${selectedGenre}&sort=${sortOrder}`
+      );
+      setMovies(res.data);
+      console.log("movies", res.data);
+    };
+    fetch().finally(() => setLoadingInit(false));
+  }, []);
+
+  if (loadingInit) return "Loading...";
+
+  const mergedMovies = (
     selectedGenre === "all"
       ? movies
-      : movies.filter((movie) => {
-          if (movie.genre.toLowerCase() === selectedGenre) {
-            return movie;
-          }
-        });
+      : movies.filter((movie) => movie.genre.toLowerCase() === selectedGenre)
+  ).sort((a, b) => {
+    const dateA = new Date(a.year);
+    const dateB = new Date(b.year);
 
-  const sortedMovies =
-    sortOrder === "newest"
-      ? filteredMovies.sort((a, b) => a.year - b.year)
-      : filteredMovies.sort((a, b) => b.year - a.year);
+    return sortOrder === "newest" ? dateB - dateA : dateA - dateB;
+  });
 
   const handleGenreChange = (genre) => {
     setCurrentPage(1);
@@ -34,31 +45,19 @@ const Movies = () => {
   };
 
   const itemsPerPage = 6;
-  const [currentPage, setCurrentPage] = useState(1);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentBlogs = movies.slice(indexOfFirstItem, indexOfLastItem);
+  const currentBlogs = mergedMovies.slice(indexOfFirstItem, indexOfLastItem);
 
   const pageNumbers = Array.from(
-    { length: Math.ceil(movies.length / itemsPerPage) },
+    { length: Math.ceil(mergedMovies.length / itemsPerPage) },
     (_, index) => index + 1
   );
 
   const handleClick = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-
-  useEffect(() => {
-    const fetch = async () => {
-      const res = await axios.get(
-        `/movies?genre=${selectedGenre}&sort=${sortOrder}`
-      );
-      setMovies(res.data);
-      console.log("movies", res.data);
-    };
-    fetch();
-  }, []);
 
   const handleMovieClick = (movieId) => {
     navigate(`/movies/${movieId}`);
@@ -103,35 +102,35 @@ const Movies = () => {
       </div>
 
       <div className="blog-container">
-        {sortedMovies
-          .sort((a, b) => a.year - b.year)
-          .map((movie) => (
-            <div
-              key={movie.id}
-              className="book-card"
-              onClick={() => handleMovieClick(movie.id)}
-            >
-              <div className="blog-box">
-                <div className="image-container">
-                  <img
-                    src={movie.image}
-                    alt={movie.title}
-                    className="blog-image"
-                  />
+        {currentBlogs.map((movie) => (
+          <div
+            key={movie.id}
+            className="book-card"
+            onClick={() => handleMovieClick(movie.id)}
+          >
+            <div className="blog-box">
+              <div className="image-container">
+                <img
+                  src={movie.image}
+                  alt={movie.title}
+                  className="blog-image"
+                />
+              </div>
+              <div className="text-container">
+                <h3 className="blog-title">
+                  <b>{movie.title}</b>
+                </h3>
+                <p className="blog-content">{movie.content}</p>
+              </div>
+              <div className="info-container">
+                <div className="date">
+                 Visit Counts: {movie.visitCount}
                 </div>
-                <div className="text-container">
-                  <h3 className="blog-title">
-                    <b>{movie.title}</b>
-                  </h3>
-                  <p className="blog-content">{movie.content}</p>
-                </div>
-                <div className="info-container">
-                <div className="date">{new Date(movie.year).toLocaleDateString()}</div>
-                  <div className="author">By {movie.author}</div>
-                </div>
+                <div className="author">By {movie.author}</div>
               </div>
             </div>
-          ))}
+          </div>
+        ))}
       </div>
       <div
         style={{
