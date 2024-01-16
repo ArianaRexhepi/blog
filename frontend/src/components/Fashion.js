@@ -44,7 +44,7 @@ const Fashion = () => {
     setCurrentPage(pageNumber);
   };
 
-  const handleMovieClick = (fashionId) => {
+  const handleFashionClick = (fashionId) => {
     navigate(`/fashion/${fashionId}`);
   };
 
@@ -77,7 +77,7 @@ const Fashion = () => {
           <div
             key={fashions.id}
             className="book-card"
-            onClick={() => handleMovieClick(fashions.id)}
+            onClick={() => handleFashionClick(fashions.id)}
           >
             <div className="blog-box">
               <div className="image-container">

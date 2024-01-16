@@ -65,7 +65,6 @@ import CreateVacation from './addvacations/CreateVacation';
 import EditVacation from './addvacations/EditVacation';
 import PersonalProfile from './PersonalProfile';
 import { ProtectedRoute } from './authguard/ProtectedRoute';
-import Home from './Home';
 import UserList from './UserList';
 
 
@@ -74,7 +73,6 @@ const Pages = () => {
     <>
     <Header/>
     <Routes>
-    <Route path="/" element={<Home />} />
       <Route path="/books" element={<Books />} />
       <Route path="/movies" element={<Movies />} />
       <Route path="/giftideas" element={<Gifts />} />

@@ -6,30 +6,45 @@ import "./GiftDetail";
 const Gifts = () => {
   const [gifts, setGifts] = useState([]);
   const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [sortOrder, setSortOrder] = useState("newest");
+  const [loadingInit, setLoadingInit] = useState(true);
+
+  useEffect(() => {
+    const fetch = async () => {
+      const res = await axios.get(`/giftideas?sort=${sortOrder}`);
+      setGifts(res.data);
+      console.log("gifts", res.data);
+    };
+    fetch().finally(() => setLoadingInit(false));
+  }, []);
+
+  if (loadingInit) return "Loading...";
+
+  const sort = gifts.slice().sort((a, b) => {
+    const dateA = new Date(a.year);
+    const dateB = new Date(b.year);
+
+    return sortOrder === "newest" ? dateB - dateA : dateA - dateB;
+  });
+
+  const handleSortOrderChange = (selectedValue) => {
+    setSortOrder(selectedValue);
+  };
 
   const itemsPerPage = 6;
-  const [currentPage, setCurrentPage] = useState(1);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentBlogs = gifts.slice(indexOfFirstItem, indexOfLastItem);
+  const currentBlogs = sort.slice(indexOfFirstItem, indexOfLastItem);
 
-  const pageNumbers = Array.from({ length: Math.ceil(gifts.length / itemsPerPage) }, (_, index) => index + 1);
+  const pageNumbers = Array.from({ length: Math.ceil(sort.length / itemsPerPage) }, (_, index) => index + 1);
 
   const handleClick = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  useEffect(() => {
-    const fetch = async () => {
-      const res = await axios.get("/giftideas");
-      setGifts(res.data);
-      console.log("gifts", res.data);
-    };
-    fetch();
-  }, []);
-
-  const handleMovieClick = (giftId) => {
+  const handleGiftClick = (giftId) => {
     navigate(`/giftideas/${giftId}`);
   };
 
@@ -42,13 +57,27 @@ const Gifts = () => {
           <hr></hr>
         </h1>
       </div>
+      
+      <div className="filter-container filter-container-mobile">
+        <label style={{ fontWeight: "bold", marginLeft: "10px" }}>
+          Sort Order:{" "}
+        </label>
+        <select
+          className="select-element select-element-mobile"
+          value={sortOrder}
+          onChange={(e) => handleSortOrderChange(e.target.value)}
+        >
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+        </select>
+      </div>
 
       <div className="blog-container">
-        {gifts.map((gift) => (
+        {currentBlogs.map((gift) => (
           <div
             key={gift.id}
             className="book-card"
-            onClick={() => handleMovieClick(gift.id)}
+            onClick={() => handleGiftClick(gift.id)}
           >
             <div className="blog-box">
               <div className="image-container">
@@ -65,7 +94,7 @@ const Gifts = () => {
                 <p className="blog-content">{gift.content}</p>
               </div>
               <div className="info-container">
-                <div className="date">{gift.year}</div>
+              <div className="date">Encountered:{gift.visitCount}</div>
                 <div className="author">By {gift.author}</div>
               </div>
             </div>

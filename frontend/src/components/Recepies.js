@@ -6,29 +6,45 @@ import './RecepiesDetail'
 const Recepies = () => {
   const [recepies, setRecepies] = useState([]);
   const navigate = useNavigate();
-  const itemsPerPage = 6;
   const [currentPage, setCurrentPage] = useState(1);
+  const [sortOrder, setSortOrder] = useState("newest");
+  const [loadingInit, setLoadingInit] = useState(true);
+
+  useEffect(() => {
+    const fetch = async () => {
+      const res = await axios.get(`/recepies?sort=${sortOrder}`);
+      setRecepies(res.data);
+      console.log("recepies", res.data);
+    };
+    fetch().finally(() => setLoadingInit(false));
+  }, []);
+
+  if (loadingInit) return "Loading...";
+
+  const sort = recepies.slice().sort((a, b) => {
+    const dateA = new Date(a.year);
+    const dateB = new Date(b.year);
+
+    return sortOrder === "newest" ? dateB - dateA : dateA - dateB;
+  });
+
+  const handleSortOrderChange = (selectedValue) => {
+    setSortOrder(selectedValue);
+  };
+
+  const itemsPerPage = 6;
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentBlogs = recepies.slice(indexOfFirstItem, indexOfLastItem);
+  const currentBlogs = sort.slice(indexOfFirstItem, indexOfLastItem);
 
-  const pageNumbers = Array.from({ length: Math.ceil(recepies.length / itemsPerPage) }, (_, index) => index + 1);
+  const pageNumbers = Array.from({ length: Math.ceil(sort.length / itemsPerPage) }, (_, index) => index + 1);
 
   const handleClick = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  useEffect(() => {
-    const fetch = async () => {
-      const res = await axios.get("/recepies");
-      setRecepies(res.data);
-      console.log("recepies", res.data);
-    };
-    fetch();
-  }, []);
-
-  const handleDrinkClick = (recepieId) => {
+  const handleRecepieClick = (recepieId) => {
     navigate(`/recepies/${recepieId}`);
   };
 
@@ -42,12 +58,26 @@ const Recepies = () => {
         </h1>
       </div>
 
+      <div className="filter-container filter-container-mobile">
+        <label style={{ fontWeight: "bold", marginLeft: "10px" }}>
+          Sort Order:{" "}
+        </label>
+        <select
+          className="select-element select-element-mobile"
+          value={sortOrder}
+          onChange={(e) => handleSortOrderChange(e.target.value)}
+        >
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+        </select>
+      </div>
+
       <div className="blog-container">
         {currentBlogs.map((recepies) => (
           <div
             key={recepies.id}
             className="book-card"
-            onClick={() => handleDrinkClick(recepies.id)}
+            onClick={() => handleRecepieClick(recepies.id)}
           >
             <div className="blog-box">
               <div className="image-container">
