@@ -10,6 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import 'bootstrap/dist/css/bootstrap.css';
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import 'react-bootstrap/dist/react-bootstrap.min.js';
+import 'react-quill/dist/quill.snow.css'; 
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 

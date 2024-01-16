@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import ReactQuill from "react-quill";
 
 function CreateBook() {
   const [title, setTitle] = useState("");
@@ -23,7 +24,7 @@ function CreateBook() {
       author: author,
       content: content,
       genre: genre,
-      year:year,
+      year: year,
       description: description,
       image: image,
     };
@@ -46,7 +47,7 @@ function CreateBook() {
     <div className="modal-dialog" style={{ width: 600 }}>
       <div className="modal-content">
         <form className="form" onSubmit={handleSubmit}>
-          <div style={{ marginTop:"30px"}} className="modal-header">
+          <div style={{ marginTop: "30px" }} className="modal-header">
             <h4 className="modal-title">Add Article</h4>
             <Link to="/booklist">
               <button
@@ -56,7 +57,7 @@ function CreateBook() {
               ></button>
             </Link>
           </div>
-          <div style={{ marginTop:"10px"}}className="modal-body">
+          <div style={{ marginTop: "10px" }} className="modal-body">
             <div className="form-group">
               <label>Title:</label>
               <input
@@ -86,13 +87,13 @@ function CreateBook() {
             </div>
             <div className="form-group">
               <label>Description:</label>
-              <textarea
+              <ReactQuill
+                className="quill-editor"
                 value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                className="form-control"
-                rows="7"
+                onChange={(value) => setDescription(value)}
               />
             </div>
+
             <div className="form-group">
               <label>Genre:</label>
               <input
@@ -120,9 +121,14 @@ function CreateBook() {
               />
             </div>
           </div>
-          <div style={{ marginTop:"10px"}} className="modal-footer">
+          <div style={{ marginTop: "10px" }} className="modal-footer">
             <Link to="/booklist">
-              <input type="button" style={{ margin:"5px"}} className="btn btn-danger" value="Dismiss" />
+              <input
+                type="button"
+                style={{ margin: "5px" }}
+                className="btn btn-danger"
+                value="Dismiss"
+              />
             </Link>
             <input
               type="submit"

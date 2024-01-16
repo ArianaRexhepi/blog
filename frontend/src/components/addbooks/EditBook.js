@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import dayjs from "dayjs";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 function EditBook() {
   const [loading, setLoading] = useState(false);
@@ -10,10 +13,14 @@ function EditBook() {
 
   useEffect(() => {
     axios.get(`books/${id}`).then((response) => {
-        setBook(response.data);
-      console.log(response.data);
+      response.data.year = dayjs(response.data.year).format("YYYY-MM-DD");
+      setBook(response.data);
     });
-  }, []);
+  }, [id]);
+
+  const handleDescriptionChange = (value) => {
+    setBook({ ...book, description: value });
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -38,14 +45,14 @@ function EditBook() {
           <div className="modal-header">
             <h4 className="modal-title">Edit Article</h4>
             <Link to="/booklist">
-               <button
+              <button
                 type="button"
                 className="btn-close"
                 aria-label="Close"
               ></button>
             </Link>
           </div>
-          <div style={{ marginTop:"5px"}} className="modal-body">
+          <div style={{ marginTop: "5px" }} className="modal-body">
             <div className="form-group">
               <label>Title:</label>
               <input
@@ -84,13 +91,13 @@ function EditBook() {
             </div>
             <div className="form-group">
               <label>Description:</label>
-              <textarea
-                type="text"
-                className="form-control"
-                value={book.description}
-                rows={7}
-                onChange={(e) => setBook({ ...book, description: e.target.value })}
-              />
+              {book && (
+                <ReactQuill
+                  className="quill-editor"
+                  value={book.description}
+                  onChange={handleDescriptionChange}
+                />
+              )}
             </div>
             <div className="form-group">
               <label>Image:</label>
@@ -107,13 +114,21 @@ function EditBook() {
                 type="date"
                 className="form-control"
                 value={book.year}
-                onChange={(e) => setBook({ ...book, year: e.target.value })}
+                onChange={(e) => {
+                  console.log(e.target.value);
+                  setBook({ ...book, year: e.target.value });
+                }}
               />
             </div>
           </div>
           <div className="modal-footer">
             <Link to="/booklist">
-              <input type="button" style={{ margin:"5px"}}className="btn btn-danger" value="Dismiss" />
+              <input
+                type="button"
+                style={{ margin: "5px" }}
+                className="btn btn-danger"
+                value="Dismiss"
+              />
             </Link>
             <input
               onClick={handleSubmit}

@@ -6,55 +6,60 @@ import "./BookDetail";
 const Books = () => {
   const [books, setBooks] = useState([]);
   const navigate = useNavigate();
-
   const [selectedGenre, setSelectedGenre] = useState("all");
+  const [sortOrder, setSortOrder] = useState("newest");
+  const [loadingInit, setLoadingInit] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const filterStyle = {
-    marginBottom: '20px',
-    marginLeft:'45px'
-  };
 
-  const selectStyle = {
-    padding: '8px',
-    fontSize: '16px',
-    borderRadius: '4px',
-    marginLeft: '10px',
-  };
+  useEffect(() => {
+    const fetch = async () => {
+      const res = await axios.get(
+        `/books?genre=${selectedGenre}&sort=${sortOrder}`
+      );
+      setBooks(res.data);
+      console.log("books", res.data);
+    };
+    fetch().finally(() => setLoadingInit(false));
+  }, []);
 
-  const filteredBooks =
+  if (loadingInit) return "Loading...";
+
+  const mergedMovies = (
     selectedGenre === "all"
       ? books
-      : books.filter((book) => book.genre === selectedGenre);
+      : books.filter((book) => book.genre.toLowerCase() === selectedGenre)
+  ).sort((a, b) => {
+    const dateA = new Date(a.year);
+    const dateB = new Date(b.year);
+
+    return sortOrder === "newest" ? dateB - dateA : dateA - dateB;
+  });
+
 
   const handleGenreChange = (genre) => {
     setCurrentPage(1); 
     setSelectedGenre(genre);
   };
 
+  const handleSortOrderChange = (selectedValue) => {
+    setSortOrder(selectedValue);
+  };
+
   const itemsPerPage = 6;
-  const [currentPage, setCurrentPage] = useState(1);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentBlogs = books.slice(indexOfFirstItem, indexOfLastItem);
+  const currentBlogs = mergedMovies.slice(indexOfFirstItem, indexOfLastItem);
 
   const pageNumbers = Array.from(
-    { length: Math.ceil(books.length / itemsPerPage) },
+    { length: Math.ceil(mergedMovies.length / itemsPerPage) },
     (_, index) => index + 1
   );
 
   const handleClick = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-
-  useEffect(() => {
-    const fetch = async () => {
-      const res = await axios.get("/books");
-      setBooks(res.data);
-      console.log("books", res.data);
-    };
-    fetch();
-  }, []);
 
   const handleBookClick = (bookId) => {
     navigate(`/books/${bookId}`);
@@ -70,24 +75,36 @@ const Books = () => {
         </h1>
       </div>
 
-      <div style={filterStyle}>
+      <div className="filter-container filter-container-mobile">
       <label style={{ fontWeight: 'bold' }}>Select Genre: </label>
       <select
-        style={selectStyle}
+        className="select-element select-element-mobile"
         value={selectedGenre}
         onChange={(e) => handleGenreChange(e.target.value)}
       >
         <option value="all">All Genres</option>
         <option value="action">Action</option>
-        <option value="action">Comedy</option>
-        <option value="action">Drama</option>
-        <option value="action">Fiction</option>
+        <option value="comedy">Comedy</option>
+        <option value="drama">Drama</option>
+        <option value="fiction">Fiction</option>
         <option value="romance">Romance</option>
       </select>
+
+      <label style={{ fontWeight: "bold", marginLeft: "10px" }}>
+          Sort Order:{" "}
+        </label>
+        <select
+          className="select-element select-element-mobile"
+          value={sortOrder}
+          onChange={(e) => handleSortOrderChange(e.target.value)}
+        >
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+        </select>
     </div>
 
       <div className="blog-container">
-        {filteredBooks.map((book) => (
+        {currentBlogs.map((book) => (
           <div
             key={book.id}
             className="book-card"
@@ -98,13 +115,14 @@ const Books = () => {
                 <img src={book.image} alt={book.title} className="blog-image" />
               </div>
               <div className="text-container">
-                <h3 className="blog-title">
+                <h4 className="blogg-title">
                   <b>{book.title}</b>
-                </h3>
-                <p className="blog-content">{book.content}</p>
+                </h4>
+                <p className="blogg-content">{book.content}</p>
               </div>
               <div className="info-container">
-                <div className="date">{book.year}</div>
+                <div className="date"> Visited: {book.visitCount}
+                </div>
                 <div className="author">By {book.author}</div>
               </div>
             </div>

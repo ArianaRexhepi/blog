@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 function BookList() {
   const [books, setBooks] = useState([]);
+  const [selectedBook, setSelectedBook] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const fetch = async () => {
@@ -23,12 +29,28 @@ function BookList() {
     }
   };
 
+  const handleReadMore = (book) => {
+    setSelectedBook(book);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <>
-      <h1 style={{ textAlign: "center", marginTop:"5px"}}>Books</h1>
+      <h1 style={{ textAlign: "center", marginTop: "5px" }}>Books</h1>
       <div className="card shadow mb-4">
         <div className="card-header py-3">
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}className="float-right">
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            className="float-right"
+          >
             <Link to="/createbook">
               <button className="btn btn-primary">Create New</button>
             </Link>
@@ -62,7 +84,32 @@ function BookList() {
                 <td>{book.author}</td>
                 <td>{book.genre}</td>
                 <td>{book.content}</td>
-                <td>{book.description}</td>
+                <td>
+                  {book.description.length > 150 ? (
+                    <div>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: `${book.description.slice(0, 150)}...`,
+                        }}
+                      />
+                      <button
+                        style={{
+                          border: "none",
+                          background: "none",
+                          color: "blue",
+                        }}
+                        onClick={() => handleReadMore(book)}
+                      >
+                        Read More
+                      </button>
+                    </div>
+                  ) : (
+                    <div
+                      dangerouslySetInnerHTML={{ __html: book.description }}
+                    />
+                  )}
+                </td>
+
                 <td>
                   <img
                     src={book.image}
@@ -77,7 +124,12 @@ function BookList() {
                 <td>{new Date(book.year).toLocaleDateString()}</td>
                 <td>
                   <Link to={`/editbook/${book.id}`}>
-                    <button style={{margin:"5px"}} className="btn btn-primary">Edit</button>
+                    <button
+                      style={{ margin: "5px" }}
+                      className="btn btn-primary"
+                    >
+                      Edit
+                    </button>
                   </Link>
                   <button
                     className="btn btn-danger"
@@ -91,6 +143,25 @@ function BookList() {
           </tbody>
         </table>
       </div>
+
+      {/* Read More Modal */}
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>{selectedBook?.title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <ReactQuill
+            className="quill-editor"
+            value={selectedBook?.description}
+            readOnly={true}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }

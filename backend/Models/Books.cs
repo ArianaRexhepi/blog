@@ -15,6 +15,7 @@ namespace backend.Models
         public string Description { get; set; }
         public DateTime Year { get; set;}
         public string Image { get; set; }
+        public int VisitCount { get; set; } = 0;
         
     }
 }
