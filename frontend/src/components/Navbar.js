@@ -98,7 +98,7 @@ const Navbar = () => {
       </div>
       <div style={navbarCenterStyle}>
         <Link
-          to="/"
+          to="/books"
           style={teaLinkStyle}
           onMouseOver={() => {}}
           onMouseOut={() => {}}

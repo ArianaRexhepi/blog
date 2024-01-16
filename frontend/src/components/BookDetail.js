@@ -8,6 +8,13 @@ const BookDetail =() => {
     const { id } = useParams();
 
     useEffect(() => {
+      const SendVisit = async () => {
+        await axios.get(`/books/VisitCount/${id}`);
+      };
+      SendVisit();
+    }, []);
+
+    useEffect(() => {
       const fetchBook = async () => {
         try {
           const res = await axios.get(`/books/${id}`);

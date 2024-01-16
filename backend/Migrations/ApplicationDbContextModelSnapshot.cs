@@ -109,6 +109,9 @@ namespace backend.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("VisitCount")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Year")
                         .HasColumnType("datetime(6)");
 
@@ -150,6 +153,9 @@ namespace backend.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("VisitCount")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Year")
                         .HasColumnType("datetime(6)");
 
@@ -186,6 +192,9 @@ namespace backend.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("VisitCount")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Year")
                         .HasColumnType("datetime(6)");
 
@@ -219,6 +228,9 @@ namespace backend.Migrations
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int>("VisitCount")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Year")
                         .HasColumnType("datetime(6)");
@@ -254,6 +266,9 @@ namespace backend.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("VisitCount")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Year")
                         .HasColumnType("datetime(6)");
 
@@ -288,6 +303,9 @@ namespace backend.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("VisitCount")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Year")
                         .HasColumnType("datetime(6)");
 
@@ -321,6 +339,9 @@ namespace backend.Migrations
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int>("VisitCount")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Year")
                         .HasColumnType("datetime(6)");
@@ -397,6 +418,9 @@ namespace backend.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("VisitCount")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Year")
                         .HasColumnType("datetime(6)");
 
@@ -430,6 +454,9 @@ namespace backend.Migrations
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int>("VisitCount")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Year")
                         .HasColumnType("datetime(6)");
@@ -465,6 +492,9 @@ namespace backend.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("VisitCount")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Year")
                         .HasColumnType("datetime(6)");
 
@@ -498,6 +528,9 @@ namespace backend.Migrations
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int>("VisitCount")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Year")
                         .HasColumnType("datetime(6)");

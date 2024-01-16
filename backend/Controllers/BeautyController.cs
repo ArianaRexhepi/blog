@@ -78,6 +78,21 @@ namespace back.Controllers
             return Ok();
         }
 
+        [HttpGet("VisitCount/{id}")]
+        public async Task<IActionResult> PutVisitAsync(Guid id)
+        {
+            var existingBeauty = await _context.Beauties.FindAsync(id);
+            if (existingBeauty == null)
+            {
+                return NotFound();
+            }
+            existingBeauty.VisitCount++;
+
+            _context.SaveChanges();
+
+            return Ok();
+        }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAsync(Guid id)
         {

@@ -121,7 +121,7 @@ const Books = () => {
                 <p className="blogg-content">{book.content}</p>
               </div>
               <div className="info-container">
-                <div className="date"> Visited: {book.visitCount}
+                <div className="date"> Encountered:{book.visitCount}
                 </div>
                 <div className="author">By {book.author}</div>
               </div>

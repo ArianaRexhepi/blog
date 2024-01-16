@@ -80,6 +80,21 @@ namespace back.Controllers
             return Ok();
         }
 
+        [HttpGet("VisitCount/{id}")]
+        public async Task<IActionResult> PutVisitAsync(Guid id)
+        {
+            var existingBook = await _context.Book.FindAsync(id);
+            if (existingBook == null)
+            {
+                return NotFound();
+            }
+            existingBook.VisitCount++;
+
+            _context.SaveChanges();
+
+            return Ok();
+        }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAsync(Guid id)
         {

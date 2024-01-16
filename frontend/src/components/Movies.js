@@ -124,7 +124,7 @@ const Movies = () => {
               </div>
               <div className="info-container">
                 <div className="date">
-                 Visited: {movie.visitCount}
+                Encountered: {movie.visitCount}
                 </div>
                 <div className="author">By {movie.author}</div>
               </div>
