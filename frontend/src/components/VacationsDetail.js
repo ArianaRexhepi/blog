@@ -1,10 +1,18 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import DisqusComments from "./DisqusComments";
 
-const VacationDetail =() => {
-    const [vacations, setVacations] = useState([]);
-    const { id } = useParams();
+const VacationDetail = () => {
+  const [vacations, setVacations] = useState([]);
+  const { id } = useParams();
+
+  useEffect(() => {
+    const SendVisit = async () => {
+      await axios.get(`/vacations/VisitCount/${id}`);
+    };
+    SendVisit();
+  }, []);
 
   useEffect(() => {
     const fetchVacations = async () => {
@@ -30,11 +38,14 @@ const VacationDetail =() => {
         <h2 className="blog-title">{vacations.title}</h2>
         <p className="blog-content">{vacations.content}</p>
       </div>
-      <p className="blog-description">{vacations.description}</p>
+      <div
+        className="blog-description"
+        dangerouslySetInnerHTML={{ __html: vacations.description }}
+      />
+      <hr />
+      <DisqusComments identifier={id} />
     </div>
   );
-    
-
 };
 
 export default VacationDetail;

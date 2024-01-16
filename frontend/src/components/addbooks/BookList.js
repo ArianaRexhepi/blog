@@ -144,7 +144,6 @@ function BookList() {
         </table>
       </div>
 
-      {/* Read More Modal */}
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
           <Modal.Title>{selectedBook?.title}</Modal.Title>

@@ -6,30 +6,48 @@ import "./BeautyDetail";
 const Beauty = () => {
   const [beauty, setBeauty] = useState([]);
   const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [sortOrder, setSortOrder] = useState("newest");
+  const [loadingInit, setLoadingInit] = useState(true);
+
+  useEffect(() => {
+    const fetch = async () => {
+      const res = await axios.get(`/beauty?sort=${sortOrder}`);
+      setBeauty(res.data);
+      console.log("beauty", res.data);
+    };
+    fetch().finally(() => setLoadingInit(false));
+  }, []);
+
+  if (loadingInit) return "Loading...";
+
+  const sort = beauty.slice().sort((a, b) => {
+    const dateA = new Date(a.year);
+    const dateB = new Date(b.year);
+
+    return sortOrder === "newest" ? dateB - dateA : dateA - dateB;
+  });
+
+  const handleSortOrderChange = (selectedValue) => {
+    setSortOrder(selectedValue);
+  };
 
   const itemsPerPage = 6;
-  const [currentPage, setCurrentPage] = useState(1);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentBlogs = beauty.slice(indexOfFirstItem, indexOfLastItem);
+  const currentBlogs = sort.slice(indexOfFirstItem, indexOfLastItem);
 
-  const pageNumbers = Array.from({ length: Math.ceil(beauty.length / itemsPerPage) }, (_, index) => index + 1);
+  const pageNumbers = Array.from(
+    { length: Math.ceil(sort.length / itemsPerPage) },
+    (_, index) => index + 1
+  );
 
   const handleClick = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  useEffect(() => {
-    const fetch = async () => {
-      const res = await axios.get("/beauty");
-      setBeauty(res.data);
-      console.log("beauty", res.data);
-    };
-    fetch();
-  }, []);
-
-  const handleMovieClick = (beautyId) => {
+  const handleBeautyClick = (beautyId) => {
     navigate(`/beauty/${beautyId}`);
   };
 
@@ -43,12 +61,26 @@ const Beauty = () => {
         </h1>
       </div>
 
+      <div className="filter-container filter-container-mobile">
+        <label style={{ fontWeight: "bold", marginLeft: "10px" }}>
+          Sort Order:{" "}
+        </label>
+        <select
+          className="select-element select-element-mobile"
+          value={sortOrder}
+          onChange={(e) => handleSortOrderChange(e.target.value)}
+        >
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+        </select>
+      </div>
+
       <div className="blog-container">
-        {beauty.map((beauties) => (
+        {currentBlogs.map((beauties) => (
           <div
             key={beauties.id}
             className="book-card"
-            onClick={() => handleMovieClick(beauties.id)}
+            onClick={() => handleBeautyClick(beauties.id)}
           >
             <div className="blog-box">
               <div className="image-container">
@@ -65,30 +97,56 @@ const Beauty = () => {
                 <p className="blog-content">{beauties.content}</p>
               </div>
               <div className="info-container">
-                <div className="date">{beauties.year}</div>
+                <div className="date">Encountered:{beauties.visitCount}</div>
                 <div className="author">By {beauties.author}</div>
               </div>
             </div>
           </div>
         ))}
       </div>
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop:"80px" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: "80px",
+        }}
+      >
         <nav aria-label="Page navigation example">
           <ul className="pagination">
             <li className="page-item">
-              <a className="page-link" href="#" aria-label="Previous" onClick={() => handleClick(currentPage - 1)}>
+              <a
+                className="page-link"
+                href="#"
+                aria-label="Previous"
+                onClick={() => handleClick(currentPage - 1)}
+              >
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
             {pageNumbers.map((number) => (
-              <li className={`page-item ${currentPage === number ? 'active' : ''}`} key={number}>
-                <a className="page-link" href="#" onClick={() => handleClick(number)}>
+              <li
+                className={`page-item ${
+                  currentPage === number ? "active" : ""
+                }`}
+                key={number}
+              >
+                <a
+                  className="page-link"
+                  href="#"
+                  onClick={() => handleClick(number)}
+                >
                   {number}
                 </a>
               </li>
             ))}
             <li className="page-item">
-              <a className="page-link" href="#" aria-label="Next" onClick={() => handleClick(currentPage + 1)}>
+              <a
+                className="page-link"
+                href="#"
+                aria-label="Next"
+                onClick={() => handleClick(currentPage + 1)}
+              >
                 <span aria-hidden="true">&raquo;</span>
               </a>
             </li>

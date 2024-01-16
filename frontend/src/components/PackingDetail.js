@@ -1,10 +1,18 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import DisqusComments from "./DisqusComments";
 
 const PackingDetail = () => {
   const [packing, setPacking] = useState(null);
   const { id } = useParams();
+
+  useEffect(() => {
+    const SendVisit = async () => {
+      await axios.get(`/packing/VisitCount/${id}`);
+    };
+    SendVisit();
+  }, []);
 
   useEffect(() => {
     const fetchPacking = async () => {
@@ -30,7 +38,12 @@ const PackingDetail = () => {
         <h2 className="blog-title">{packing.title}</h2>
         <p className="blog-content">{packing.content}</p>
       </div>
-      <p className="blog-description">{packing.description}</p>
+      <div
+        className="blog-description"
+        dangerouslySetInnerHTML={{ __html: packing.description }}
+      />
+      <hr/>
+      <DisqusComments identifier={id} />
     </div>
   );
 };

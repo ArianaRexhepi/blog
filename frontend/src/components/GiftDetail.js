@@ -1,10 +1,18 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import DisqusComments from "./DisqusComments";
 
 const GiftDetail = () => {
   const [gift, setGift] = useState(null);
   const { id } = useParams();
+
+  useEffect(() => {
+    const SendVisit = async () => {
+      await axios.get(`/giftideas/VisitCount/${id}`);
+    };
+    SendVisit();
+  }, []);
 
   useEffect(() => {
     const fetchGift = async () => {
@@ -30,7 +38,12 @@ const GiftDetail = () => {
         <h2 className="blog-title">{gift.title}</h2>
         <p className="blog-content">{gift.content}</p>
       </div>
-      <p className="blog-description">{gift.description}</p>
+      <div
+        className="blog-description"
+        dangerouslySetInnerHTML={{ __html: gift.description }}
+      />
+      <hr/>
+      <DisqusComments identifier={id} />
     </div>
   );
 };

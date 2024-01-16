@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 function DatingList() {
   const [dating, setDating] = useState([]);
+  const [selectedDating, setSelectedDating] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const fetch = async () => {
@@ -21,6 +27,14 @@ function DatingList() {
       await axios.delete(`/beauty/${id}`);
       setDating(dating.filter((datings) => datings.id !== id));
     }
+  };
+  const handleReadMore = (datings) => {
+    setSelectedDating(datings);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
   };
 
   return (
@@ -61,7 +75,31 @@ function DatingList() {
                 <td>{datings.author}</td>
                 <td>{datings.content}</td>
                 
-                <td>{datings.description}</td>
+                <td>
+                  {datings.description.length > 150 ? (
+                    <div>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: `${datings.description.slice(0, 150)}...`,
+                        }}
+                      />
+                      <button
+                        style={{
+                          border: "none",
+                          background: "none",
+                          color: "blue",
+                        }}
+                        onClick={() => handleReadMore(datings)}
+                      >
+                        Read More
+                      </button>
+                    </div>
+                  ) : (
+                    <div
+                      dangerouslySetInnerHTML={{ __html: datings.description }}
+                    />
+                  )}
+                </td>
                 <td>
                   <img
                     src={datings.image}
@@ -90,6 +128,24 @@ function DatingList() {
           </tbody>
         </table>
       </div>
+
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>{selectedDating?.title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <ReactQuill
+            className="quill-editor"
+            value={selectedDating?.description}
+            readOnly={true}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }

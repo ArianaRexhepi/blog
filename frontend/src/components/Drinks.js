@@ -8,16 +8,8 @@ const Drinks = () => {
   const navigate = useNavigate();
   const itemsPerPage = 6;
   const [currentPage, setCurrentPage] = useState(1);
-
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentBlogs = drink.slice(indexOfFirstItem, indexOfLastItem);
-
-  const pageNumbers = Array.from({ length: Math.ceil(drink.length / itemsPerPage) }, (_, index) => index + 1);
-
-  const handleClick = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
+  const [sortOrder, setSortOrder] = useState("newest");
+  const [loadingInit, setLoadingInit] = useState(true);
 
   useEffect(() => {
     const fetch = async () => {
@@ -25,8 +17,32 @@ const Drinks = () => {
       setDrink(res.data);
       console.log("drinks", res.data);
     };
-    fetch();
+    fetch().finally(() => setLoadingInit(false));
   }, []);
+
+  if (loadingInit) return "Loading...";
+
+  const sort = drink.slice().sort((a, b) => {
+    const dateA = new Date(a.year);
+    const dateB = new Date(b.year);
+
+    return sortOrder === "newest" ? dateB - dateA : dateA - dateB;
+  });
+
+  const handleSortOrderChange = (selectedValue) => {
+    setSortOrder(selectedValue);
+  };
+
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentBlogs = sort.slice(indexOfFirstItem, indexOfLastItem);
+
+  const pageNumbers = Array.from({ length: Math.ceil(sort.length / itemsPerPage) }, (_, index) => index + 1);
+
+  const handleClick = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   const handleDrinkClick = (drinkId) => {
     navigate(`/drinks/${drinkId}`);
@@ -40,6 +56,20 @@ const Drinks = () => {
           <i>Drink Ideas</i>
           <hr></hr>
         </h1>
+      </div>
+
+      <div className="filter-container filter-container-mobile">
+        <label style={{ fontWeight: "bold", marginLeft: "10px" }}>
+          Sort Order:{" "}
+        </label>
+        <select
+          className="select-element select-element-mobile"
+          value={sortOrder}
+          onChange={(e) => handleSortOrderChange(e.target.value)}
+        >
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+        </select>
       </div>
 
       <div className="blog-container">
@@ -64,7 +94,7 @@ const Drinks = () => {
                 <p className="blog-content">{drinks.content}</p>
               </div>
               <div className="info-container">
-                <div className="date">{drinks.year}</div>
+                <div className="date">Encountered:{drinks.visitCount}</div>
                 <div className="author">By {drinks.author}</div>
               </div>
             </div>

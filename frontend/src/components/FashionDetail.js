@@ -1,10 +1,18 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import DisqusComments from "./DisqusComments";
 
 const FashionDetail = () => {
   const [fashion, setFashion] = useState(null);
   const { id } = useParams();
+
+  useEffect(() => {
+    const SendVisit = async () => {
+      await axios.get(`/fashion/VisitCount/${id}`);
+    };
+    SendVisit();
+  }, []);
 
   useEffect(() => {
     const fetchBeauty = async () => {
@@ -30,7 +38,12 @@ const FashionDetail = () => {
         <h2 className="blog-title">{fashion.title}</h2>
         <p className="blog-content">{fashion.content}</p>
       </div>
-      <p className="blog-description">{fashion.description}</p>
+      <div
+        className="blog-description"
+        dangerouslySetInnerHTML={{ __html: fashion.description }}
+      />
+      <hr/>
+      <DisqusComments identifier={id} />
     </div>
   );
 };

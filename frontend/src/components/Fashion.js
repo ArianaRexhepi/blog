@@ -6,28 +6,43 @@ import "./FashionDetail";
 const Fashion = () => {
   const [fashion, setFashion] = useState([]);
   const navigate = useNavigate();
+  const [sortOrder, setSortOrder] = useState("newest");
+  const [loadingInit, setLoadingInit] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    const fetch = async () => {
+      const res = await axios.get(`/fashion?sort=${sortOrder}`);
+      setFashion(res.data);
+      console.log("fashion", res.data);
+    };
+    fetch().finally(() => setLoadingInit(false));
+  }, []);
+
+  if (loadingInit) return "Loading...";
+
+  const sort = fashion.slice().sort((a, b) => {
+    const dateA = new Date(a.year);
+    const dateB = new Date(b.year);
+
+    return sortOrder === "newest" ? dateB - dateA : dateA - dateB;
+  });
+
+  const handleSortOrderChange = (selectedValue) => {
+    setSortOrder(selectedValue);
+  };
 
   const itemsPerPage = 6;
-  const [currentPage, setCurrentPage] = useState(1);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentBlogs = fashion.slice(indexOfFirstItem, indexOfLastItem);
+  const currentBlogs = sort.slice(indexOfFirstItem, indexOfLastItem);
 
-  const pageNumbers = Array.from({ length: Math.ceil(fashion.length / itemsPerPage) }, (_, index) => index + 1);
+  const pageNumbers = Array.from({ length: Math.ceil(sort.length / itemsPerPage) }, (_, index) => index + 1);
 
   const handleClick = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-
-  useEffect(() => {
-    const fetch = async () => {
-      const res = await axios.get("/fashion");
-      setFashion(res.data);
-      console.log("fashion", res.data);
-    };
-    fetch();
-  }, []);
 
   const handleMovieClick = (fashionId) => {
     navigate(`/fashion/${fashionId}`);
@@ -43,8 +58,22 @@ const Fashion = () => {
         </h1>
       </div>
 
+      <div className="filter-container filter-container-mobile">
+        <label style={{ fontWeight: "bold", marginLeft: "10px" }}>
+          Sort Order:{" "}
+        </label>
+        <select
+          className="select-element select-element-mobile"
+          value={sortOrder}
+          onChange={(e) => handleSortOrderChange(e.target.value)}
+        >
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+        </select>
+      </div>
+
       <div className="blog-container">
-        {fashion.map((fashions) => (
+        {currentBlogs.map((fashions) => (
           <div
             key={fashions.id}
             className="book-card"
@@ -65,7 +94,7 @@ const Fashion = () => {
                 <p className="blog-content">{fashions.content}</p>
               </div>
               <div className="info-container">
-                <div className="date">{fashions.year}</div>
+              <div className="date">Encountered:{fashions.visitCount}</div>
                 <div className="author">By {fashions.author}</div>
               </div>
             </div>

@@ -6,30 +6,45 @@ import "./DatingDetail";
 const Dating = () => {
   const [dating, setDating] = useState([]);
   const navigate = useNavigate();
+  const [sortOrder, setSortOrder] = useState("newest");
+  const [loadingInit, setLoadingInit] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    const fetch = async () => {
+      const res = await axios.get(`/dating?${sortOrder}`);
+      setDating(res.data);
+      console.log("dating", res.data);
+    };
+    fetch().finally(() => setLoadingInit(false));
+  }, []);
+
+  if (loadingInit) return "Loading...";
+
+  const sort = dating.slice().sort((a, b) => {
+    const dateA = new Date(a.year);
+    const dateB = new Date(b.year);
+
+    return sortOrder === "newest" ? dateB - dateA : dateA - dateB;
+  });
+
+  const handleSortOrderChange = (selectedValue) => {
+    setSortOrder(selectedValue);
+  };
 
   const itemsPerPage = 6;
-  const [currentPage, setCurrentPage] = useState(1);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentBlogs = dating.slice(indexOfFirstItem, indexOfLastItem);
+  const currentBlogs = sort.slice(indexOfFirstItem, indexOfLastItem);
 
-  const pageNumbers = Array.from({ length: Math.ceil(dating.length / itemsPerPage) }, (_, index) => index + 1);
+  const pageNumbers = Array.from({ length: Math.ceil(sort.length / itemsPerPage) }, (_, index) => index + 1);
 
   const handleClick = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  useEffect(() => {
-    const fetch = async () => {
-      const res = await axios.get("/dating");
-      setDating(res.data);
-      console.log("dating", res.data);
-    };
-    fetch();
-  }, []);
-
-  const handleMovieClick = (datingId) => {
+  const handleDatingClick = (datingId) => {
     navigate(`/dating/${datingId}`);
   };
 
@@ -43,12 +58,26 @@ const Dating = () => {
         </h1>
       </div>
 
+      <div className="filter-container filter-container-mobile">
+        <label style={{ fontWeight: "bold", marginLeft: "10px" }}>
+          Sort Order:{" "}
+        </label>
+        <select
+          className="select-element select-element-mobile"
+          value={sortOrder}
+          onChange={(e) => handleSortOrderChange(e.target.value)}
+        >
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+        </select>
+      </div>
+
       <div className="blog-container">
-        {dating.map((datings) => (
+        {currentBlogs.map((datings) => (
           <div
             key={datings.id}
             className="book-card"
-            onClick={() => handleMovieClick(datings.id)}
+            onClick={() => handleDatingClick(datings.id)}
           >
             <div className="blog-box">
               <div className="image-container">
@@ -65,7 +94,7 @@ const Dating = () => {
                 <p className="blog-content">{datings.content}</p>
               </div>
               <div className="info-container">
-                <div className="date">{datings.year}</div>
+                <div className="date">Encountered:{datings.visitCount}</div>
                 <div className="author">By {datings.author}</div>
               </div>
             </div>

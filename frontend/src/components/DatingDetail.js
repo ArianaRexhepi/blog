@@ -1,10 +1,18 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import DisqusComments from "./DisqusComments";
 
 const DatingDetail = () => {
   const [dating, setDating] = useState(null);
   const { id } = useParams();
+
+  useEffect(() => {
+    const SendVisit = async () => {
+      await axios.get(`/dating/VisitCount/${id}`);
+    };
+    SendVisit();
+  }, []);
 
   useEffect(() => {
     const fetchBeauty = async () => {
@@ -30,7 +38,12 @@ const DatingDetail = () => {
         <h2 className="blog-title">{dating.title}</h2>
         <p className="blog-content">{dating.content}</p>
       </div>
-      <p className="blog-description">{dating.description}</p>
+      <div
+        className="blog-description"
+        dangerouslySetInnerHTML={{ __html: dating.description }}
+      />
+      <hr/>
+      <DisqusComments identifier={id} />
     </div>
   );
 };
