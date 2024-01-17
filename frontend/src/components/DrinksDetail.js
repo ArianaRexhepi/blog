@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import DisqusComments from "./DisqusComments";
 
-const DrinksDetail =() => {
+const BookDetail =() => {
     const [drinks, setDrinks] = useState([]);
     const { id } = useParams();
 
@@ -14,40 +14,38 @@ const DrinksDetail =() => {
       SendVisit();
     }, []);
 
-  useEffect(() => {
-    const fetchDrinks = async () => {
-      try {
-        const res = await axios.get(`/drinks/${id}`);
-        setDrinks(res.data);
-        console.log("drinks", res.data);
-      } catch (error) {
-        console.error("Error fetching drinks:", error);
-      }
-    };
-    fetchDrinks();
-  }, [id]);
+    useEffect(() => {
+      const fetchBook = async () => {
+        try {
+          const res = await axios.get(`/drinks/${id}`);
+          setDrinks(res.data);
+          console.log("drinks", res.data);
+        } catch (error) {
+          console.error("Error fetching beauty:", error);
+        }
+      };
+      fetchBook();
+    }, [id]);
 
-  if (!drinks) {
-    return <p>Loading...</p>;
-  }
-
-  return (
-    <div className="blog-detail">
-      <img src={drinks.image} alt={drinks.title} className="blog-image" />
-      <div className="blog-info">
-        <h2 className="blog-title">{drinks.title}</h2>
-        <p className="blog-content">{drinks.content}</p>
-      </div>
-      <div
+    if (!drinks) {
+      return <p>Loading...</p>;
+    }
+  
+    return (
+      <div className="blog-detail">
+        <img src={drinks.image} alt={drinks.title} className="blog-image" />
+        <div className="blog-info">
+          <h2 className="blog-title">{drinks.title}</h2>
+          <p className="blog-content">{drinks.content}</p>
+          </div>
+          <div
         className="blog-description"
         dangerouslySetInnerHTML={{ __html: drinks.description }}
       />
       <hr/>
       <DisqusComments identifier={id} />
-    </div>
-  );
-    
-
+      </div>
+    );
 };
 
-export default DrinksDetail;
+export default BookDetail;

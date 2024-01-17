@@ -1,5 +1,6 @@
 import React from "react";
-import { DiscussionEmbed } from 'disqus-react';
+import { useSelector } from "react-redux";
+import { DiscussionEmbed } from "disqus-react";
 
 function DisqusComments({ identifier }) {
   const disqusShortname = "tea-with-ari";
@@ -9,16 +10,23 @@ function DisqusComments({ identifier }) {
     title: "Tea With Ari",
   };
 
+  const user = useSelector((state) => state.user);
+
+  const isLoggedIn = user && user.token;
+
   return (
     <div>
-      <DiscussionEmbed
-        shortname={disqusShortname}
-        config={{
-          url: disqusConfig.url,
-          identifier: disqusConfig.identifier,
-          title: disqusConfig.title,
-        }}
-      />
+      {isLoggedIn && (
+        <DiscussionEmbed
+          shortname={disqusShortname}
+          config={{
+            url: disqusConfig.url,
+            identifier: disqusConfig.identifier,
+            title: disqusConfig.title,
+          }}
+        />
+      )}
+      {!isLoggedIn && <p>Login to comment.</p>}
     </div>
   );
 }

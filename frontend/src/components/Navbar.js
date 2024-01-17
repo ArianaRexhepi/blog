@@ -14,7 +14,7 @@ const Navbar = () => {
   const handleLogOut = () => {
     localStorage.removeItem("token");
     dispatch(setUser(null));
-    navigate("/");
+    navigate("/books");
   };
 
   let isAdmin = false;
@@ -91,7 +91,7 @@ const Navbar = () => {
           {showSublinks && (
             <div className="sublinks">
               <Link to="recepies">Best Recepies</Link>
-              <Link to="drinks">Drinks</Link>
+              {/* <Link to="drinks">Drinks</Link> */}
             </div>
           )}
         </div>
@@ -153,9 +153,9 @@ const Navbar = () => {
                   <li className="mb-2">
                     <Link to="beautylist">BeautyList</Link>
                   </li>
-                  <li className="mb-2">
+                  {/* <li className="mb-2">
                     <Link to="drinkslist">DrinksList</Link>
-                  </li>
+                  </li> */}
                   <li className="mb-2">
                     <Link to="datinglist">DatingList</Link>
                   </li>

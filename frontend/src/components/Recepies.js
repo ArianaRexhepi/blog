@@ -94,7 +94,7 @@ const Recepies = () => {
                 <p className="blogg-content">{recepies.content}</p>
               </div>
               <div className="info-container">
-                <div className="date">{recepies.year}</div>
+              <div className="date">Encountered:{recepies.visitCount}</div>
                 <div className="author">By {recepies.author}</div>
               </div>
             </div>
