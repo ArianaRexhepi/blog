@@ -144,7 +144,7 @@ const Pages = () => {
       <Route path="/myprofile" element={<PersonalProfile />} />
       </Route>
 
-      <Route element={<ProtectedRouteNotLoggedIn redirectPath="/" />}>
+      <Route element={<ProtectedRouteNotLoggedIn redirectPath="/books" />}>
           <Route path="/login" element={<Login />} />
         </Route>
     </Routes>

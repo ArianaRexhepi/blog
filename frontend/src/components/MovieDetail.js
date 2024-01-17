@@ -39,8 +39,11 @@ const MovieDetail = () => {
         <h2 className="blog-title">{movies.title}</h2>
         <p className="blog-content">{movies.content}</p>
       </div>
-      <p className="blog-description">{movies.description}</p>
-      <hr />
+      <div
+        className="blog-description"
+        dangerouslySetInnerHTML={{ __html: movies.description }}
+      />
+      <hr/>
       <DisqusComments identifier={id} />
     </div>
   );

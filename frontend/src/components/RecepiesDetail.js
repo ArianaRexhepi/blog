@@ -38,7 +38,6 @@ const RecepiesDetail =() => {
         <div className="blog-info">
           <h2 className="blog-title">{recepies.title}</h2>
           <p className="blog-content">{recepies.content}</p>
-          <p className="blog-genre">Genre:{recepies.genre}</p>
         </div>
         <div
         className="blog-description"

@@ -94,7 +94,7 @@ const Friendships = () => {
                 <p className="blogg-content">{friendships.content}</p>
               </div>
               <div className="info-container">
-                <div className="date">{friendships.year}</div>
+              <div className="date">Encountered:{friendships.visitCount}</div>
                 <div className="author">By {friendships.author}</div>
               </div>
             </div>
