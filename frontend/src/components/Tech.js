@@ -25,7 +25,7 @@ const Tech = () => {
     const dateA = new Date(a.year);
     const dateB = new Date(b.year);
 
-    return sortOrder === "newest" ? dateB - dateA : dateA - dateB;
+    return sortOrder === "newest" ? dateA - dateB :  dateB - dateA;
   });
 
   const handleSortOrderChange = (selectedValue) => {
