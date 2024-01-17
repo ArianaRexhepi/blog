@@ -88,10 +88,10 @@ const Recepies = () => {
                 />
               </div>
               <div className="text-container">
-                <h3 className="blog-title">
+                <h4 className="blogg-title">
                   <b>{recepies.title}</b>
-                </h3>
-                <p className="blog-content">{recepies.content}</p>
+                </h4>
+                <p className="blogg-content">{recepies.content}</p>
               </div>
               <div className="info-container">
                 <div className="date">{recepies.year}</div>

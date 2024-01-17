@@ -91,10 +91,10 @@ const Beauty = () => {
                 />
               </div>
               <div className="text-container">
-                <h3 className="blog-title">
+                <h4 className="blogg-title">
                   <b>{beauties.title}</b>
-                </h3>
-                <p className="blog-content">{beauties.content}</p>
+                </h4>
+                <p className="blogg-content">{beauties.content}</p>
               </div>
               <div className="info-container">
                 <div className="date">Encountered:{beauties.visitCount}</div>

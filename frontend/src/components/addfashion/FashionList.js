@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 function FashionList() {
   const [fashion, setFashion] = useState([]);
+  const [selectedFashion, setSelectedFashion] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const fetch = async () => {
@@ -21,6 +27,14 @@ function FashionList() {
       await axios.delete(`/fashion/${id}`);
       setFashion(fashion.filter((fashions) => fashions.id !== id));
     }
+  };
+  const handleReadMore = (fashions) => {
+    setSelectedFashion(fashions);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
   };
 
   return (
@@ -60,7 +74,31 @@ function FashionList() {
                 <td>{fashions.title}</td>
                 <td>{fashions.author}</td>
                 <td>{fashions.content}</td>               
-                <td>{fashions.description}</td>
+                <td>
+                  {fashions.description.length > 150 ? (
+                    <div>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: `${fashions.description.slice(0, 150)}...`,
+                        }}
+                      />
+                      <button
+                        style={{
+                          border: "none",
+                          background: "none",
+                          color: "blue",
+                        }}
+                        onClick={() => handleReadMore(fashions)}
+                      >
+                        Read More
+                      </button>
+                    </div>
+                  ) : (
+                    <div
+                      dangerouslySetInnerHTML={{ __html: fashions.description }}
+                    />
+                  )}
+                </td>
                 <td>
                   <img
                     src={fashions.image}
@@ -89,6 +127,23 @@ function FashionList() {
           </tbody>
         </table>
       </div>
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>{selectedFashion?.title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <ReactQuill
+            className="quill-editor"
+            value={selectedFashion?.description}
+            readOnly={true}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }

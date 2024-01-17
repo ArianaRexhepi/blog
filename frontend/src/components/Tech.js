@@ -89,10 +89,10 @@ const Tech = () => {
                 />
               </div>
               <div className="text-container">
-                <h3 className="blog-title">
+                <h4 className="blogg-title">
                   <b>{techs.title}</b>
-                </h3>
-                <p className="blog-content">{techs.content}</p>
+                </h4>
+                <p className="blogg-content">{techs.content}</p>
               </div>
               <div className="info-container">
               <div className="date">Encountered:{techs.visitCount}</div>

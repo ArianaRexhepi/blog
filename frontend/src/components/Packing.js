@@ -88,10 +88,10 @@ const Packing = () => {
                 />
               </div>
               <div className="text-container">
-                <h3 className="blog-title">
+                <h4 className="blogg-title">
                   <b>{packings.title}</b>
-                </h3>
-                <p className="blog-content">{packings.content}</p>
+                </h4>
+                <p className="blogg-content">{packings.content}</p>
               </div>
               <div className="info-container">
               <div className="date">Encountered:{packings.visitCount}</div>

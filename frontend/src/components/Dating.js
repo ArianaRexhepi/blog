@@ -88,10 +88,10 @@ const Dating = () => {
                 />
               </div>
               <div className="text-container">
-                <h3 className="blog-title">
+                <h4 className="blogg-title">
                   <b>{datings.title}</b>
-                </h3>
-                <p className="blog-content">{datings.content}</p>
+                </h4>
+                <p className="blogg-content">{datings.content}</p>
               </div>
               <div className="info-container">
                 <div className="date">Encountered:{datings.visitCount}</div>
