@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 function RecepiesList() {
   const [recepies, setRecepies] = useState([]);
+  const [selectedRecepies, setSelectedRecepies] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const fetch = async () => {
@@ -21,6 +27,14 @@ function RecepiesList() {
       await axios.delete(`/recepies/${id}`);
       setRecepies(recepies.filter((recepie) => recepie.id !== id));
     }
+  };
+  const handleReadMore = (recepie) => {
+    setSelectedRecepies(recepie);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
   };
 
   return (
@@ -60,7 +74,31 @@ function RecepiesList() {
                 <td>{recepie.title}</td>
                 <td>{recepie.author}</td>
                 <td>{recepie.content}</td>
-                <td>{recepie.description}</td>
+                <td>
+                  {recepie.description.length > 150 ? (
+                    <div>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: `${recepie.description.slice(0, 150)}...`,
+                        }}
+                      />
+                      <button
+                        style={{
+                          border: "none",
+                          background: "none",
+                          color: "blue",
+                        }}
+                        onClick={() => handleReadMore(recepie)}
+                      >
+                        Read More
+                      </button>
+                    </div>
+                  ) : (
+                    <div
+                      dangerouslySetInnerHTML={{ __html: recepie.description }}
+                    />
+                  )}
+                </td>
                 <td>
                   <img
                     src={recepie.image}
@@ -89,6 +127,23 @@ function RecepiesList() {
           </tbody>
         </table>
       </div>
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>{selectedRecepies?.title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <ReactQuill
+            className="quill-editor"
+            value={selectedRecepies?.description}
+            readOnly={true}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }

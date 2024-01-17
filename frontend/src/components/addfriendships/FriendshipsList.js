@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 function FriendshipsList() {
   const [friendship, setFriendship] = useState([]);
+  const [selectedFriendship, setSelectedFriendship] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const fetch = async () => {
@@ -21,6 +27,14 @@ function FriendshipsList() {
       await axios.delete(`/friendships/${id}`);
       setFriendship(friendship.filter((friendships) => friendships.id !== id));
     }
+  };
+  const handleReadMore = (friendships) => {
+    setSelectedFriendship(friendships);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
   };
 
   return (
@@ -61,7 +75,31 @@ function FriendshipsList() {
                 <td>{friendships.author}</td>
                 <td>{friendships.content}</td>
                 
-                <td>{friendships.description}</td>
+                <td>
+                  {friendships.description.length > 150 ? (
+                    <div>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: `${friendships.description.slice(0, 150)}...`,
+                        }}
+                      />
+                      <button
+                        style={{
+                          border: "none",
+                          background: "none",
+                          color: "blue",
+                        }}
+                        onClick={() => handleReadMore(friendships)}
+                      >
+                        Read More
+                      </button>
+                    </div>
+                  ) : (
+                    <div
+                      dangerouslySetInnerHTML={{ __html: friendships.description }}
+                    />
+                  )}
+                </td>
                 <td>
                   <img
                     src={friendships.image}
@@ -90,6 +128,23 @@ function FriendshipsList() {
           </tbody>
         </table>
       </div>
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>{selectedFriendship?.title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <ReactQuill
+            className="quill-editor"
+            value={selectedFriendship?.description}
+            readOnly={true}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }

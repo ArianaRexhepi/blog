@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import ReactQuill from "react-quill";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 
 function DrinksList() {
   const [drink, setDrink] = useState([]);
+  const [selectedDrink, setSelectedDrink] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const fetch = async () => {
@@ -21,6 +26,15 @@ function DrinksList() {
       await axios.delete(`/drinks/${id}`);
       setDrink(drink.filter((drinks) => drinks.id !== id));
     }
+  };
+
+  const handleReadMore = (drink) => {
+    setSelectedDrink(drink);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
   };
 
   return (
@@ -60,7 +74,31 @@ function DrinksList() {
                 <td>{drinks.title}</td>
                 <td>{drinks.author}</td>
                 <td>{drinks.content}</td>
-                <td>{drinks.description}</td>
+                <td>
+                  {drinks.description.length > 150 ? (
+                    <div>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: `${drinks.description.slice(0, 150)}...`,
+                        }}
+                      />
+                      <button
+                        style={{
+                          border: "none",
+                          background: "none",
+                          color: "blue",
+                        }}
+                        onClick={() => handleReadMore(drinks)}
+                      >
+                        Read More
+                      </button>
+                    </div>
+                  ) : (
+                    <div
+                      dangerouslySetInnerHTML={{ __html: drinks.description }}
+                    />
+                  )}
+                </td>
                 <td>
                   <img
                     src={drinks.image}
@@ -89,6 +127,23 @@ function DrinksList() {
           </tbody>
         </table>
       </div>
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>{selectedDrink?.title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <ReactQuill
+            className="quill-editor"
+            value={selectedDrink?.description}
+            readOnly={true}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }

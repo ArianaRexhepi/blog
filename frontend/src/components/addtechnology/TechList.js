@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 function TechList() {
   const [tech, setTech] = useState([]);
+  const [selectedTech, setSelectedTech] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const fetch = async () => {
@@ -21,6 +27,14 @@ function TechList() {
       await axios.delete(`/technology/${id}`);
       setTech(tech.filter((techs) => techs.id !== id));
     }
+  };
+  const handleReadMore = (tech) => {
+    setSelectedTech(tech);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
   };
 
   return (
@@ -60,7 +74,31 @@ function TechList() {
                 <td>{techs.title}</td>
                 <td>{techs.author}</td>
                 <td>{techs.content}</td>
-                <td>{techs.description}</td>
+                <td>
+                  {techs.description.length > 150 ? (
+                    <div>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: `${techs.description.slice(0, 150)}...`,
+                        }}
+                      />
+                      <button
+                        style={{
+                          border: "none",
+                          background: "none",
+                          color: "blue",
+                        }}
+                        onClick={() => handleReadMore(techs)}
+                      >
+                        Read More
+                      </button>
+                    </div>
+                  ) : (
+                    <div
+                      dangerouslySetInnerHTML={{ __html: techs.description }}
+                    />
+                  )}
+                </td>
                 <td>
                   <img
                     src={techs.image}
@@ -90,6 +128,23 @@ function TechList() {
           </tbody>
         </table>
       </div>
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>{selectedTech?.title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <ReactQuill
+            className="quill-editor"
+            value={selectedTech?.description}
+            readOnly={true}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }

@@ -6,30 +6,46 @@ import "./TechDetail";
 const Tech = () => {
   const [tech, setTech] = useState([]);
   const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [sortOrder, setSortOrder] = useState("newest");
+  const [loadingInit, setLoadingInit] = useState(true);
+
+  useEffect(() => {
+    const fetch = async () => {
+      const res = await axios.get(`/technology?sort=${sortOrder}`);
+      setTech(res.data);
+      console.log("tech", res.data);
+    };
+    fetch().finally(() => setLoadingInit(false));
+  }, []);
+
+  if (loadingInit) return "Loading...";
+
+  const sort = tech.slice().sort((a, b) => {
+    const dateA = new Date(a.year);
+    const dateB = new Date(b.year);
+
+    return sortOrder === "newest" ? dateB - dateA : dateA - dateB;
+  });
+
+  const handleSortOrderChange = (selectedValue) => {
+    setSortOrder(selectedValue);
+  };
+
 
   const itemsPerPage = 6;
-  const [currentPage, setCurrentPage] = useState(1);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentBlogs = tech.slice(indexOfFirstItem, indexOfLastItem);
+  const currentBlogs = sort.slice(indexOfFirstItem, indexOfLastItem);
 
-  const pageNumbers = Array.from({ length: Math.ceil(tech.length / itemsPerPage) }, (_, index) => index + 1);
+  const pageNumbers = Array.from({ length: Math.ceil(sort.length / itemsPerPage) }, (_, index) => index + 1);
 
   const handleClick = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  useEffect(() => {
-    const fetch = async () => {
-      const res = await axios.get("/technology");
-      setTech(res.data);
-      console.log("tech", res.data);
-    };
-    fetch();
-  }, []);
-
-  const handleMovieClick = (techId) => {
+  const handleTechClick = (techId) => {
     navigate(`/technology/${techId}`);
   };
 
@@ -43,12 +59,26 @@ const Tech = () => {
         </h1>
       </div>
 
+      <div className="filter-container filter-container-mobile">
+        <label style={{ fontWeight: "bold", marginLeft: "10px" }}>
+          Sort Order:{" "}
+        </label>
+        <select
+          className="select-element select-element-mobile"
+          value={sortOrder}
+          onChange={(e) => handleSortOrderChange(e.target.value)}
+        >
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+        </select>
+      </div>
+
       <div className="blog-container">
-        {tech.map((techs) => (
+        {currentBlogs.map((techs) => (
           <div
             key={techs.id}
             className="book-card"
-            onClick={() => handleMovieClick(techs.id)}
+            onClick={() => handleTechClick(techs.id)}
           >
             <div className="blog-box">
               <div className="image-container">
@@ -65,7 +95,7 @@ const Tech = () => {
                 <p className="blog-content">{techs.content}</p>
               </div>
               <div className="info-container">
-                <div className="date">{techs.year}</div>
+              <div className="date">Encountered:{techs.visitCount}</div>
                 <div className="author">By {techs.author}</div>
               </div>
             </div>
