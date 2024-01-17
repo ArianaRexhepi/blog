@@ -151,25 +151,25 @@ const Navbar = () => {
                     <Link to="booklist">BookList</Link>
                   </li>
                   <li className="mb-2">
-                    <Link to="movielist">MovieList</Link>
-                  </li>
-                  <li className="mb-2">
-                    <Link to="techlist">TechList</Link>
-                  </li>
-                  <li className="mb-2">
-                    <Link to="giftlist">GiftList</Link>
+                    <Link to="beautylist">BeautyList</Link>
                   </li>
                   <li className="mb-2">
                     <Link to="drinkslist">DrinksList</Link>
                   </li>
                   <li className="mb-2">
-                    <Link to="beautylist">BeautyList</Link>
+                    <Link to="datinglist">DatingList</Link>
                   </li>
                   <li className="mb-2">
                     <Link to="fashionlist">FashionList</Link>
                   </li>
                   <li className="mb-2">
-                    <Link to="datinglist">DatingList</Link>
+                    <Link to="friendshiplist">FriendshipList</Link>
+                  </li>
+                  <li className="mb-2">
+                    <Link to="giftlist">GiftList</Link>
+                  </li>
+                  <li className="mb-2">
+                    <Link to="movielist">MovieList</Link>
                   </li>
                   <li className="mb-2">
                     <Link to="packinglist">PackingList</Link>
@@ -178,7 +178,7 @@ const Navbar = () => {
                     <Link to="recepielist">RecepieList</Link>
                   </li>
                   <li className="mb-2">
-                    <Link to="friendshiplist">FriendshipList</Link>
+                    <Link to="techlist">TechList</Link>
                   </li>
                   <li className="mb-2">
                     <Link to="vacationslist">VacationList</Link>
