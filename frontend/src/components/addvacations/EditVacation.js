@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import dayjs from "dayjs";
+import ReactQuill from "react-quill";
 
 function EditVacation() {
   const [loading, setLoading] = useState(false);
@@ -10,10 +12,14 @@ function EditVacation() {
 
   useEffect(() => {
     axios.get(`vacations/${id}`).then((response) => {
+      response.data.year = dayjs(response.data.year).format("YYYY-MM-DD");
       setVacation(response.data);
-      console.log(response.data);
     });
-  }, []);
+  }, [id]);
+
+  const handleDescriptionChange = (value) => {
+    setVacation({ ...vacation, description: value });
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -75,13 +81,13 @@ function EditVacation() {
             </div>
             <div className="form-group">
               <label>Description:</label>
-              <textarea
-                type="text"
-                className="form-control"
-                value={vacation.description}
-                rows={7}
-                onChange={(e) => setVacation({ ...vacation, description: e.target.value })}
-              />
+              {vacation && (
+                <ReactQuill
+                  className="quill-editor"
+                  value={vacation.description}
+                  onChange={handleDescriptionChange}
+                />
+              )}
             </div>
             <div className="form-group">
               <label>Image:</label>

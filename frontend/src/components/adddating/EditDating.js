@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import ReactQuill from "react-quill";
+import dayjs from "dayjs";
 
 function EditDating() {
   const [loading, setLoading] = useState(false);
@@ -10,10 +12,14 @@ function EditDating() {
 
   useEffect(() => {
     axios.get(`dating/${id}`).then((response) => {
+      response.data.year = dayjs(response.data.year).format("YYYY-MM-DD");
       setDating(response.data);
-      console.log(response.data);
     });
-  }, []);
+  }, [id]);
+
+  const handleDescriptionChange = (value) => {
+    setDating({ ...dating, description: value });
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -75,13 +81,13 @@ function EditDating() {
             </div>
             <div className="form-group">
               <label>Description:</label>
-              <textarea
-                type="text"
-                className="form-control"
-                rows={7}
-                value={dating.description}
-                onChange={(e) => setDating({ ...dating, description: e.target.value })}
-              />
+              {dating && (
+                <ReactQuill
+                  className="quill-editor"
+                  value={dating.description}
+                  onChange={handleDescriptionChange}
+                />
+              )}
             </div>
             <div className="form-group">
               <label>Image:</label>

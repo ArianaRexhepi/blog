@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import ReactQuill from "react-quill";
 
 function CreateMovie() {
   const [title, setTitle] = useState("");
@@ -94,11 +95,10 @@ function CreateMovie() {
             </div>
             <div className="form-group">
               <label>Description:</label>
-              <textarea
+              <ReactQuill
+                className="quill-editor"
                 value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                className="form-control"
-                rows="7"
+                onChange={(value) => setDescription(value)}
               />
             </div>
             <div className="form-group">
@@ -118,15 +118,6 @@ function CreateMovie() {
                 onChange={(e) => setYear(e.target.value)}
                 className="form-control"
               />
-            </div>
-            <div className="form-group">
-              <label>Tags:</label>
-              <select>
-                <option>Select Tags:</option>
-                <option value="Romantic">Romantic</option>
-                <option value="Comedy">Comedy</option>
-                <option value="Action">Action</option>
-              </select>
             </div>
           </div>
           <div className="modal-footer">

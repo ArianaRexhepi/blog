@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import ReactQuill from "react-quill";
+import dayjs from "dayjs";
 
 function EditGifts() {
   const [loading, setLoading] = useState(false);
@@ -10,10 +12,14 @@ function EditGifts() {
 
   useEffect(() => {
     axios.get(`giftideas/${id}`).then((response) => {
+      response.data.year = dayjs(response.data.year).format("YYYY-MM-DD");
       setGift(response.data);
-      console.log(response.data);
     });
-  }, []);
+  }, [id]);
+
+  const handleDescriptionChange = (value) => {
+    setGift({ ...gift, description: value });
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -75,13 +81,13 @@ function EditGifts() {
             </div>
             <div className="form-group">
               <label>Description:</label>
-              <textarea
-                type="text"
-                className="form-control"
-                rows="7"
-                value={gift.description}
-                onChange={(e) => setGift({ ...gift, description: e.target.value })}
-              />
+              {gift && (
+                <ReactQuill
+                  className="quill-editor"
+                  value={gift.description}
+                  onChange={handleDescriptionChange}
+                />
+              )}
             </div>
             <div className="form-group">
               <label>Image:</label>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import dayjs from "dayjs";
+import ReactQuill from "react-quill";
 
 function EditMovie() {
   const [loading, setLoading] = useState(false);
@@ -12,11 +13,13 @@ function EditMovie() {
   useEffect(() => {
     axios.get(`movies/${id}`).then((response) => {
       response.data.year = dayjs(response.data.year).format("YYYY-MM-DD");
-      console.log("year", response.data.year);
       setMovie(response.data);
-      console.log(response.data);
     });
-  }, []);
+  }, [id]);
+
+  const handleDescriptionChange = (value) => {
+    setMovie({ ...movie, description: value });
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -89,15 +92,13 @@ function EditMovie() {
             </div>
             <div className="form-group">
               <label>Description:</label>
-              <textarea
-                type="text"
-                className="form-control"
-                rows={7}
-                value={movie.description}
-                onChange={(e) =>
-                  setMovie({ ...movie, description: e.target.value })
-                }
-              />
+              {movie && (
+                <ReactQuill
+                  className="quill-editor"
+                  value={movie.description}
+                  onChange={handleDescriptionChange}
+                />
+              )}
             </div>
             <div className="form-group">
               <label>Image:</label>

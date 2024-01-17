@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import dayjs from "dayjs";
+import ReactQuill from "react-quill";
 
 function EditBeauty() {
   const [loading, setLoading] = useState(false);
@@ -10,10 +12,14 @@ function EditBeauty() {
 
   useEffect(() => {
     axios.get(`beauty/${id}`).then((response) => {
+      response.data.year = dayjs(response.data.year).format("YYYY-MM-DD");
       setBeauty(response.data);
-      console.log(response.data);
     });
-  }, []);
+  }, [id]);
+
+  const handleDescriptionChange = (value) => {
+    setBeauty({ ...beauty, description: value });
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -75,13 +81,13 @@ function EditBeauty() {
             </div>
             <div className="form-group">
               <label>Description:</label>
-              <textarea
-                type="text"
-                className="form-control"
-                rows={7}
-                value={beauty.description}
-                onChange={(e) => setBeauty({ ...beauty, description: e.target.value })}
-              />
+              {beauty && (
+                <ReactQuill
+                  className="quill-editor"
+                  value={beauty.description}
+                  onChange={handleDescriptionChange}
+                />
+              )}
             </div>
             <div className="form-group">
               <label>Image:</label>

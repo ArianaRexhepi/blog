@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import ReactQuill from "react-quill";
+import dayjs from "dayjs";
 
 function EditTech() {
   const [loading, setLoading] = useState(false);
@@ -10,10 +12,15 @@ function EditTech() {
 
   useEffect(() => {
     axios.get(`technology/${id}`).then((response) => {
+      response.data.year = dayjs(response.data.year).format("YYYY-MM-DD");
       setTech(response.data);
-      console.log(response.data);
     });
-  }, []);
+  }, [id]);
+
+  const handleDescriptionChange = (value) => {
+    setTech({ ...tech, description: value });
+  };
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -76,13 +83,13 @@ function EditTech() {
             </div>
             <div className="form-group">
               <label>Description:</label>
-              <textarea
-                type="text"
-                className="form-control"
-                value={tech.description}
-                rows={7}
-                onChange={(e) => setTech({ ...tech, description: e.target.value })}
-              />
+              {tech && (
+                <ReactQuill
+                  className="quill-editor"
+                  value={tech.description}
+                  onChange={handleDescriptionChange}
+                />
+              )}
             </div>
             <div className="form-group">
               <label>Image:</label>

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import dayjs from "dayjs";
+import ReactQuill from "react-quill";
 
 function EditDrink() {
   const [loading, setLoading] = useState(false);
@@ -10,10 +12,14 @@ function EditDrink() {
 
   useEffect(() => {
     axios.get(`drinks/${id}`).then((response) => {
+      response.data.year = dayjs(response.data.year).format("YYYY-MM-DD");
       setDrink(response.data);
-      console.log(response.data);
     });
-  }, []);
+  }, [id]);
+
+  const handleDescriptionChange = (value) => {
+    setDrink({ ...drink, description: value });
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -75,13 +81,13 @@ function EditDrink() {
             </div>
             <div className="form-group">
               <label>Description:</label>
-              <textarea
-                type="text"
-                className="form-control"
-                value={drink.description}
-                rows={7}
-                onChange={(e) => setDrink({ ...drink, description: e.target.value })}
-              />
+              {drink && (
+                <ReactQuill
+                  className="quill-editor"
+                  value={drink.description}
+                  onChange={handleDescriptionChange}
+                />
+              )}
             </div>
             <div className="form-group">
               <label>Image:</label>

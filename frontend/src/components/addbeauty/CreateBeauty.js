@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import ReactQuill from "react-quill";
 
 function CreateBeauty() {
   const [title, setTitle] = useState("");
@@ -83,11 +84,10 @@ function CreateBeauty() {
             </div>
             <div className="form-group">
               <label>Description:</label>
-              <textarea
+              <ReactQuill
+                className="quill-editor"
                 value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                className="form-control"
-                rows="7"
+                onChange={(value) => setDescription(value)}
               />
             </div>
             <div className="form-group">

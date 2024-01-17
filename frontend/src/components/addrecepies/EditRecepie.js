@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import dayjs from "dayjs";
+import ReactQuill from "react-quill";
 
 function EditRecepie() {
   const [loading, setLoading] = useState(false);
@@ -10,11 +12,14 @@ function EditRecepie() {
 
   useEffect(() => {
     axios.get(`recepies/${id}`).then((response) => {
+      response.data.year = dayjs(response.data.year).format("YYYY-MM-DD");
       setRecepies(response.data);
-      console.log(response.data);
     });
-  }, []);
+  }, [id]);
 
+  const handleDescriptionChange = (value) => {
+    setRecepies({ ...recepies, description: value });
+  };
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
@@ -75,13 +80,13 @@ function EditRecepie() {
             </div>
             <div className="form-group">
               <label>Description:</label>
-              <textarea
-                type="text"
-                className="form-control"
-                value={recepies.description}
-                rows={7}
-                onChange={(e) => setRecepies({ ...recepies, description: e.target.value })}
-              />
+              {recepies && (
+                <ReactQuill
+                  className="quill-editor"
+                  value={recepies.description}
+                  onChange={handleDescriptionChange}
+                />
+              )}
             </div>
             <div className="form-group">
               <label>Image:</label>
